@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1008788159583",
+    "firebase_url": "https://beela-6e723.firebaseio.com",
+    "project_id": "beela-6e723",
+    "storage_bucket": "beela-6e723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1008788159583:android:9e7816a05beede26",
+        "android_client_info": {
+          "package_name": "com.beela.beela"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1008788159583-89lc5i7tk0b9pf7r2fv2ge2stm5s9s8h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiUZlzKvcSPuidTF-3LWtNLqKIvSuZ2Lo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

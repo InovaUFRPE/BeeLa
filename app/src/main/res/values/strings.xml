@@ -10,4 +10,6 @@
     <string name="pedirData">Agora, digite sua data de nascimento:</string>
     <string name="pedirGenero">Por fim, digite seu gênero:</string>
     <string name="continuar">Continuar</string>
+    <string name="bemvindo">Bem-vindo!</string>
+
 </resources>

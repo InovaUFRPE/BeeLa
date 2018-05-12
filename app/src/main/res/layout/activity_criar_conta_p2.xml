@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CriarContaP2Activity">
+    tools:context=".Activity.CriarContaP2Activity">
 
     <TextView
         android:id="@+id/textViewBeeLa"
@@ -53,11 +53,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:paddingStart="10dp"
         android:background="@drawable/edittext_p"
         android:ems="10"
         android:inputType="textEmailAddress"
+        android:paddingStart="10dp"
         android:textColor="@color/colorPrimary"
+        android:textColorLink="#020007"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -92,11 +93,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:paddingStart="10dp"
         android:background="@drawable/edittext_p"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="date"
+        android:paddingStart="10dp"
         android:textColor="@color/colorPrimary"
+        android:textColorLink="#020007"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -131,11 +133,12 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:paddingStart="10dp"
         android:background="@drawable/edittext_p"
         android:ems="10"
-        android:inputType="textPassword"
+        android:inputType="text"
+        android:paddingStart="10dp"
         android:textColor="@color/colorPrimary"
+        android:textColorLink="#020007"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -144,7 +147,7 @@
         app:layout_constraintVertical_bias="0.014" />
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonCriarContaFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

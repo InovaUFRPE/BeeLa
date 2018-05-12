@@ -1,13 +1,15 @@
-package com.beela.beela;
+package com.beela.beela.Activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class CriarContaP1Activity extends AppCompatActivity {
+import com.beela.beela.R;
+
+public class PrincipalActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_conta_p1);
+        setContentView(R.layout.activity_principal);
     }
 }

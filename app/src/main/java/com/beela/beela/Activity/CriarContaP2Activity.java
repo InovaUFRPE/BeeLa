@@ -24,46 +24,45 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class CriarContaP2Activity extends AppCompatActivity {
-
-    private EditText editTextNome;
-    private EditText editTextData;
-    private EditText editTextGenero;
+    private EditText editTextEmail;
+    private EditText editTextSenha;
     private Button buttonCriarConta;
     private Usuario usuario;
-    private String email;
-    private String senha;
     private FirebaseAuth autenticacao;
+    private String nome;
+    private String data;
+    private String genero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_conta_p2);
+        setContentView(R.layout.activity_criar_conta_pt2);
 
         final Bundle parametros = this.getIntent().getExtras();
 
-        email = parametros.getString("email");
-        senha = parametros.getString("senha");
+        nome = parametros.getString("nome");
+        data = parametros.getString("data");
+        genero = parametros.getString("genero");
 
-        editTextNome = (EditText) findViewById(R.id.editTextPedirNome);
-        editTextData = (EditText) findViewById(R.id.editTextPedirData);
-        editTextGenero = (EditText) findViewById(R.id.editTextPedirGenero);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmailCriarConta);
+        editTextSenha = (EditText) findViewById(R.id.editTextSenhaCriarConta);
         buttonCriarConta = (Button) findViewById(R.id.buttonCriarContaFinal);
 
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!editTextNome.getText().toString().equals("") && !editTextData.getText().toString().equals("") && !editTextGenero.getText().toString().equals("")) {
+                if (!editTextEmail.getText().toString().equals("") && !editTextSenha.getText().toString().equals("")) {
                     usuario = new Usuario();
-                    usuario.setEmail(email);
-                    usuario.setSenha(senha);
-                    usuario.setNome(editTextNome.getText().toString());
-                    usuario.setDataAniversario(editTextData.getText().toString());
-                    usuario.setSexo(editTextGenero.getText().toString());
+                    usuario.setNome(nome);
+                    usuario.setDataAniversario(data);
+                    usuario.setSexo(genero);
+                    usuario.setEmail(editTextEmail.getText().toString());
+                    usuario.setSenha(editTextSenha.getText().toString());
 
                     criarConta();
 
                 } else {
-                    Toast.makeText(CriarContaP2Activity.this, "Preencha os campos de nome, data de nascimento e gênero!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CriarContaP2Activity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,6 +114,4 @@ public class CriarContaP2Activity extends AppCompatActivity {
         startActivity(abrirPerfil);
         finish();
     }
-
-
 }

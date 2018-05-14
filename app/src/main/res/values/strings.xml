@@ -4,11 +4,11 @@
     <string name="criar_conta">Criar conta</string>
     <string name="email">E-mail</string>
     <string name="senha">Senha</string>
-    <string name="pedirEmail">Primeiro, digite seu e-mail:</string>
-    <string name="pedirSenha">Agora, defina sua senha:</string>
-    <string name="pedirNome">Digite seu nome:</string>
-    <string name="pedirData">Agora, digite sua data de nascimento:</string>
-    <string name="pedirGenero">Por fim, digite seu gênero:</string>
+    <string name="pedirEmail">Para prosseguir, digite seu e-mail:</string>
+    <string name="pedirSenha">Finalmente, defina sua senha:</string>
+    <string name="pedirNome">Primeiro, digite seu nome:</string>
+    <string name="pedirData">Digite sua data de nascimento:</string>
+    <string name="pedirGenero">Agora, digite seu gênero:</string>
     <string name="continuar">Continuar</string>
     <string name="bemvindo">Bem-vindo!</string>
 

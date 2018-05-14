@@ -158,7 +158,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
                         ano, mes, dia);
 
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
+                    dialog.show();
 
 
             }

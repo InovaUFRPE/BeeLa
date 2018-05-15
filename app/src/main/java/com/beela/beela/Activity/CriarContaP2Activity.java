@@ -100,7 +100,10 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     Toast.makeText(CriarContaP2Activity.this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
 
                     Preferencias preferencias = new Preferencias(CriarContaP2Activity.this);
-                    preferencias.salvarPreferencias(identificador, usuario.getNome());
+                    preferencias.salvarNome(identificador, usuario.getNome());
+                    preferencias.salvarEmail(identificador, usuario.getEmail());
+                    preferencias.salvarDataAniversario(identificador, usuario.getDataAniversario());
+                    preferencias.salvarGenero(identificador, usuario.getSexo());
 
                     abrirPerfil();
 

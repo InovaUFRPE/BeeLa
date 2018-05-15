@@ -34,57 +34,54 @@ import java.util.Calendar;
 
 public class CriarContaP2Activity extends AppCompatActivity {
 
-    private static final String TAG = "CriarContap2Activity";
-    private EditText editTextNome;
-    private EditText editTextData;
-    private EditText editTextGenero;
+
+    private EditText editTextEmail;
+    private EditText editTextSenha;
+
     private Button buttonCriarConta;
     private Usuario usuario;
-    private String email;
-    private String senha;
     private FirebaseAuth autenticacao;
+    private String nome;
+    private String data;
+    private String genero;
 
 
-    private TextView displayDate;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_criar_conta_p2);
-        datadata();
 
 
-
+        setContentView(R.layout.activity_criar_conta_pt2);
 
 
 
         final Bundle parametros = this.getIntent().getExtras();
 
-        email = parametros.getString("email");
-        senha = parametros.getString("senha");
+        nome = parametros.getString("nome");
+        data = parametros.getString("data");
+        genero = parametros.getString("genero");
 
-        editTextNome = (EditText) findViewById(R.id.editTextPedirNome);
-        editTextData = (EditText) findViewById(R.id.editTextPedirData);
-        editTextGenero = (EditText) findViewById(R.id.editTextPedirGenero);
+        editTextEmail = (EditText) findViewById(R.id.editTextEmailCriarConta);
+        editTextSenha = (EditText) findViewById(R.id.editTextSenhaCriarConta);
         buttonCriarConta = (Button) findViewById(R.id.buttonCriarContaFinal);
 
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!editTextNome.getText().toString().equals("") && !editTextData.getText().toString().equals("") && !editTextGenero.getText().toString().equals("")) {
+                if (!editTextEmail.getText().toString().equals("") && !editTextSenha.getText().toString().equals("")) {
                     usuario = new Usuario();
-                    usuario.setEmail(email);
-                    usuario.setSenha(senha);
-                    usuario.setNome(editTextNome.getText().toString());
-                    usuario.setDataAniversario(editTextData.getText().toString());
-                    usuario.setSexo(editTextGenero.getText().toString());
+                    usuario.setNome(nome);
+                    usuario.setDataAniversario(data);
+                    usuario.setSexo(genero);
+                    usuario.setEmail(editTextEmail.getText().toString());
+                    usuario.setSenha(editTextSenha.getText().toString());
 
                     criarConta();
 
                 } else {
-                    Toast.makeText(CriarContaP2Activity.this, "Preencha os campos de nome, data de nascimento e gênero!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CriarContaP2Activity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -136,58 +133,6 @@ public class CriarContaP2Activity extends AppCompatActivity {
         startActivity(abrirPerfil);
         finish();
     }
-
-
-    public void datadata(){
-        displayDate = (TextView) findViewById(R.id.textViewPedirData);
-
-        displayDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Calendar calendar = Calendar.getInstance();
-                int ano = calendar.get(Calendar.YEAR);
-                int mes = calendar.get(Calendar.MONTH);
-                int dia = calendar.get(Calendar.DAY_OF_MONTH);
-
-
-                DatePickerDialog dialog = new DatePickerDialog(
-                        CriarContaP2Activity.this,
-                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                        dateSetListener,
-                        ano, mes, dia);
-
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog.show();
-
-
-            }
-
-
-
-
-
-        });
-
-
-        dateSetListener = new DatePickerDialog.OnDateSetListener() {
-
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-
-                Log.d(TAG, "dataSet: date:" + dayOfMonth + "/" + month + "/" + year  );
-            }
-
-
-
-
-        };
-
-
-
-    }
-
 
 
 }

@@ -108,7 +108,7 @@
         app:layout_constraintVertical_bias="0.014" />
 
     <Button
-        android:id="@+id/buttonContinuar"
+        android:id="@+id/buttonCriarContaFinal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -118,7 +118,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/botao_redondo"
-        android:text="@string/continuar"
+        android:text="@string/criar_conta"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

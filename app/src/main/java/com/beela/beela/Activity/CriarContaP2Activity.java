@@ -1,12 +1,19 @@
 package com.beela.beela.Activity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
@@ -23,9 +30,14 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Calendar;
+
 public class CriarContaP2Activity extends AppCompatActivity {
+
+
     private EditText editTextEmail;
     private EditText editTextSenha;
+
     private Button buttonCriarConta;
     private Usuario usuario;
     private FirebaseAuth autenticacao;
@@ -33,10 +45,17 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private String data;
     private String genero;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_criar_conta_pt2);
+
+
 
         final Bundle parametros = this.getIntent().getExtras();
 
@@ -117,4 +136,6 @@ public class CriarContaP2Activity extends AppCompatActivity {
         startActivity(abrirPerfil);
         finish();
     }
+
+
 }

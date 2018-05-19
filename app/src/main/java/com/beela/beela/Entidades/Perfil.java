@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Perfil {
-    private Context contexto;
+    private Context context;
     private String id;
 
     private String CHAVE_INTERESSE_1 = "CHAVE_INTERESSE_1";

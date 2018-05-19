@@ -23,9 +23,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100" />
+        app:layout_constraintVertical_bias="0.018" />
 
     <CheckBox
         android:id="@+id/checkBoxVegetariana"
@@ -38,13 +39,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoVegetariana"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.330"/>
+        app:layout_constraintVertical_bias="0.284" />
 
     <CheckBox
         android:id="@+id/checkBoxDoce"
@@ -57,13 +59,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoDoce"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.250"/>
+        app:layout_constraintVertical_bias="0.2" />
 
     <CheckBox
         android:id="@+id/checkBoxJaponesa"
@@ -76,13 +79,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoJaponesa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.420"/>
+        app:layout_constraintVertical_bias="0.384" />
 
     <CheckBox
         android:id="@+id/checkBoxItaliana"
@@ -95,13 +99,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoItaliana"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.510"/>
+        app:layout_constraintVertical_bias="0.484" />
 
     <CheckBox
         android:id="@+id/checkBoxMexicana"
@@ -114,13 +119,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoMexicana"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.600"/>
+        app:layout_constraintVertical_bias="0.584" />
 
 
     <CheckBox
@@ -134,18 +140,19 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoMassa"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.690"/>
+        app:layout_constraintVertical_bias="0.664" />
 
     <CheckBox
         android:id="@+id/checkBoxComidaNordestina"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -153,13 +160,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoNordestina"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.780"/>
+        app:layout_constraintVertical_bias="0.742" />
 
 
     <CheckBox
@@ -173,13 +181,14 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/EspecificaçãoComidaOutro"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/colorPrimary"
         android:textSize="33sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.860"/>
+        app:layout_constraintVertical_bias="0.842" />
 
     <Button
         android:id="@+id/buttonAdicionarInteresseCategoria"
@@ -198,6 +207,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.990" />
+        app:layout_constraintVertical_bias="0.981" />
 
 </android.support.constraint.ConstraintLayout>

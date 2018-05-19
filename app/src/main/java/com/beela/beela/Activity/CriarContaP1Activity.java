@@ -136,7 +136,7 @@ public class CriarContaP1Activity extends AppCompatActivity {
         ArrayList<String> itens = new ArrayList<String>();
         itens.add("Feminino");
         itens.add("Masculino");
-        itens.add("Não Binário");
+        itens.add("Não-binário");
 
         //adapter utilizando um layout customizado (TextView)
         final ArrayAdapter adapter = new ArrayAdapter(this, R.layout.alert_criar_conta_pt1, itens);

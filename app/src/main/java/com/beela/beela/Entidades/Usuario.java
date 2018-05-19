@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Usuario {
-
     private Context contexto;
     private String id;
     private String nome;

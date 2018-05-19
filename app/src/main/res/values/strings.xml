@@ -11,10 +11,10 @@
     <string name="pedirGenero">Agora, digite seu gênero:</string>
     <string name="continuar">Continuar</string>
     <string name="bemvindo">Bem-vindo!</string>
-    <string name="novoPerfil">Criar Perfil!</string>
+    <string name="novoPerfil">Criar perfil</string>
     <string name="Perfil">Perfil</string>
     <string name="pedirNomePerfil">Digite um nome para o seu perfil: </string>
-    <string name="pedirSelecionarCategorias">Selecionar uma categoria:</string>
+    <string name="pedirSelecionarCategorias">Selecione uma categoria:</string>
     <string name="AdicionarInteresses">Adicionar interesses</string>
     <string name="CriarPerfil">Criar perfil</string>
     <string name="MostrarInteressesAtuais">Interesses atuais</string>

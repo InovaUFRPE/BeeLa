@@ -33,8 +33,6 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Calendar;
 
 public class CriarContaP2Activity extends AppCompatActivity {
-
-
     private EditText editTextEmail;
     private EditText editTextSenha;
 
@@ -45,17 +43,10 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private String data;
     private String genero;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_criar_conta_pt2);
-
-
 
         final Bundle parametros = this.getIntent().getExtras();
 
@@ -132,10 +123,8 @@ public class CriarContaP2Activity extends AppCompatActivity {
     }
 
     public void abrirPerfil() {
-        Intent abrirPerfil = new Intent(CriarContaP2Activity.this, PrincipalActivity.class);
+        Intent abrirPerfil = new Intent(CriarContaP2Activity.this, CriarPerfilActivity.class);
         startActivity(abrirPerfil);
         finish();
     }
-
-
 }

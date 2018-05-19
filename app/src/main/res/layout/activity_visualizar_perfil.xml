@@ -39,9 +39,8 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="157dp" />
+        tools:layout_editor_absoluteY="188dp" />
 
     <Button
         android:id="@+id/buttonAdicionarInteressesVisualizar"

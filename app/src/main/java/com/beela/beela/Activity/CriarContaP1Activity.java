@@ -25,20 +25,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CriarContaP1Activity extends AppCompatActivity {
-
+    private Usuario usuario;
 
     private AlertDialog alerta;
+    private DatePickerDialog.OnDateSetListener dateSetListener;
 
+    private TextView displayDate;
     private EditText editTextNome;
-
     private EditText editTextData;
     private EditText editTextGenero;
     private Button buttonContinuar;
-    private Usuario usuario;
 
-    private TextView displayDate;
-    private DatePickerDialog.OnDateSetListener dateSetListener;
-    private static final String TAG = "CriarContap2Activity";
+    private static final String TAG = "CriarContaP2Activity";
 
 
     @Override
@@ -135,9 +133,7 @@ public class CriarContaP1Activity extends AppCompatActivity {
 
 
     private void setarGeneroEditText() {
-        //TODO tema do Dialog
         ArrayList<String> itens = new ArrayList<String>();
-        //TODO fazer enum - Gabriel Fealings
         itens.add("Feminino");
         itens.add("Masculino");
         itens.add("Não Binário");

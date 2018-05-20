@@ -166,7 +166,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Preferencias preferencias = new Preferencias(LoginActivity.this);
-                preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+
+                // Alguma coisa deu pau aqui - Tartaruga Hibrida
+//               preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
             }
 
             @Override

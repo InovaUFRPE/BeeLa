@@ -6,32 +6,221 @@
     android:layout_height="match_parent"
     tools:context=".Activity.PrincipalActivity">
 
-    <TextView
-        android:id="@+id/textViewBemVindo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+    <LinearLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+
+        android:background="@color/colorRoxo"
+
+        tools:ignore="Orientation"></LinearLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/imageViewFotoConta"
+        android:layout_width="193dp"
+        android:layout_height="131dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/bemvindo"
-        android:textColor="@color/colorPrimary"
-        android:textSize="52sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@mipmap/ic_launcher_round"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNomeConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:text="nome"
+        android:textColor="@color/colorAmarelo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFotoConta" />
+
+    <TextView
+        android:id="@+id/textViewPerfilAtualeh"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/colorRoxo"
+        android:text="Seu perfil atual é:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textViewPerfilAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Perfil Atual"
+        android:textColor="@color/colorRoxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtualeh" />
+
+    <Button
+        android:id="@+id/buttonUpload"
+        android:layout_width="123dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:text="Upload Temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtual" />
 
     <Button
         android:id="@+id/buttonGerenciarPerfil"
-        android:layout_width="wrap_content"
+        android:layout_width="133dp"
         android:layout_height="wrap_content"
-        android:text="Gerenciar perfil"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="340dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:text="G perfil - Temp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.119"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtual" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeConta"
+
+
+
+        android:layout_marginStart="8dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="195dp"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="195dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:text="Amigos"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imageButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorTransparente"
+                    app:srcCompat="@drawable/amigos" />
+
+
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="195dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:fadingEdge="none"
+                android:gravity="center"
+                android:text="Visitados"
+                android:textColor="@color/colorAmarelo"
+                android:textIsSelectable="false"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/colorTransparente"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/lugareshistorico" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="40dp"
+            android:layout_height="195dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center"
+                android:text="Grupos"
+                android:textColor="@color/colorAmarelo"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/grupo"
+                app:srcCompat="@drawable/grupo" />
+
+
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
 
 </android.support.constraint.ConstraintLayout>

@@ -47,5 +47,21 @@
     <string name="nav_Home">Home</string>
     <string name="nav_perfil">Perfil</string>
     <string name="nav_conf">Configurações</string>
+    <string name="EspecificaçãoNatação">Natação</string>
+    <string name="EspecificaçãoAcademia">Academia</string>
+    <string name="EspecificaçãoFutebol">Futebol</string>
+    <string name="EspecificaçãoCaminhada">Caminhada</string>
+    <string name="EspecificaçãoSurf">Surf</string>
+    <string name="EspecificaçãoArtesMarciais">Artes Marciais</string>
+    <string name="EspecificaçãoSkate">Skate</string>
+    <string name="EspecificaçãoEsporteOutro">Outro</string>
+    <string name="EspecificaçãoShopping">Shopping</string>
+    <string name="EspecificaçãoPraia">Praia</string>
+    <string name="EspecificaçãoParqueDiversões">Parque Diversões</string>
+    <string name="EspecificaçãoIgreja">Igreja</string>
+    <string name="EspecificaçãoBalada">Balada</string>
+    <string name="EspecificaçãoCinema">Cinema</string>
+    <string name="EspecificaçãoClube">Clube</string>
+    <string name="EspecificaçãoLugarOutro">Outro</string>
 
 </resources>

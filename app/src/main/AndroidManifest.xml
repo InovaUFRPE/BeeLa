@@ -40,7 +40,9 @@
         <activity android:name=".Activity.CriarPerfilActivity" />
         <activity android:name=".Activity.VisualizarPerfilActivity" />
         <activity android:name=".Activity.CategoriaMusicaActivity" />
-        <activity android:name=".Activity.CategoriaComidaActivity"></activity>
+        <activity android:name=".Activity.CategoriaComidaActivity" />
+        <activity android:name=".Activity.CategoriaEsporteActivity" />
+        <activity android:name=".Activity.CategoriaLugarActivity"></activity>
     </application>
 
 </manifest>

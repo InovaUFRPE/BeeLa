@@ -44,4 +44,8 @@
     <string name="EspecificaçãoMexicana">Mexicana</string>
     <string name="EspecificaçãoComidaOutro">Outro</string>
     <string name="EspecificaçãoNordestina">Nordestina</string>
+    <string name="nav_Home">Home</string>
+    <string name="nav_perfil">Perfil</string>
+    <string name="nav_conf">Configurações</string>
+
 </resources>

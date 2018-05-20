@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,8 +34,8 @@ import com.google.firebase.storage.UploadTask;
 
 public class PrincipalActivity extends AppCompatActivity {
     private Preferencias preferencias;
-    private Button gerenciarPerfil;
 
+    private BottomNavigationItemView gerenciarPerfil;
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -43,17 +45,13 @@ public class PrincipalActivity extends AppCompatActivity {
 
     private StorageReference mStorage;
 
-
     private TextView nome,perfilAtual;
-
 
     private Uri mImageUri;
 
     private StorageReference mStorageRef;
     private DatabaseReference mDatebaseRef;
     private ProgressBar mProgreesBar;
-
-
 
 
     @Override
@@ -64,10 +62,9 @@ public class PrincipalActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference("Fotos");
         mDatebaseRef = FirebaseDatabase.getInstance().getReference("Fotos");
 
-
         preferencias = new Preferencias(PrincipalActivity.this);
 
-        gerenciarPerfil = (Button) findViewById(R.id.buttonGerenciarPerfil);
+        gerenciarPerfil = findViewById(R.id.nav_perfil);
 
         gerenciarPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +72,6 @@ public class PrincipalActivity extends AppCompatActivity {
                 redirecionarGerenciarPerfil();
             }
         });
-
 
 
         perfilAtual = findViewById(R.id.textViewPerfilAtual);
@@ -111,22 +107,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
 
-        preferencias = new Preferencias(PrincipalActivity.this);
-
-        gerenciarPerfil = (Button) findViewById(R.id.buttonGerenciarPerfil);
-
-        gerenciarPerfil.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                redirecionarGerenciarPerfil();
-            }
-        });
-
-
-
-
-
-
 
 
 
@@ -140,8 +120,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
     private String getFileExtension(Uri uri){
@@ -164,7 +142,6 @@ public class PrincipalActivity extends AppCompatActivity {
             fileReference.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
 
 
 //                    Handler handler = new Handler();
@@ -239,20 +216,6 @@ public class PrincipalActivity extends AppCompatActivity {
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

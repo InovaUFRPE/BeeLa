@@ -13,7 +13,10 @@
 
         android:background="@color/colorRoxo"
 
-        tools:ignore="Orientation"></LinearLayout>
+        tools:ignore="Orientation">
+
+
+    </LinearLayout>
 
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -83,31 +86,19 @@
         android:id="@+id/buttonUpload"
         android:layout_width="123dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="60dp"
         android:text="Upload Temp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.844"
+        app:layout_constraintHorizontal_bias="0.967"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtual" />
-
-    <Button
-        android:id="@+id/buttonGerenciarPerfil"
-        android:layout_width="133dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="G perfil - Temp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.119"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtual" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtual"
+        app:layout_constraintVertical_bias="0.882" />
 
 
     <android.support.v7.widget.CardView
@@ -118,10 +109,7 @@
         android:layout_marginTop="30dp"
         app:layout_constraintTop_toBottomOf="@+id/textViewNomeConta"
 
-
-
         android:layout_marginStart="8dp"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="195dp"
@@ -215,12 +203,28 @@
                 android:background="@drawable/grupo"
                 app:srcCompat="@drawable/grupo" />
 
-
-
         </LinearLayout>
-
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
+
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorRoxo"
+        app:itemIconTint="@color/colorBranco"
+        app:itemTextColor="@color/colorBranco"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:menu="@menu/nav_itens"
+        tools:layout_editor_absoluteX="16dp">
+
+
+    </android.support.design.widget.BottomNavigationView>
+
 
 </android.support.constraint.ConstraintLayout>

@@ -42,14 +42,14 @@ public class CriarPerfilActivity extends AppCompatActivity {
         buttonCategoriaEsporte.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                redirecionarCategoriaEsporte();
             }
         });
 
         buttonCategoriaLugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                redirecionarCategoriaLugar();
             }
         });
 
@@ -64,4 +64,15 @@ public class CriarPerfilActivity extends AppCompatActivity {
         Intent abrirCategoriaMusica = new Intent(CriarPerfilActivity.this, CategoriaMusicaActivity.class);
         startActivity(abrirCategoriaMusica);
     }
+
+    public void redirecionarCategoriaEsporte() {
+        Intent abrirCategoriaEsporte = new Intent(CriarPerfilActivity.this, CategoriaEsporteActivity.class);
+        startActivity(abrirCategoriaEsporte);
+    }
+
+    public void redirecionarCategoriaLugar() {
+        Intent abrirCategoriaLugar = new Intent(CriarPerfilActivity.this, CategoriaLugarActivity.class);
+        startActivity(abrirCategoriaLugar);
+    }
+
 }

@@ -32,23 +32,18 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrincipalActivity extends AppCompatActivity {
     private Preferencias preferencias;
-
     private BottomNavigationItemView gerenciarPerfil;
-
     private static final int PICK_IMAGE_REQUEST = 1;
-
     private Button upload;
-
     private ImageView fotoUsuario;
-
     private StorageReference mStorage;
-
     private TextView nome,perfilAtual;
-
     private Uri mImageUri;
-
     private StorageReference mStorageRef;
     private DatabaseReference mDatebaseRef;
     private ProgressBar mProgreesBar;
@@ -62,7 +57,7 @@ public class PrincipalActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference("Fotos");
         mDatebaseRef = FirebaseDatabase.getInstance().getReference("Fotos");
 
-        preferencias = new Preferencias(PrincipalActivity.this);
+        preferencias = Preferencias.getInstancia(this.getApplicationContext());
 
         gerenciarPerfil = findViewById(R.id.nav_perfil);
 
@@ -73,19 +68,16 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
-
         perfilAtual = findViewById(R.id.textViewPerfilAtual);
 
         nome = findViewById(R.id.textViewNomeConta);
         nome.setText(preferencias.getNome());
 
 
-
         upload = findViewById(R.id.buttonUpload);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
                 uploadFile();
 
@@ -99,24 +91,25 @@ public class PrincipalActivity extends AppCompatActivity {
 
                 openFileChooser();
 
-
             }
         });
 
+        for (String interesse: preferencias.getPerfil().getInteresses()) {
+            Toast.makeText(PrincipalActivity.this, interesse, Toast.LENGTH_SHORT).show();
+        }
 
+        Toast.makeText(PrincipalActivity.this, "Seu nome por objeto da sessão é: " + preferencias.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "Seu e-mail por objeto da sessão é: " + preferencias.getUsuario().getEmail(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "Sua data de aniversário por objeto da sessão é: " + preferencias.getUsuario().getDataAniversario(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "Seu sexo por objeto da sessão é: " + preferencias.getUsuario().getSexo(), Toast.LENGTH_SHORT).show();
 
-
-
-
-
-
-        Toast.makeText(PrincipalActivity.this, "Seu interesse 1 é " + preferencias.getInteresse1(), Toast.LENGTH_SHORT).show();
+        /**Toast.makeText(PrincipalActivity.this, "Seu interesse 1 é " + preferencias.getInteresse1(), Toast.LENGTH_SHORT).show();
 
         Toast.makeText(PrincipalActivity.this, "Seu nome é " + preferencias.getNome() + ".", Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Seu e-mail é " + preferencias.getEmail() + ".", Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Sua data de aniversário é " + preferencias.getDataAniversario() + ".", Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Seu gênero é " + preferencias.getGenero() + ".", Toast.LENGTH_SHORT).show();
-
+        */
 
 
     }
@@ -184,7 +177,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
         }
 
-
     }
 
     @Override
@@ -194,7 +186,6 @@ public class PrincipalActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST &&resultCode == RESULT_OK
                 && data != null && data.getData() != null)
         {
-
             mImageUri = data.getData();
             fotoUsuario.setImageURI(mImageUri);
 
@@ -208,17 +199,12 @@ public class PrincipalActivity extends AppCompatActivity {
     }
 
     private void openFileChooser() {
-
-
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent,PICK_IMAGE_REQUEST);
 
     }
-
-
-
 
     public void redirecionarGerenciarPerfil() {
         Intent abrirGerenciarPerfil = new Intent(PrincipalActivity.this, VisualizarPerfilActivity.class);

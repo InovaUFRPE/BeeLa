@@ -10,9 +10,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Perfil {
+public class Perfil implements java.io.Serializable {
     private Context context;
     private String id;
+
+    private ArrayList<String> interesses = new ArrayList<String>();
 
     private String CHAVE_INTERESSE_1 = "CHAVE_INTERESSE_1";
     private String CHAVE_INTERESSE_2 = "CHAVE_INTERESSE_2";
@@ -27,6 +29,14 @@ public class Perfil {
 
     public Perfil() {
 
+    }
+
+    public void addInteresse(String interesse) {
+        interesses.add(interesse);
+    }
+
+    public ArrayList<String> getInteresses() {
+        return interesses;
     }
 
     public void salvar() {

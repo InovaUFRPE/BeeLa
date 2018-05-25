@@ -63,5 +63,7 @@
     <string name="EspecificaçãoCinema">Cinema</string>
     <string name="EspecificaçãoClube">Clube</string>
     <string name="EspecificaçãoLugarOutro">Outro</string>
+    <string name="adicionarInteresse">Adicionar interesse</string>
+
 
 </resources>

@@ -42,7 +42,8 @@
         <activity android:name=".Activity.CategoriaMusicaActivity" />
         <activity android:name=".Activity.CategoriaComidaActivity" />
         <activity android:name=".Activity.CategoriaEsporteActivity" />
-        <activity android:name=".Activity.CategoriaLugarActivity"></activity>
+        <activity android:name=".Activity.CategoriaLugarActivity" />
+        <activity android:name=".Activity.AdicionarInteresseActivity"></activity>
     </application>
 
 </manifest>

@@ -16,7 +16,6 @@ import com.beela.beela.R;
 import java.util.ArrayList;
 
 public class CategoriaEsporteActivity extends AppCompatActivity {
-
     private CheckBox checkBoxCaminhada;
     private CheckBox checkBoxSurf;
     private CheckBox checkBoxSkate;
@@ -38,6 +37,8 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria_esporte);
+
+        preferencias = Preferencias.getInstancia(this.getApplicationContext());
 
         checkBoxCaminhada = (CheckBox) findViewById(R.id.checkBoxCaminhada);
         checkBoxSurf = (CheckBox) findViewById(R.id.checkBoxSurf);
@@ -83,17 +84,29 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
         }
     }
 
+    public void adicionaInteressePreferencias() {
+        for (String interesse : interessesEsporte) {
+            perfil.addInteresse(interesse);
+        }
+    }
+
     public void criarPerfil() {
-        preferencias = new Preferencias(CategoriaEsporteActivity.this);
-        perfil = new Perfil();
+        if (preferencias.getStatusSessao().equals("1")) {
+            perfil = preferencias.getPerfil();
+        } else {
+            perfil = new Perfil();
+        }
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
 
         perfil.setInteresse1(interessesEsporte.get(0));
-
         preferencias.setInteresse1(identificador, interessesEsporte.get(0));
+
+        adicionaInteressePreferencias();
+        preferencias.setPerfil(perfil);
+
 
         //updatar child de perfil no firebase
 

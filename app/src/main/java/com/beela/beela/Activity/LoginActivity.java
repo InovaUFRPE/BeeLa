@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import com.beela.beela.Entidades.Perfil;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +37,11 @@ import java.util.Map;
 public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private DatabaseReference referencia;
-    private Usuario usuario;
+
+    private Usuario usuario = new Usuario();
+    private Perfil perfil = new Perfil();
+
+    private Preferencias preferencias;
 
     private EditText editTextEmailLogin;
     private EditText editTextSenhaLogin;
@@ -44,6 +50,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        preferencias = Preferencias.getInstancia(this.getApplicationContext());
 
         editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin);
         editTextSenhaLogin = (EditText) findViewById(R.id.editTextSenhaLogin);
@@ -55,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!editTextEmailLogin.getText().toString().equals("") && !editTextSenhaLogin.getText().toString().equals("")) {
 
-                    usuario = new Usuario();
                     usuario.setEmail(editTextEmailLogin.getText().toString());
                     usuario.setSenha(editTextSenhaLogin.getText().toString());
 
@@ -84,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
                     dadosConta();
+                    preferencias.iniciarSessao();
                     abrirPerfil();
                 } else {
                     Toast.makeText(LoginActivity.this, "Usuário e/ou senha incorretos.", Toast.LENGTH_SHORT).show();
@@ -105,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                usuario.setNome(dataSnapshot.getValue().toString());
                 preferencias.salvarNome(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
 
             }
@@ -120,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         email.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                usuario.setEmail(dataSnapshot.getValue().toString());
                 preferencias.salvarEmail(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
 
             }
@@ -135,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
         data.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                usuario.setDataAniversario(dataSnapshot.getValue().toString());
                 preferencias.salvarDataAniversario(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
 
             }
@@ -150,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
         genero.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                usuario.setSexo(dataSnapshot.getValue().toString());
                 preferencias.salvarGenero(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
 
             }
@@ -165,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Preferencias preferencias = new Preferencias(LoginActivity.this);
+                perfil.addInteresse(dataSnapshot.getValue().toString());
 
                 // Alguma coisa deu pau aqui - Tartaruga Hibrida
 //               preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
@@ -176,6 +184,9 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        preferencias.setPerfil(perfil);
+        preferencias.setUsuario(usuario);
 
     }
 

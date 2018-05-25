@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Preferencias;
 import com.beela.beela.R;
@@ -36,8 +37,11 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextSenha;
 
+    private Preferencias preferencias;
+
     private Button buttonCriarConta;
-    private Usuario usuario;
+    private Usuario usuario = new Usuario();
+    private Perfil perfil = new Perfil();
     private FirebaseAuth autenticacao;
     private String nome;
     private String data;
@@ -57,6 +61,8 @@ public class CriarContaP2Activity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.editTextEmailCriarConta);
         editTextSenha = (EditText) findViewById(R.id.editTextSenhaCriarConta);
         buttonCriarConta = (Button) findViewById(R.id.buttonCriarContaFinal);
+
+        preferencias = Preferencias.getInstancia(this.getApplicationContext());
 
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +96,14 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     usuario.salvar();
                     Toast.makeText(CriarContaP2Activity.this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
 
-                    Preferencias preferencias = new Preferencias(CriarContaP2Activity.this);
                     preferencias.salvarNome(identificador, usuario.getNome());
                     preferencias.salvarEmail(identificador, usuario.getEmail());
                     preferencias.salvarDataAniversario(identificador, usuario.getDataAniversario());
                     preferencias.salvarGenero(identificador, usuario.getSexo());
+
+                    preferencias.setUsuario(usuario);
+                    preferencias.setPerfil(perfil);
+                    preferencias.iniciarSessao();
 
                     abrirPerfil();
 

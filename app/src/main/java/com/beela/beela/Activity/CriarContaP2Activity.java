@@ -40,8 +40,10 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private Preferencias preferencias;
 
     private Button buttonCriarConta;
+
     private Usuario usuario = new Usuario();
     private Perfil perfil = new Perfil();
+
     private FirebaseAuth autenticacao;
     private String nome;
     private String data;
@@ -68,6 +70,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!editTextEmail.getText().toString().equals("") && !editTextSenha.getText().toString().equals("")) {
+
                     usuario = new Usuario();
                     usuario.setNome(nome);
                     usuario.setDataAniversario(data);
@@ -90,10 +93,11 @@ public class CriarContaP2Activity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+
                     String identificador = Codificador.codificador(usuario.getEmail());
-                    FirebaseUser novaConta = task.getResult().getUser();
                     usuario.setId(identificador);
                     usuario.salvar();
+
                     Toast.makeText(CriarContaP2Activity.this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
 
                     preferencias.salvarNome(identificador, usuario.getNome());
@@ -102,10 +106,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     preferencias.salvarGenero(identificador, usuario.getSexo());
 
                     preferencias.setUsuario(usuario);
-                    preferencias.setPerfil(perfil);
-                    preferencias.iniciarSessao();
-
-                    abrirPerfil();
+                    abrirCriarPerfil();
 
                 } else {
                     String erroExcecao = "";
@@ -131,7 +132,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
         });
     }
 
-    public void abrirPerfil() {
+    public void abrirCriarPerfil() {
         Intent abrirPerfil = new Intent(CriarContaP2Activity.this, CriarPerfilActivity.class);
         startActivity(abrirPerfil);
         finish();

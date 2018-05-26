@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.beela.beela.Helper.Preferencias;
 import com.beela.beela.R;
@@ -28,7 +29,7 @@ public class VisualizarPerfilActivity extends AppCompatActivity {
         adicionarInteresse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                redirecionarAdicionarInteresse();
+                verificarQuantidadeInteresses();
             }
         });
 
@@ -38,6 +39,14 @@ public class VisualizarPerfilActivity extends AppCompatActivity {
         android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, AdicionarInteresseActivity.class);
         startActivity(abrirPerfil);
         finish();
+    }
+
+    public void verificarQuantidadeInteresses() {
+        if (preferencias.getPerfil().getInteresses().size() < 10) {
+            redirecionarAdicionarInteresse();
+        } else {
+            Toast.makeText(VisualizarPerfilActivity.this, "Você já possui 10 interesses em seu perfil!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

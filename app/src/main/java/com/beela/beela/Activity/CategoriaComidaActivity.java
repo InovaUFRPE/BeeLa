@@ -1,6 +1,7 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.ArraySet;
@@ -13,9 +14,17 @@ import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Preferencias;
 import com.beela.beela.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 public class CategoriaComidaActivity extends AppCompatActivity {
@@ -34,6 +43,9 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
     private Preferencias preferencias;
     private Perfil perfil;
+
+    private DatabaseReference referencia;
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,28 +99,21 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         }
     }
 
-    public void adicionaInteressePreferencias() {
+    public void adicionarInteressesPreferencias() {
         for (String interesse : interessesComida) {
             perfil.addInteresse(interesse);
         }
     }
 
     public void criarPerfil() {
-        if (preferencias.getStatusSessao().equals("1")) {
-            perfil = preferencias.getPerfil();
-        } else {
-            perfil = new Perfil();
-        }
+        perfil = new Perfil();
 
-
-        String identificador = Codificador.codificador(preferencias.getEmail());
-        perfil.setId(identificador);
+        String id = Codificador.codificador(preferencias.getUsuario().getEmail());
+        perfil.setId(id);
         perfil.salvar();
 
-        perfil.setInteresse1(interessesComida.get(0));
-        preferencias.setInteresse1(identificador, interessesComida.get(0));
-
-        adicionaInteressePreferencias();
+        adicionarInteressesPreferencias();
+        atualizarInteresseFirebase();
 
         preferencias.setPerfil(perfil);
 
@@ -116,6 +121,35 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
         Toast.makeText(CategoriaComidaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void atualizarInteresseFirebase() {
+        referencia = FirebaseDatabase.getInstance().getReference();
+        //autenticacao = preferencias.getUsuario().getAutenticacao();
+
+        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> postValues = new HashMap<String, Object>();
+
+                /**for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
+                    postValues.put(snapshot.getKey(), snapshot.getValue());
+                }
+                 */
+
+                for (int i = 0; i < preferencias.getPerfil().getInteresses().size(); i++) {
+                    String chave = "interesse" + (i + 1);
+                    postValues.put(chave, preferencias.getPerfil().getInteresses().get(i));
+                }
+
+                referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void redirecionarPrincipal() {

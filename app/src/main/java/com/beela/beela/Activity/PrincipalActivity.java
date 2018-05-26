@@ -94,16 +94,30 @@ public class PrincipalActivity extends AppCompatActivity {
             }
         });
 
+//        Toast.makeText(PrincipalActivity.this, preferencias.getPerfil().getInteresses().size(), Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(PrincipalActivity.this, "entrou na principal", Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 1: " + preferencias.getInteresse1(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 2: " + preferencias.getInteresse2(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 3: " + preferencias.getInteresse3(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 4: " + preferencias.getInteresse4(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 5: " + preferencias.getInteresse5(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 6: " + preferencias.getInteresse6(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 7: " + preferencias.getInteresse7(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 8: " + preferencias.getInteresse8(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 9: " + preferencias.getInteresse9(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(PrincipalActivity.this, "sessao string 10: " + preferencias.getInteresse10(), Toast.LENGTH_SHORT).show();
+
         for (String interesse: preferencias.getPerfil().getInteresses()) {
-            Toast.makeText(PrincipalActivity.this, interesse, Toast.LENGTH_SHORT).show();
+            Toast.makeText(PrincipalActivity.this, "interesse: " + interesse, Toast.LENGTH_SHORT).show();
         }
 
-        Toast.makeText(PrincipalActivity.this, "Seu nome por objeto da sessão é: " + preferencias.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
+        /**Toast.makeText(PrincipalActivity.this, "Seu nome por objeto da sessão é: " + preferencias.getUsuario().getNome(), Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Seu e-mail por objeto da sessão é: " + preferencias.getUsuario().getEmail(), Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Sua data de aniversário por objeto da sessão é: " + preferencias.getUsuario().getDataAniversario(), Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Seu sexo por objeto da sessão é: " + preferencias.getUsuario().getSexo(), Toast.LENGTH_SHORT).show();
 
-        /**Toast.makeText(PrincipalActivity.this, "Seu interesse 1 é " + preferencias.getInteresse1(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(PrincipalActivity.this, "Seu interesse 1 é " + preferencias.getInteresse1(), Toast.LENGTH_SHORT).show();
 
         Toast.makeText(PrincipalActivity.this, "Seu nome é " + preferencias.getNome() + ".", Toast.LENGTH_SHORT).show();
         Toast.makeText(PrincipalActivity.this, "Seu e-mail é " + preferencias.getEmail() + ".", Toast.LENGTH_SHORT).show();

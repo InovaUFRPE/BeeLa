@@ -1,6 +1,7 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ import com.beela.beela.Entidades.Perfil;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,9 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao;
     private DatabaseReference referencia;
 
-    private Usuario usuario = new Usuario();
-    private Perfil perfil = new Perfil();
-
+    private Usuario usuario;
+    private Perfil perfil;
     private Preferencias preferencias;
 
     private EditText editTextEmailLogin;
@@ -63,8 +64,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!editTextEmailLogin.getText().toString().equals("") && !editTextSenhaLogin.getText().toString().equals("")) {
 
-                    usuario.setEmail(editTextEmailLogin.getText().toString());
-                    usuario.setSenha(editTextSenhaLogin.getText().toString());
+                    //usuario.setEmail(editTextEmailLogin.getText().toString());
+                    //usuario.setSenha(editTextSenhaLogin.getText().toString());
+
+                    usuario = new Usuario();
+                    perfil = new Perfil();
 
                     validarLogin();
 
@@ -85,13 +89,16 @@ public class LoginActivity extends AppCompatActivity {
 
     private void validarLogin() {
         autenticacao = Firebase.getAutenticacao();
-        autenticacao.signInWithEmailAndPassword(usuario.getEmail(), usuario.getSenha()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        autenticacao.signInWithEmailAndPassword(editTextEmailLogin.getText().toString(), editTextSenhaLogin.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Login efetuado com sucesso!", Toast.LENGTH_SHORT).show();
-                    dadosConta();
+
                     preferencias.iniciarSessao();
+                    dadosConta();
+                    //usuario.setAutenticacao(autenticacao);
+
                     abrirPerfil();
                 } else {
                     Toast.makeText(LoginActivity.this, "Usuário e/ou senha incorretos.", Toast.LENGTH_SHORT).show();
@@ -101,11 +108,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void dadosConta() {
-        Query nome;
-        Query email;
-        Query data;
-        Query genero;
-        Query interesse1;
+        final Query nome, email, data, genero, interesse1, interesse2, interesse3, interesse4, interesse5, interesse6, interesse7, interesse8, interesse9, interesse10;
+
+        usuario = new Usuario();
 
         referencia = FirebaseDatabase.getInstance().getReference();
 
@@ -113,8 +118,8 @@ public class LoginActivity extends AppCompatActivity {
         nome.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario.setNome(dataSnapshot.getValue().toString());
                 preferencias.salvarNome(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                usuario.setNome(preferencias.getNome());
 
             }
 
@@ -128,8 +133,8 @@ public class LoginActivity extends AppCompatActivity {
         email.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario.setEmail(dataSnapshot.getValue().toString());
                 preferencias.salvarEmail(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                usuario.setEmail(preferencias.getEmail());
 
             }
 
@@ -143,8 +148,8 @@ public class LoginActivity extends AppCompatActivity {
         data.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario.setDataAniversario(dataSnapshot.getValue().toString());
                 preferencias.salvarDataAniversario(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                usuario.setDataAniversario(preferencias.getDataAniversario());
 
             }
 
@@ -158,8 +163,8 @@ public class LoginActivity extends AppCompatActivity {
         genero.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario.setSexo(dataSnapshot.getValue().toString());
                 preferencias.salvarGenero(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                usuario.setSexo(preferencias.getGenero());
 
             }
 
@@ -173,10 +178,175 @@ public class LoginActivity extends AppCompatActivity {
         interesse1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                perfil.addInteresse(dataSnapshot.getValue().toString());
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_1")) {
+                    preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse1(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse1());
+                }
 
-                // Alguma coisa deu pau aqui - Tartaruga Hibrida
-//               preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse2 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse2");
+        interesse2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_2")) {
+                    preferencias.setInteresse2(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse2(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse2());
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse3 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse3");
+        interesse3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_3")) {
+                    preferencias.setInteresse3(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse3(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse3());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse4 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse4");
+        interesse4.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_4")) {
+                    preferencias.setInteresse4(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse4(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse4());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse5 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse5");
+        interesse5.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_5")) {
+                    preferencias.setInteresse5(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse5(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse5());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse6 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse6");
+        interesse6.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_6")) {
+                    preferencias.setInteresse6(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse6(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse6());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse7 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse7");
+        interesse7.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_7")) {
+                    preferencias.setInteresse7(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse7(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse7());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse8 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse8");
+        interesse8.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_8")) {
+                    preferencias.setInteresse8(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse8(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse8());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse9 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse9");
+        interesse9.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_9")) {
+                    preferencias.setInteresse9(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse9(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse9());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse10 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse10");
+        interesse10.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_10")) {
+                    preferencias.setInteresse10(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse10(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse10());
+                }
+
             }
 
             @Override

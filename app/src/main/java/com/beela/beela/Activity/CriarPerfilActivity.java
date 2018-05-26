@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.beela.beela.Helper.Preferencias;
 import com.beela.beela.R;
 
 public class CriarPerfilActivity extends AppCompatActivity {
@@ -14,11 +15,14 @@ public class CriarPerfilActivity extends AppCompatActivity {
     private Button buttonCategoriaMusica;
     private Button buttonCategoriaEsporte;
     private Button buttonCategoriaLugar;
+    private Preferencias preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_perfil);
+
+        preferencias = Preferencias.getInstancia(this.getApplicationContext());
 
         buttonCategoriaComida = (Button) findViewById(R.id.buttonCategoriaComida);
         buttonCategoriaMusica = (Button) findViewById(R.id.buttonCategoriaMusica);

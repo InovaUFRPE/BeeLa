@@ -36,7 +36,7 @@ public class VisualizarPerfilActivity extends AppCompatActivity {
     }
 
     public void redirecionarAdicionarInteresse() {
-        android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, AdicionarInteresseActivity.class);
+        android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, CriarPerfilActivity.class);
         startActivity(abrirPerfil);
         finish();
     }

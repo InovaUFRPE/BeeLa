@@ -13,8 +13,10 @@ import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Helper.AlimentandoLugares;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Lugar.lugarTeste;
 import com.beela.beela.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmailLogin;
     private EditText editTextSenhaLogin;
+    private AlimentandoLugares alimentandoLugares = new AlimentandoLugares();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         preferencias = Preferencias.getInstancia(this.getApplicationContext());
+
+        alimentandoLugares.gerandoLugares(this);
 
         editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin);
         editTextSenhaLogin = (EditText) findViewById(R.id.editTextSenhaLogin);
@@ -361,7 +366,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void abrirPerfil() {
-        Intent abrirPerfil = new Intent(LoginActivity.this, PrincipalActivity.class);
+        Intent abrirPerfil = new Intent(LoginActivity.this, CriarPerfilActivity.class);
         startActivity(abrirPerfil);
     }
 

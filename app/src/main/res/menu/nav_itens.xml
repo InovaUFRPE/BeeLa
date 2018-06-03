@@ -7,10 +7,11 @@
         android:icon="@drawable/baseline_account_circle_white_24dp"
         android:title="@string/nav_perfil" />
     <item
-        android:id="@+id/Home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/baseline_home_white_24dp"
         android:title="@string/nav_Home" />
     <item
+        android:id="@+id/nav_conf"
         android:icon="@drawable/baseline_build_white_24dp"
         android:title="@string/nav_conf" />
 </menu>

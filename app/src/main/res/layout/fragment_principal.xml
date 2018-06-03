@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.PrincipalFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+
+    <LinearLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+
+        android:background="@color/colorRoxo"
+
+        tools:ignore="Orientation">
+
+
+    </LinearLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+
+        android:id="@+id/imageViewPrincipalFrag"
+        android:layout_width="193dp"
+        android:layout_height="131dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@mipmap/ic_launcher_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/fragTextViewNome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="6dp"
+        android:text="nome"
+        android:textColor="@color/colorAmarelo"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewPrincipalFrag" />
+
+    <TextView
+        android:id="@+id/textViewPerfilAtualeh"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:text="Seu perfil atual é:"
+        android:textColor="@color/colorRoxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <TextView
+        android:id="@+id/textViewPerfilAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Perfil Atual"
+        android:textColor="@color/colorRoxo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtualeh" />
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/fragTextViewNome"
+
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="195dp"
+        tools:ignore="MissingConstraints">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="195dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:text="Amigos"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imageButtonAmigos"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@color/colorTransparente"
+                    app:srcCompat="@drawable/amigos" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="195dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fadingEdge="none"
+                    android:gravity="center"
+                    android:text="Visitados"
+                    android:textColor="@color/colorAmarelo"
+                    android:textIsSelectable="false"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@color/colorTransparente"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/lugareshistorico" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="195dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:gravity="center"
+                    android:text="Grupos"
+                    android:textColor="@color/colorAmarelo"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/imageButton3"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/grupo"
+                    app:srcCompat="@drawable/grupo" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.constraint.ConstraintLayout>
+
+
+

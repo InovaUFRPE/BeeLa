@@ -1,21 +1,19 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.ArraySet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.beela.beela.Entidades.PreferenciasPerfil;
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
-import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class CategoriaComidaActivity extends AppCompatActivity {
     private CheckBox checkBoxVegetariana;
@@ -39,9 +36,9 @@ public class CategoriaComidaActivity extends AppCompatActivity {
     private Button buttonAdicionarInteresseCategoria;
 
     private ArrayList<CheckBox> checkboxes;
-    private ArrayList<String> interessesComida;
+    private ArrayList<PreferenciasPerfil> interessesComida;
 
-    private Preferencias preferencias;
+    private Sessao preferencias;
     private Perfil perfil;
 
     private DatabaseReference referencia;
@@ -52,7 +49,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria_comida);
 
-        preferencias = Preferencias.getInstancia(this.getApplicationContext());
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
 
         checkBoxVegetariana = (CheckBox) findViewById(R.id.checkBoxVegetariana);
         checkBoxDoce = (CheckBox) findViewById(R.id.checkBoxDoce);
@@ -64,7 +61,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         checkBoxComidaOutro = (CheckBox) findViewById(R.id.checkBoxComidaOutro);
 
         checkboxes = new ArrayList<CheckBox>();
-        interessesComida = new ArrayList<String>();
+        interessesComida = new ArrayList<PreferenciasPerfil>();
 
         checkboxes.add(checkBoxVegetariana);
         checkboxes.add(checkBoxDoce);
@@ -88,20 +85,24 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
     }
 
-    public void verificaCheckboxes(ArrayList<CheckBox> checkboxes, ArrayList<String> arrayInteresses) {
+    public void verificaCheckboxes(ArrayList<CheckBox> checkboxes, ArrayList<PreferenciasPerfil> arrayInteresses) {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
                 Toast.makeText(CategoriaComidaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
-                arrayInteresses.add(checkbox.getText().toString());
+
+                PreferenciasPerfil p = new PreferenciasPerfil();
+                p.setValor(checkbox.getText().toString());
+
+                arrayInteresses.add(p);
 
             }
         }
     }
 
     public void adicionarInteressesPreferencias() {
-        for (String interesse : interessesComida) {
-            perfil.addInteresse(interesse);
+        for (PreferenciasPerfil interesse : interessesComida) {
+            perfil.addInteresse(interesse.getValor());
         }
     }
 

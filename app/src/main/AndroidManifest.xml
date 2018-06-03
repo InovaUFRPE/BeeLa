@@ -43,7 +43,10 @@
         <activity android:name=".Activity.CategoriaComidaActivity" />
         <activity android:name=".Activity.CategoriaEsporteActivity" />
         <activity android:name=".Activity.CategoriaLugarActivity" />
-        <activity android:name=".Activity.AdicionarInteresseActivity"></activity>
+        <activity android:name=".Activity.AdicionarInteresseActivity" />
+        <activity android:name=".Activity.GerenciarInteressesActivity" />
+        <activity android:name=".Activity.AmigosActivity" />
+        <activity android:name=".AmigoDetalhesActivity"></activity>
     </application>
 
 </manifest>

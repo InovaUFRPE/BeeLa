@@ -1,26 +1,24 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
-import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,19 +28,17 @@ import com.google.firebase.database.ValueEventListener;
 
 import com.beela.beela.Entidades.Perfil;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class LoginActivity extends AppCompatActivity {
+
+    private LoginFragment loginFrament;
+    private Login2Fragment login2Fragment;
+
     private FirebaseAuth autenticacao;
     private DatabaseReference referencia;
 
     private Usuario usuario;
     private Perfil perfil;
-    private Preferencias preferencias;
+    private Sessao preferencias;
 
     private EditText editTextEmailLogin;
     private EditText editTextSenhaLogin;
@@ -52,20 +48,30 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        preferencias = Preferencias.getInstancia(this.getApplicationContext());
+        login2Fragment = new Login2Fragment();
+        loginFrament = new LoginFragment();
 
-        editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin);
-        editTextSenhaLogin = (EditText) findViewById(R.id.editTextSenhaLogin);
+
+        //setFragment(loginFrament);
+
+
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
+
+        editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin2);
+        editTextSenhaLogin = (EditText) findViewById(R.id.editTextSenhaLogin2);
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
-        Button buttonCriarConta = (Button) findViewById(R.id.buttonCriarConta);
+        TextView edittextCriarConta = findViewById(R.id.textViewCriarConta);
+
+
+
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!editTextEmailLogin.getText().toString().equals("") && !editTextSenhaLogin.getText().toString().equals("")) {
 
-                    //usuario.setEmail(editTextEmailLogin.getText().toString());
-                    //usuario.setSenha(editTextSenhaLogin.getText().toString());
+//                    usuario.setEmail(editTextEmailLogin.getText().toString());
+//                    usuario.setSenha(editTextSenhaLogin.getText().toString());
 
                     usuario = new Usuario();
                     perfil = new Perfil();
@@ -74,11 +80,13 @@ public class LoginActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
+                    //setFragment(login2Fragment);
+
                 }
             }
         });
 
-        buttonCriarConta.setOnClickListener(new View.OnClickListener() {
+        edittextCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 redirecionarCriarConta();
@@ -369,5 +377,18 @@ public class LoginActivity extends AppCompatActivity {
         Intent criarConta = new Intent(LoginActivity.this, CriarContaP1Activity.class);
         startActivity(criarConta);
     }
+
+
+    private void setFragment(android.support.v4.app.Fragment fragment) {
+
+//        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.replace(R.id.login_frame, fragment);
+//        fragmentTransaction.commit();
+
+
+    }
+
+
+
 
 }

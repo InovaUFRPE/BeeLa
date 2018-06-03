@@ -6,44 +6,45 @@ import android.widget.TextView;
 import android.view.View;
 import android.widget.Toast;
 
-import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 
 public class VisualizarPerfilActivity extends AppCompatActivity {
     private TextView interesse1;
-    private Preferencias preferencias;
-    private android.widget.Button adicionarInteresse;
+    private Sessao preferencias;
+    private android.widget.Button gerenciarInteresses;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_perfil);
 
-        preferencias = Preferencias.getInstancia(this.getApplicationContext());
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
 
         interesse1 = findViewById(R.id.textViewMostrarInteresses);
         interesse1.setText(preferencias.getInteresse1());
 
-        adicionarInteresse = (android.widget.Button) findViewById(R.id.buttonAdicionarInteressesVisualizar);
+        gerenciarInteresses = (android.widget.Button) findViewById(R.id.buttonGerenciarInteresses);
 
-        adicionarInteresse.setOnClickListener(new View.OnClickListener() {
+        gerenciarInteresses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                verificarQuantidadeInteresses();
+                gerenciarInteresses();
             }
         });
 
+
     }
 
-    public void redirecionarAdicionarInteresse() {
-        android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, AdicionarInteresseActivity.class);
+    public void gerenciarInteresses() {
+        android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, GerenciarInteressesActivity.class);
         startActivity(abrirPerfil);
         finish();
     }
 
     public void verificarQuantidadeInteresses() {
         if (preferencias.getPerfil().getInteresses().size() < 10) {
-            redirecionarAdicionarInteresse();
+            gerenciarInteresses();
         } else {
             Toast.makeText(VisualizarPerfilActivity.this, "Você já possui 10 interesses em seu perfil!", Toast.LENGTH_SHORT).show();
         }

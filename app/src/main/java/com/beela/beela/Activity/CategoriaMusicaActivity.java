@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
-import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 
 import java.util.ArrayList;
@@ -30,7 +30,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
     private ArrayList<CheckBox> checkboxes;
     private ArrayList<String> interessesMusica;
 
-    private Preferencias preferencias;
+    private Sessao preferencias;
     private Perfil perfil;
 
     @Override
@@ -38,7 +38,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria_musica);
 
-        preferencias = Preferencias.getInstancia(this.getApplicationContext());
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
 
         checkBoxForro = (CheckBox) findViewById(R.id.checkBoxForro);
         checkBoxSamba = (CheckBox) findViewById(R.id.checkBoxSamba);

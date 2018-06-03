@@ -23,6 +23,16 @@ public class Usuario implements Serializable {
     private String senha;
     private FirebaseAuth autenticacao;
 
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    private String urlFoto;
+
     public Usuario() {
     }
 

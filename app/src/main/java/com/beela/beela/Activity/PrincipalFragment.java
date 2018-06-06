@@ -20,11 +20,12 @@ import com.squareup.picasso.Picasso;
  */
 public class PrincipalFragment extends Fragment {
 
-    Sessao preferencias;
+    private Sessao preferencias;
     private ImageView fotoUsuario;
     private TextView nome, perfilAtual;
     private ImageButton imageButtonAmigos;
-
+    private ImageButton imageButtonLugares;
+    private ImageButton imageButtonGrupos;
     public PrincipalFragment() {
         // Required empty public constructor
     }
@@ -42,6 +43,15 @@ public class PrincipalFragment extends Fragment {
         fotoUsuario = view.findViewById(R.id.imageViewPrincipalFrag);
         setarFotoUsuario();
 
+        imageButtonLugares = view.findViewById(R.id.imageButtonLugares);
+
+        imageButtonLugares.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),LugaresActivity.class);
+                startActivity(intent);
+            }
+        });
 
         imageButtonAmigos = view.findViewById(R.id.imageButtonAmigos);
         imageButtonAmigos.setOnClickListener(new View.OnClickListener() {
@@ -50,6 +60,20 @@ public class PrincipalFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(),AmigosActivity.class);
                 //startActivity(intent);
+
+            }
+        });
+
+
+
+        imageButtonGrupos = view.findViewById(R.id.imageButtonGrupos);
+        imageButtonGrupos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getActivity(),TesteJson.class);
+                startActivity(intent);
+
 
             }
         });

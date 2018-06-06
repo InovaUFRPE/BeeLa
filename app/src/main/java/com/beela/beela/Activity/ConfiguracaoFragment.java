@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beela.beela.Helper.Codificador;
@@ -40,12 +41,12 @@ public class ConfiguracaoFragment extends Fragment {
     private Sessao preferencias;
 
     private static final int PICK_IMAGE_REQUEST = 1;
-    Button upload;
+    private Button upload;
     private ImageView fotoUsuario;
     private Uri mImageUri;
     private StorageReference mStorageRef;
     private DatabaseReference mDatebaseRef;
-
+    private TextView nome,datanacimento,email,senha,genero;
 
 
     public ConfiguracaoFragment() {
@@ -72,6 +73,66 @@ public class ConfiguracaoFragment extends Fragment {
                 openFileChooser();
             }
         });
+
+        nome = view.findViewById(R.id.textViewNome);
+        senha = view.findViewById(R.id.textViewSenha);
+        email = view.findViewById(R.id.textViewEmail);
+        genero = view.findViewById(R.id.textViewGenero);
+        datanacimento = view.findViewById(R.id.textViewGenero);
+
+
+        nome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //mudar nome com alert
+
+
+            }
+        });
+
+
+        senha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Mudar senha com alert
+
+            }
+        });
+
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // mudar senha com alert
+
+            }
+        });
+
+
+        genero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                // mudar genero com alert
+
+            }
+        });
+
+
+
+        datanacimento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // mudar data
+
+            }
+        });
+
+
 
         upload = view.findViewById(R.id.buttonUploadConfFrag);
 

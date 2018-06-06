@@ -1,4 +1,4 @@
-package com.beela.beela;
+package com.beela.beela.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
+import com.beela.beela.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;

@@ -9,14 +9,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.beela.beela.AmigoDetalhesActivity;
-import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
-import com.beela.beela.List.adapterPersonalizado;
 import com.beela.beela.List.adapterPersonalizadoAmigos;
 import com.beela.beela.R;
 import com.google.firebase.database.DataSnapshot;

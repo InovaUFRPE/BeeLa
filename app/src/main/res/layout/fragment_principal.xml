@@ -157,11 +157,11 @@
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/imageButtonLugares"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:background="@color/colorTransparente"
                     android:layout_gravity="center"
+                    android:background="@color/colorTransparente"
                     app:srcCompat="@drawable/lugareshistorico" />
 
 
@@ -183,7 +183,7 @@
                     android:textStyle="bold" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/imageButtonGrupos"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"

@@ -38,16 +38,21 @@ public class VisualizarPerfilActivity extends AppCompatActivity {
 
     public void gerenciarInteresses() {
         android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, GerenciarInteressesActivity.class);
-        startActivity(abrirPerfil);
-        finish();
-    }
 
-    public void verificarQuantidadeInteresses() {
-        if (preferencias.getPerfil().getInteresses().size() < 10) {
-            gerenciarInteresses();
-        } else {
-            Toast.makeText(VisualizarPerfilActivity.this, "Você já possui 10 interesses em seu perfil!", Toast.LENGTH_SHORT).show();
-        }
-    }
 
+//    public void redirecionarAdicionarInteresse() {
+//        android.content.Intent abrirPerfil = new android.content.Intent(VisualizarPerfilActivity.this, CriarPerfilActivity.class);
+//        startActivity(abrirPerfil);
+//        finish();
+//    }
+
+//    public void verificarQuantidadeInteresses() {
+//        if (preferencias.getPerfil().getInteresses().size() < 10) {
+//            gerenciarInteresses();
+//        } else {
+//            Toast.makeText(VisualizarPerfilActivity.this, "Você já possui 10 interesses em seu perfil!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+    }
 }

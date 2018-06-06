@@ -12,8 +12,12 @@ import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Helper.AlimentandoLugares;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
+
+//import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Lugar.lugarTeste;
 import com.beela.beela.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmailLogin;
     private EditText editTextSenhaLogin;
+    private AlimentandoLugares alimentandoLugares = new AlimentandoLugares();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +64,10 @@ public class LoginActivity extends AppCompatActivity {
 
         editTextEmailLogin = (EditText) findViewById(R.id.editTextEmailLogin2);
         editTextSenhaLogin = (EditText) findViewById(R.id.editTextSenhaLogin2);
+
+        alimentandoLugares.gerandoLugares(this);
+
+
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
         TextView edittextCriarConta = findViewById(R.id.textViewCriarConta);
 

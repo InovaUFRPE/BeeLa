@@ -1,5 +1,6 @@
 package com.beela.beela.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.beela.beela.Helper.Sessao;
+
+//import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.AlimentandoLugares;
 import com.beela.beela.R;
 
 public class CriarPerfilActivity extends AppCompatActivity {
@@ -15,6 +19,7 @@ public class CriarPerfilActivity extends AppCompatActivity {
     private Button buttonCategoriaEsporte;
     private Button buttonCategoriaLugar;
     private Sessao preferencias;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

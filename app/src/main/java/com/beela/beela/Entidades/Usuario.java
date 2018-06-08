@@ -3,6 +3,7 @@ package com.beela.beela.Entidades;
 import android.content.Context;
 
 import com.beela.beela.DAO.Firebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -12,7 +13,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Usuario {
+public class Usuario implements Serializable {
     private Context contexto;
     private String id;
     private String nome;
@@ -20,7 +21,17 @@ public class Usuario {
     private String dataaniversario;
     private String sexo;
     private String senha;
+    private FirebaseAuth autenticacao;
 
+    public String getUrlFoto() {
+        return urlFoto;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    private String urlFoto;
 
     public Usuario() {
     }
@@ -92,5 +103,12 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public void setAutenticacao(FirebaseAuth autentica) {
+        this.autenticacao = autentica;
+    }
+
+    public FirebaseAuth getAutenticacao() {
+        return autenticacao;
+    }
 
 }

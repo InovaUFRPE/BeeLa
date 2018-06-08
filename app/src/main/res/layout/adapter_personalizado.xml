@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="top|center"
+    android:orientation="horizontal">
+
+
+    <LinearLayout
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lista_curso_personalizada_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Titulo"
+            android:textColor="@color/colorRoxo"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/lista_curso_personalizada_descricao"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:text="descriçao"
+            android:textColor="@color/colorAmarelo"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

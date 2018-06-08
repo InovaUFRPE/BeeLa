@@ -10,23 +10,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Perfil {
+public class Perfil implements java.io.Serializable {
     private Context context;
     private String id;
 
-    private String CHAVE_INTERESSE_1 = "CHAVE_INTERESSE_1";
-    private String CHAVE_INTERESSE_2 = "CHAVE_INTERESSE_2";
-    private String CHAVE_INTERESSE_3 = "CHAVE_INTERESSE_3";
-    private String CHAVE_INTERESSE_4 = "CHAVE_INTERESSE_4";
-    private String CHAVE_INTERESSE_5 = "CHAVE_INTERESSE_5";
-    private String CHAVE_INTERESSE_6 = "CHAVE_INTERESSE_6";
-    private String CHAVE_INTERESSE_7 = "CHAVE_INTERESSE_7";
-    private String CHAVE_INTERESSE_8 = "CHAVE_INTERESSE_8";
-    private String CHAVE_INTERESSE_9 = "CHAVE_INTERESSE_9";
-    private String CHAVE_INTERESSE_10 = "CHAVE_INTERESSE_10";
+    private ArrayList<String> interesses = new ArrayList<String>();
+
+    private String CHAVE_INTERESSE_1 = "null";
+    private String CHAVE_INTERESSE_2 = "null";
+    private String CHAVE_INTERESSE_3 = "null";
+    private String CHAVE_INTERESSE_4 = "null";
+    private String CHAVE_INTERESSE_5 = "null";
+    private String CHAVE_INTERESSE_6 = "null";
+    private String CHAVE_INTERESSE_7 = "null";
+    private String CHAVE_INTERESSE_8 = "null";
+    private String CHAVE_INTERESSE_9 = "null";
+    private String CHAVE_INTERESSE_10 = "null";
 
     public Perfil() {
 
+    }
+
+    public void addInteresse(String interesse) {
+        interesses.add(interesse);
+    }
+
+    public ArrayList<String> getInteresses() {
+        return interesses;
     }
 
     public void salvar() {

@@ -4,12 +4,17 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Entidades.Perfil;
 
-public class Preferencias {
-    private static Preferencias instancia;
+public final class Sessao {
+    private static Sessao instancia;
     private SharedPreferences preferencias;
     private SharedPreferences.Editor editor;
     private Context contexto;
+    private String CHAVE_FOTO = "fotoUsuarioLogado";
+
+    private Usuario usuarioAtivo;
+    private com.beela.beela.Entidades.Perfil perfilAtivo;
 
     private int MODE = 0;
 
@@ -31,15 +36,17 @@ public class Preferencias {
     private final String CHAVE_INTERESSE_9 = "interesse9";
     private final String CHAVE_INTERESSE_10 = "interesse10";
 
-    public static synchronized Preferencias getInstancia(Context contexto) {
+    private final String STATUS_SESSAO = "0";
+
+    public static synchronized Sessao getInstancia(Context contexto) {
         if (instancia == null) {
-            instancia = new Preferencias(contexto.getApplicationContext());
+            instancia = new Sessao(contexto.getApplicationContext());
         }
 
         return instancia;
     }
 
-    public Preferencias (Context contexto) {
+    public Sessao(Context contexto) {
         this.contexto = contexto;
         preferencias = contexto.getSharedPreferences(NOME_ARQUIVO, MODE);
 
@@ -50,6 +57,14 @@ public class Preferencias {
     public void salvarNome(String emailcodificado, String nome) {
         editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
         editor.putString(CHAVE_NOME, nome);
+        editor.commit();
+    }
+
+
+    public void salvarUrlFoto(String emailcodificado, String urlFoto) {
+
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_FOTO, urlFoto);
         editor.commit();
     }
 
@@ -65,15 +80,6 @@ public class Preferencias {
     }
     public void salvarGenero(String emailcodificado, String genero) {
         editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
-        editor.putString(CHAVE_GENERO, genero);
-        editor.commit();
-    }
-
-    public void salvarDados(String emailcodificado, String nome, String email, String data, String genero) {
-        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
-        editor.putString(CHAVE_NOME, nome);
-        editor.putString(CHAVE_EMAIL, email);
-        editor.putString(CHAVE_DATAANIVERSARIO, data);
         editor.putString(CHAVE_GENERO, genero);
         editor.commit();
     }
@@ -198,4 +204,45 @@ public class Preferencias {
         return preferencias.getString(CHAVE_GENERO, null);
     }
 
+    public void setUsuario(Usuario usuario) {
+        this.usuarioAtivo = usuario;
+
+    }
+
+    public Usuario getUsuario() {
+        return usuarioAtivo;
+    }
+
+    public void setPerfil(com.beela.beela.Entidades.Perfil perfil) {
+        this.perfilAtivo = perfil;
+    }
+
+    public String getUrlFoto() {
+        return preferencias.getString(CHAVE_FOTO, null);
+    }
+
+
+
+    public Perfil getPerfil() {
+        return perfilAtivo;
+    }
+
+    public void iniciarSessao() {
+        editor.putString(STATUS_SESSAO, "1");
+        editor.commit();
+    }
+
+    public void finalizarSessao() {
+        editor.putString(STATUS_SESSAO, "0");
+        editor.commit();
+    }
+
+    public String getStatusSessao() {
+        return preferencias.getString(STATUS_SESSAO, null);
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.CHAVE_FOTO = urlFoto;
+    }
 }
+

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
-import com.beela.beela.Helper.Preferencias;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 
 import java.util.ArrayList;
@@ -26,16 +26,19 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
     private CheckBox checkBoxMusicaOutro;
     private Button buttonAdicionarInteresseCategoria;
 
+
     private ArrayList<CheckBox> checkboxes;
     private ArrayList<String> interessesMusica;
 
-    private Preferencias preferencias;
+    private Sessao preferencias;
     private Perfil perfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categoria_musica);
+
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
 
         checkBoxForro = (CheckBox) findViewById(R.id.checkBoxForro);
         checkBoxSamba = (CheckBox) findViewById(R.id.checkBoxSamba);
@@ -83,17 +86,28 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         }
     }
 
+    public void adicionaInteressePreferencias() {
+        for (String interesse : interessesMusica) {
+            perfil.addInteresse(interesse);
+        }
+    }
+
     public void criarPerfil() {
-        preferencias = new Preferencias(CategoriaMusicaActivity.this);
-        perfil = new Perfil();
+        if (preferencias.getStatusSessao().equals("1")) {
+            perfil = preferencias.getPerfil();
+        } else {
+            perfil = new Perfil();
+        }
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
 
         perfil.setInteresse1(interessesMusica.get(0));
-
         preferencias.setInteresse1(identificador, interessesMusica.get(0));
+
+        adicionaInteressePreferencias();
+        preferencias.setPerfil(perfil);
 
         //updatar child de perfil no firebase
 

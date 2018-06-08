@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.beela.beela">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -42,7 +45,18 @@
         <activity android:name=".Activity.CategoriaMusicaActivity" />
         <activity android:name=".Activity.CategoriaComidaActivity" />
         <activity android:name=".Activity.CategoriaEsporteActivity" />
-        <activity android:name=".Activity.CategoriaLugarActivity"></activity>
+        <activity android:name=".Activity.CategoriaLugarActivity" />
+        <activity android:name=".Activity.GerenciarInteressesActivity" />
+        <activity android:name=".Activity.AmigosActivity" />
+        <activity android:name=".Activity.AmigoDetalhesActivity" />
+        <activity android:name=".Lugar.lugarTeste" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDheLyJyZoZjZdIv4faOM_hvPfutuaHxLs" />
+
+        <activity android:name=".Activity.LugaresActivity" />
+        <activity android:name=".Activity.TesteJson"></activity>
     </application>
 
 </manifest>

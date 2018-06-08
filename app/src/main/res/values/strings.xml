@@ -26,6 +26,7 @@
     <string name="CategoriaMusica">Música</string>
     <string name="CategoriaEsporte">Esporte</string>
     <string name="CategoriaLugar">Lugar</string>
+
     <string name="EspecificaçaoMusica">Música</string>
     <string name="EspecificaçãoForro">Forró</string>
     <string name="EspecificaçãoSamba">Samba</string>
@@ -35,6 +36,7 @@
     <string name="EspecificaçãoRock">Rock</string>
     <string name="EspecificaçãoEletrônica">Eletrônica</string>
     <string name="EspecificaçãoMúsicaOutro">Outro</string>
+
     <string name="EspecificaçãoComida">Comida</string>
     <string name="EspecificaçãoVegetariana">Vegetariana</string>
     <string name="EspecificaçãoMassa">Massa</string>
@@ -47,6 +49,7 @@
     <string name="nav_Home">Home</string>
     <string name="nav_perfil">Perfil</string>
     <string name="nav_conf">Configurações</string>
+
     <string name="EspecificaçãoNatação">Natação</string>
     <string name="EspecificaçãoAcademia">Academia</string>
     <string name="EspecificaçãoFutebol">Futebol</string>
@@ -55,6 +58,7 @@
     <string name="EspecificaçãoArtesMarciais">Artes Marciais</string>
     <string name="EspecificaçãoSkate">Skate</string>
     <string name="EspecificaçãoEsporteOutro">Outro</string>
+
     <string name="EspecificaçãoShopping">Shopping</string>
     <string name="EspecificaçãoPraia">Praia</string>
     <string name="EspecificaçãoParqueDiversões">Parque Diversões</string>
@@ -63,5 +67,71 @@
     <string name="EspecificaçãoCinema">Cinema</string>
     <string name="EspecificaçãoClube">Clube</string>
     <string name="EspecificaçãoLugarOutro">Outro</string>
+
+    <string name="adicionarInteresse">Adicionar interesse</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="IgrejaCarmo">Igreja do Carmo</string>
+    <string name="IgrejaDescricao">Igreja Descrição</string>
+    <string name="Shoping">Shoping Rio Mar</string>
+    <string name="ShopingDescricao">Shoping Descrição</string>
+    <string name="Clube">Clube Náutico</string>
+    <string name="ClubeDescricao">Clube Descrição</string>
+    <string name="Praia">Praia de Piedade</string>
+    <string name="PraiaDescricao">Praia Descrição</string>
+    <string name="Parque">Parque Mirabilândia</string>
+    <string name="ParqueDescricao">Parque Descrição</string>
+    <string name="Balada">Balada Porto Music</string>
+    <string name="BaladaDescricao">Balada Descrição</string>
+    <string name="Cinema">Cinema São Luiz</string>
+    <string name="CinemaDescricao">Cinema Descrição</string>
+
+    <string name="Natação">Academia Anitta</string>
+    <string name="NataçãoDescrição">Natação Descrição</string>
+    <string name="Futebol">Winner</string>
+    <string name="FutebolDescrição">Futebol Descrição</string>
+    <string name="Surf">Argo Surf</string>
+    <string name="SurfDescrição">Argo Descrição</string>
+    <string name="ArtesMarciais">CTCMMA artes Marciais</string>
+    <string name="ArtesMarciaisDescrição">Artes Marciais Descrição</string>
+    <string name="Skate">Click Skate</string>
+    <string name="SkateDescrição">Skate Descrição</string>
+    <string name="Academia">HI Academia</string>
+    <string name="AcademiaDescrição">Academia Descrição</string>
+    <string name="Caminhada">Parque Jaqueira</string>
+    <string name="CaminhadaDescrição">Caminhada Descrição</string>
+
+    <string name="Vegetariana"> Pote Vegano</string>
+    <string name="VegetarianaDescrição">Vegetariana Descrição</string>
+    <string name="Doce">Simone Barros</string>
+    <string name="DoceDescrição">Doce Descrição</string>
+    <string name="Japonesa">Chinna inbox</string>
+    <string name="JaponesaDescrição">Japonesa Descrição</string>
+    <string name="Italiana">Cantina Italiana</string>
+    <string name="ItalianaDescrição">Italiana Descrição</string>
+    <string name="Mexicana">Taco a Taco</string>
+    <string name="MexicanaDescrição">Mexicana Descriçaõ</string>
+    <string name="Massa">Pizzaria Atlântico</string>
+    <string name="MassaDescrição">Massa Descrição</string>
+    <string name="Nordestina">Xodó Nordestino</string>
+    <string name="NordestinaDescrição">Nordestina Descrição</string>
+
+    <string name="Samba">Samba da Moeda</string>
+    <string name="SambaDescrição">Samba Descrição</string>
+    <string name="Forró">Casa do Forró</string>
+    <string name="ForróDescrição">Forró Descrição</string>
+    <string name="Funk">Explode Funk</string>
+    <string name="FunkDescrição">Funk Descrição</string>
+    <string name="Sertanejo">Empório Sertanejo</string>
+    <string name="SertanejoDescrição">Sertanejo Descrição</string>
+    <string name="Axé">Casa do Axé</string>
+    <string name="AxeDescrição">Axé Descrição</string>
+    <string name="Rock">Rock Ribs</string>
+    <string name="RockDescrição">Rock Descrição</string>
+    <string name="Eletrônica">Many Deck Bar</string>
+    <string name="EletronicaDescrição">Eletrônica Descrição</string>
+
 
 </resources>

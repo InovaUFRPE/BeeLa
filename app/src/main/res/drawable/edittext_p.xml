@@ -10,7 +10,7 @@
 
         />
     <solid
-        android:color="@color/colorRoxo"
+        android:color="@color/colorAmarelo"
         />
     <padding
         android:left="0dp"

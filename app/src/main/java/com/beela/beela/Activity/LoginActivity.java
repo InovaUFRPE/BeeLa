@@ -1,6 +1,7 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth autenticacao;
     private DatabaseReference referencia;
-
+    private TextView textViewNomeApp;
     private Usuario usuario;
     private Perfil perfil;
     private Sessao preferencias;
@@ -53,12 +54,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Typeface fonte = Typeface.createFromAsset(getAssets(), "fonts/aqua.ttf");
+
         login2Fragment = new Login2Fragment();
         loginFrament = new LoginFragment();
-
+        textViewNomeApp = findViewById(R.id.textViewNomeApp);
+        textViewNomeApp.setTypeface(fonte);
 
         //setFragment(loginFrament);
-
 
         preferencias = Sessao.getInstancia(this.getApplicationContext());
 

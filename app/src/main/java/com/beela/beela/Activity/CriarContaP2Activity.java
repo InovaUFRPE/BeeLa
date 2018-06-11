@@ -45,7 +45,8 @@ public class CriarContaP2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_criar_conta_pt2);
 
         final Bundle parametros = this.getIntent().getExtras();
-
+        //
+        // autenticacao.pass
         nome = parametros.getString("nome");
         data = parametros.getString("data");
         genero = parametros.getString("genero");

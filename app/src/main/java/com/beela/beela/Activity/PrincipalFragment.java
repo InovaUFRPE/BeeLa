@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
  */
 public class PrincipalFragment extends Fragment {
 
+
     private Sessao preferencias;
     private ImageView fotoUsuario;
     private TextView nome, perfilAtual;
@@ -35,6 +36,9 @@ public class PrincipalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_principal, container, false);
+
+
+
         preferencias = Sessao.getInstancia(getContext());
 
 

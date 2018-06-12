@@ -22,7 +22,9 @@
         android:textColorLink="@color/colorAmarelo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomeApp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeApp"
+        android:paddingLeft="10dp"
+        tools:ignore="RtlCompat" />
 
     <EditText
         android:id="@+id/editTextSenhaLogin2"
@@ -50,7 +52,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/botao_redondo"
         android:text="@string/login"
         android:textColor="@color/cardview_light_background"
         android:textSize="14sp"

@@ -156,12 +156,12 @@ public class PrincipalActivity extends AppCompatActivity {
 //        Toast.makeText(PrincipalActivity.this, "sessao string 8: " + preferencias.getInteresse8(), Toast.LENGTH_SHORT).show();
 //        Toast.makeText(PrincipalActivity.this, "sessao string 9: " + preferencias.getInteresse9(), Toast.LENGTH_SHORT).show();
 //        Toast.makeText(PrincipalActivity.this, "sessao string 10: " + preferencias.getInteresse10(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(PrincipalActivity.this, "Nome: " + preferencias.getNome(), Toast.LENGTH_SHORT).show();
-        Toast.makeText(PrincipalActivity.this, "Url: " + preferencias.getUrlFoto(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(PrincipalActivity.this, "Nome: " + preferencias.getNome(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(PrincipalActivity.this, "Url: " + preferencias.getUrlFoto(), Toast.LENGTH_SHORT).show();
 
 
         for (String interesse : preferencias.getPerfil().getInteresses()) {
-            Toast.makeText(PrincipalActivity.this, "interesse: " + interesse, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(PrincipalActivity.this, "interesse: " + interesse, Toast.LENGTH_SHORT).show();
         }
 
         /**Toast.makeText(PrincipalActivity.this, "Seu nome por objeto da sessão é: " + preferencias.getUsuario().getValor(), Toast.LENGTH_SHORT).show();

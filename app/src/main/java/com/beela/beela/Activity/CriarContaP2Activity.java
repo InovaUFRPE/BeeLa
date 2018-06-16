@@ -1,12 +1,14 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
@@ -38,13 +40,18 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private String nome;
     private String data;
     private String genero;
-
+    private TextView nomeAppConta;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_conta_pt2);
 
         final Bundle parametros = this.getIntent().getExtras();
+        nomeAppConta = findViewById(R.id.textViewNomeAppContap2);
+        Typeface fonte = Typeface.createFromAsset(getAssets(), "fonts/aqua.ttf");
+        nomeAppConta.setTypeface(fonte);
+
+
         //
         // autenticacao.pass
         nome = parametros.getString("nome");

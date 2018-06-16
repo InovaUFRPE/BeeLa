@@ -40,7 +40,7 @@ public class adapterPersonalizadoAmigos extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         View view = act.getLayoutInflater()
-                .inflate(R.layout.adapter_personalizadomigos, parent, false);
+                .inflate(R.layout.adapterpersousuarios, parent, false);
 
 
         Usuario u = listaUsuario.get(position);

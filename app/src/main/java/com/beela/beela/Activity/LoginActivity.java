@@ -18,7 +18,6 @@ import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 
 //import com.beela.beela.Helper.Preferencias;
-import com.beela.beela.Lugar.lugarTeste;
 import com.beela.beela.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -58,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         login2Fragment = new Login2Fragment();
         loginFrament = new LoginFragment();
-        textViewNomeApp = findViewById(R.id.textViewNomeApp);
+        textViewNomeApp = findViewById(R.id.textViewNomeAppContap2);
         textViewNomeApp.setTypeface(fonte);
 
         //setFragment(loginFrament);

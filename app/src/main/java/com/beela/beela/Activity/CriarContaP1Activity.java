@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ public class CriarContaP1Activity extends AppCompatActivity {
     private AlertDialog alerta;
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
-    private TextView displayDate;
+    private TextView displayDate,nomeAppConta;
     private EditText editTextNome;
     private EditText editTextData;
     private EditText editTextGenero;
@@ -47,6 +48,12 @@ public class CriarContaP1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar_conta_pt1);
         setarDataEditText();
+
+        nomeAppConta = findViewById(R.id.textViewNomeAppContap1);
+        Typeface fonte = Typeface.createFromAsset(getAssets(), "fonts/aqua.ttf");
+        nomeAppConta.setTypeface(fonte);
+
+
 
         editTextGenero = (EditText) findViewById(R.id.editTextPedirGenero);
 

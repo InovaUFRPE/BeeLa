@@ -96,10 +96,18 @@ public class ConfiguracaoFragment extends Fragment {
         });
 
         nome = view.findViewById(R.id.textViewNome);
+        nome.setText(preferencias.getUsuario().getNome());
+
         senha = view.findViewById(R.id.textViewSenha);
+        //senha.setText(preferencias.getUsuario().getSenha());
         email = view.findViewById(R.id.textViewEmail);
+        email.setText(preferencias.getUsuario().getEmail());
+
         genero = view.findViewById(R.id.textViewGenero);
+        genero.setText(preferencias.getGenero().toString());
+
         datanacimento = view.findViewById(R.id.textViewDataNascimento);
+        datanacimento.setText(preferencias.getUsuario().getDataAniversario());
 
 
         nome.setOnClickListener(new View.OnClickListener() {
@@ -118,113 +126,112 @@ public class ConfiguracaoFragment extends Fragment {
                 dialog.show();
 
                 buttonConfirmar.setOnClickListener(new View.OnClickListener() {
-                            @Override
+                    @Override
 
-                            public void onClick(View v) {
-                                if (!editTextAlterar.getText().toString().isEmpty()) {
+                    public void onClick(View v) {
+                        if (!editTextAlterar.getText().toString().isEmpty()) {
 
-                                    String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
-                                    mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("nome"); //mudar o child para cada informacao correspondente
-                                    mDatebaseRef.setValue(editTextAlterar.getText().toString());
-                                    preferencias.getUsuario().setNome(editTextAlterar.getText().toString());
-                                    Toast.makeText(getActivity(), "Nome alterado", Toast.LENGTH_LONG).show();
-                                    dialog.dismiss();
-                                }
-
-
-                            }
-                        });
+                            String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
+                            mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("nome"); //mudar o child para cada informacao correspondente
+                            mDatebaseRef.setValue(editTextAlterar.getText().toString());
+                            preferencias.getUsuario().setNome(editTextAlterar.getText().toString());
+                            nome.setText(preferencias.getUsuario().getNome());
+                            Toast.makeText(getActivity(), "Nome alterado", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
 
 
                     }
                 });
 
 
+            }
+        });
 
 
-                senha.setOnClickListener(new View.OnClickListener() {
+        senha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                View alertview = getLayoutInflater().inflate(R.layout.dialog_conf_senha, null);
+                TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConfSenha);
+                final EditText editTextAlterarSenha = alertview.findViewById(R.id.editTextAlertConfSenha);
+                Button buttonConfirmarSenha = alertview.findViewById(R.id.buttonAlertConfSenha);
+
+                alertTitulo.setText("Digite sua senha: ");
+
+                alertDialog.setView(alertview);
+                final AlertDialog dialog = alertDialog.create();
+                dialog.show();
+
+                //Setando
+
+                buttonConfirmarSenha.setOnClickListener(new View.OnClickListener() {
                     @Override
+
                     public void onClick(View v) {
 
-                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                        View alertview = getLayoutInflater().inflate(R.layout.dialog_conf_senha, null);
-                        TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConfSenha);
-                        final EditText editTextAlterarSenha = alertview.findViewById(R.id.editTextAlertConfSenha);
-                        Button buttonConfirmarSenha = alertview.findViewById(R.id.buttonAlertConfSenha);
+                        if (!editTextAlterarSenha.getText().toString().isEmpty()) {
+                            final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                        alertTitulo.setText("Digite sua senha: ");
-
-                        alertDialog.setView(alertview);
-                        final AlertDialog dialog = alertDialog.create();
-                        dialog.show();
-
-                        //Setando
-
-                        buttonConfirmarSenha.setOnClickListener(new View.OnClickListener() {
-                            @Override
-
-                            public void onClick(View v) {
-
-                                if (!editTextAlterarSenha.getText().toString().isEmpty()) {
-                                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                                    String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
-                                    mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("senha"); //mudar o child para cada informacao correspondente
-                                    mDatebaseRef.setValue(editTextAlterarSenha.getText().toString());
-                                    preferencias.getUsuario().setSenha(editTextAlterarSenha.getText().toString());
-                                    Toast.makeText(getActivity(), preferencias.getUsuario().getSenha(), Toast.LENGTH_LONG).show();
-                                    // Toast.makeText(getActivity(), "Senha Alterada",Toast.LENGTH_LONG).show();
-                                    user.updatePassword(editTextAlterarSenha.getText().toString());
-                                    dialog.dismiss();
-                                }
-
-                            }
-                        });
+                            String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
+                            mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("senha"); //mudar o child para cada informacao correspondente
+                            mDatebaseRef.setValue(editTextAlterarSenha.getText().toString());
+                            preferencias.getUsuario().setSenha(editTextAlterarSenha.getText().toString());
+                            Toast.makeText(getActivity(), preferencias.getUsuario().getSenha(), Toast.LENGTH_LONG).show();
+                            // Toast.makeText(getActivity(), "Senha Alterada",Toast.LENGTH_LONG).show();
+                            user.updatePassword(editTextAlterarSenha.getText().toString());
+                            dialog.dismiss();
+                        }
 
                     }
                 });
 
-
-                //Mudar senha com alert
-                genero.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        ArrayList<String> itens = new ArrayList<String>();
-                        itens.add("Feminino");
-                        itens.add("Masculino");
-                        itens.add("Não-binário");
-
-                        //adapter utilizando um layout customizado (TextView)
-                        final ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.alert_criar_conta_pt1, itens);
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                        builder.setTitle("Escolha seu gênero:");
-                        //define o diálogo como uma lista, passa o adapter.
-
-                        builder.setSingleChoiceItems(adapter, 0, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface arg0, int arg1) {
-
-                                String generoEditText = adapter.getItem(arg1).toString();
-
-                                //Setando generoEditText
-                                //genero.setText(generoEditText);
-                                alerta.dismiss();
-
-                                String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
-                                mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("genero"); //mudar o child para cada informacao correspondente
-                                mDatebaseRef.setValue(generoEditText);
-                                preferencias.getUsuario().setSexo(generoEditText);
-                                Toast.makeText(getActivity(), "Gênero alterado", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                        alerta = builder.create();
-                        alerta.show();
+            }
+        });
 
 
+        //Mudar senha com alert
+        genero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<String> itens = new ArrayList<String>();
+                itens.add("Feminino");
+                itens.add("Masculino");
+                itens.add("Não-binário");
+
+                //adapter utilizando um layout customizado (TextView)
+                final ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.alert_criar_conta_pt1, itens);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Escolha seu gênero:");
+                //define o diálogo como uma lista, passa o adapter.
+
+                builder.setSingleChoiceItems(adapter, 0, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        String generoEditText = adapter.getItem(arg1).toString();
+
+                        //Setando generoEditText
+                        //genero.setText(generoEditText);
+                        alerta.dismiss();
+
+                        String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
+                        mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("genero"); //mudar o child para cada informacao correspondente
+                        mDatebaseRef.setValue(generoEditText);
+                        preferencias.getUsuario().setSexo(generoEditText);
+                        Toast.makeText(getActivity(), "Gênero alterado", Toast.LENGTH_LONG).show();
                     }
                 });
+
+                alerta = builder.create();
+                alerta.show();
+
+
+            }
+        });
 
 //        email.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -281,100 +288,99 @@ public class ConfiguracaoFragment extends Fragment {
 //
 
 
-                datanacimento.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        // mudar data com alert
-
-                        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-                        View alertview = getLayoutInflater().inflate(R.layout.dialog_conf, null);
-                        TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConf);
-                        final EditText editTextAlterar = alertview.findViewById(R.id.editTextAlertConf);
-                        final Button buttonConfirmar = alertview.findViewById(R.id.buttonAlertConf);
-
-                        alertTitulo.setText("Digite sua data de nascimento: ");
-                        editTextAlterar.setHint("data nascimento");
-                        alertDialog.setView(alertview);
-                        final AlertDialog dialog = alertDialog.create();
-                        dialog.show();
-
-                        editTextAlterar.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                Calendar calendar = Calendar.getInstance();
-                                int ano = calendar.get(Calendar.YEAR);
-                                int mes = calendar.get(Calendar.MONTH);
-                                int dia = calendar.get(Calendar.DAY_OF_MONTH);
-
-
-                                DatePickerDialog dialog = new DatePickerDialog(
-                                        getActivity(),
-                                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
-                                        dateSetListener,
-                                        ano, mes, dia);
-
-                                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                                dialog.show();
-
-
-                            }
-
-
-                        });
-
-
-
-                        dateSetListener = new DatePickerDialog.OnDateSetListener()
-
-                        {
-
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-
-                                Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
-                                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-
-                                //datanacimento.setText(date);
-                                //Setando  date
-
-                                editTextAlterar.setText(date);
-
-                                buttonConfirmar.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-
-
-                                        String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
-                                        mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("dataA niversario"); //mudar o child para cada informacao correspondente
-                                        mDatebaseRef.setValue(editTextAlterar.getText().toString());
-                                        preferencias.getUsuario().setDataAniversario(editTextAlterar.getText().toString());
-                                        Toast.makeText(getActivity(), "Data aniversário Alterada", Toast.LENGTH_LONG).show();
-                                        dialog.dismiss();
-                                    }
-                                });
-
-                            }
-                        };
-
-
-                    }
-                });
-
-
-
-
-        upload = view.findViewById(R.id.buttonUploadConfFrag);
-
-        upload.setOnClickListener(new View.OnClickListener() {
+        datanacimento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                //uploadFile();
+                // mudar data com alert
+
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
+                View alertview = getLayoutInflater().inflate(R.layout.dialog_conf, null);
+                TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConf);
+                final EditText editTextAlterar = alertview.findViewById(R.id.editTextAlertConf);
+                final Button buttonConfirmar = alertview.findViewById(R.id.buttonAlertConf);
+
+                alertTitulo.setText("Digite sua data de nascimento: ");
+                editTextAlterar.setHint("data nascimento");
+                alertDialog.setView(alertview);
+                final AlertDialog dialog = alertDialog.create();
+                dialog.show();
+
+                editTextAlterar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Calendar calendar = Calendar.getInstance();
+                        int ano = calendar.get(Calendar.YEAR);
+                        int mes = calendar.get(Calendar.MONTH);
+                        int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+
+                        DatePickerDialog dialog = new DatePickerDialog(
+                                getActivity(),
+                                android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                                dateSetListener,
+                                ano, mes, dia);
+
+                        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        dialog.show();
+
+
+                    }
+
+
+                });
+
+
+                dateSetListener = new DatePickerDialog.OnDateSetListener()
+
+                {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+
+                        Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
+                        String date = dayOfMonth + "/" + (month + 1) + "/" + year;
+
+                        //datanacimento.setText(date);
+                        //Setando  date
+
+                        editTextAlterar.setText(date);
+
+                        buttonConfirmar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+
+                                String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
+                                mDatebaseRef = FirebaseDatabase.getInstance().getReference("conta").child(emailCodificado).child("dataA niversario"); //mudar o child para cada informacao correspondente
+                                mDatebaseRef.setValue(editTextAlterar.getText().toString());
+                                preferencias.getUsuario().setDataAniversario(editTextAlterar.getText().toString());
+                                Toast.makeText(getActivity(), "Data aniversário Alterada", Toast.LENGTH_LONG).show();
+                                dialog.dismiss();
+                            }
+                        });
+
+                    }
+                };
+
 
             }
         });
+
+
+
+
+        //upload = view.findViewById(R.id.buttonUploadConfFrag);
+
+//        upload.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+                uploadFile();
+//
+//            }
+//        });
 
             return view;
     }

@@ -150,4 +150,10 @@ public class Perfil implements java.io.Serializable {
     public String getInteresse10() {
         return this.CHAVE_INTERESSE_10;
     }
+
+
+
+
+
+
 }

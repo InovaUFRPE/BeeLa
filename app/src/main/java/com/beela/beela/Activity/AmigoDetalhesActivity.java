@@ -23,8 +23,8 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private TextView nomeAmigo,emailAmigo,sexoAmigo,dataNiverAmigo;
     private ImageView fotoAmigo;
-    private Button buttonExcluir;
-
+    private Button buttonExcluir, buttonAdc;
+    private String emailAbigocod;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_amigo_detalhes);
 
         Intent intent = getIntent();
-        final Usuario abigo = (Usuario)  intent.getSerializableExtra("amiguinho");
+        final Usuario abigo = (Usuario)  intent.getSerializableExtra("usuarinho");
 
         preferencias = Sessao.getInstancia(this.getApplicationContext());
 
@@ -52,6 +52,23 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
 
         Picasso.get().load(abigo.getUrlFoto()).into(fotoAmigo);
 
+        emailAbigocod = Codificador.codificador(abigo.getEmail());
+
+        buttonAdc = findViewById(R.id.buttonAdcAmiguinho);
+        buttonAdc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //criar notificacao de convide no email do cara
+                //TODO Criar objeto do tipo convite;
+                databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
+                databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
+                Toast.makeText(AmigoDetalhesActivity.this,"Convite Enviado",Toast.LENGTH_LONG).show();
+
+
+            }
+        });
+
 
         buttonExcluir = findViewById(R.id.buttonExluirAmigo);
 
@@ -59,7 +76,7 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("amigos").child(Codificador.codificador(preferencias.getEmail())).child(Codificador.codificador(abigo.getEmail()));
+                databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(Codificador.codificador(preferencias.getEmail())).child(emailAbigocod);
                 databaseReference.removeValue();
                 finish();
                 Toast.makeText(getApplicationContext(),"Amiguinho Excluido",Toast.LENGTH_LONG).show();

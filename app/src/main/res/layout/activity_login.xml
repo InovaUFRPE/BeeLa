@@ -22,7 +22,7 @@
         android:textColorLink="@color/colorAmarelo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNomeApp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeAppContap2"
         android:paddingLeft="10dp"
         tools:ignore="RtlCompat" />
 
@@ -53,6 +53,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:text="@string/login"
+        android:background="@drawable/botao_redondo"
         android:textColor="@color/cardview_light_background"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -151,7 +152,7 @@
         app:srcCompat="@drawable/emailiconelogin" />
 
     <TextView
-        android:id="@+id/textViewNomeApp"
+        android:id="@+id/textViewNomeAppContap2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

@@ -55,8 +55,8 @@ public class ListViewPreferencias extends BaseAdapter {
         final PreferenciasPerfil preferenciasItem = listaPreferencias.get(posicao);
 
         View view = LayoutInflater.from(ctx).inflate(R.layout.activity_list_view_perfil, null);
-        TextView texto = view.findViewById(R.id.textViewListView);
-        CheckBox listCheckBox6 = (CheckBox) view.findViewById(R.id.checkBox6);
+        TextView texto = view.findViewById(R.id.textViewNomeAppContap2);
+        CheckBox listCheckBox6 = (CheckBox) view.findViewById(R.id.checkBoxDoInferno);
 
 
         AdapterView.OnItemLongClickListener clickListener = new AdapterView.OnItemLongClickListener() {

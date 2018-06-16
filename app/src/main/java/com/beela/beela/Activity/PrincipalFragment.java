@@ -62,8 +62,8 @@ public class PrincipalFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(),AmigosActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(getActivity(),GerenciarAmigos2Activity.class);
+                startActivity(intent);
 
             }
         });
@@ -75,7 +75,7 @@ public class PrincipalFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(),TesteJson.class);
+                Intent intent = new Intent(getActivity(),GruposActivity.class);
                 startActivity(intent);
 
 
@@ -94,7 +94,7 @@ public class PrincipalFragment extends Fragment {
     }
 
     private void setarFotoUsuario()  {
-
+        //TODO Fazer um dada Snapshot
         String url = preferencias.getUrlFoto();
 
    //     Glide.with(getContext()).load(url).into(fotoUsuario);

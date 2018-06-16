@@ -111,4 +111,21 @@ public class Usuario implements Serializable {
         return autenticacao;
     }
 
+
+    //Grupos
+
+    public Boolean getSelecionado() {
+        return selecionado;
+    }
+
+    public void setSelecionado(Boolean selecionado) {
+        this.selecionado = selecionado;
+    }
+
+    private Boolean selecionado = false;
+
+
+
+
+
 }

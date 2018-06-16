@@ -24,12 +24,20 @@
         <activity
             android:name=".Activity.CriarContaP1Activity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activity.CriarContaP2Activity"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Activity.PrincipalActivity" />
         <activity android:name=".Activity.CriarPerfilActivity" />
@@ -48,7 +56,15 @@
             android:value="AIzaSyDheLyJyZoZjZdIv4faOM_hvPfutuaHxLs" />
 
         <activity android:name=".Activity.LugaresActivity" />
-        <activity android:name=".Activity.TesteJson"></activity>
+        <activity android:name=".Activity.TesteJson" />
+        <activity android:name=".Activity.GerenciarAmigos2Activity" />
+        <activity android:name=".Activity.PesquisaActivity" />
+        <activity android:name=".Activity.ConvitesActivity" />
+        <activity android:name=".Activity.GruposActivity" />
+        <activity android:name=".Activity.CriarGrupoActivity" />
+        <activity android:name=".Activity.ListaDeAmigosActivity" />
+        <activity android:name=".Activity.CriarGrupoP2Activity" />
+        <activity android:name=".Activity.GerenciarGruposActivity"></activity>
     </application>
 
 </manifest>

@@ -35,6 +35,8 @@ public final class Sessao {
     private final String CHAVE_INTERESSE_8 = "interesse8";
     private final String CHAVE_INTERESSE_9 = "interesse9";
     private final String CHAVE_INTERESSE_10 = "interesse10";
+    private final String CHAVE_INTERESSE_11 = "interesse11";
+    private final String CHAVE_INTERESSE_12 = "interesse12";
 
     private final String STATUS_SESSAO = "0";
 
@@ -144,6 +146,18 @@ public final class Sessao {
         editor.commit();
     }
 
+    public void setInteresse11(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_10, interesse);
+        editor.commit();
+    }
+
+    public void setInteresse12(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_10, interesse);
+        editor.commit();
+    }
+
     public String getInteresse1() {
         return preferencias.getString(CHAVE_INTERESSE_1, null);
     }
@@ -182,6 +196,12 @@ public final class Sessao {
 
     public String getInteresse10() {
         return preferencias.getString(CHAVE_INTERESSE_10, null);
+    }
+    public String getInteresse11() {
+        return preferencias.getString(CHAVE_INTERESSE_11, null);
+    }
+    public String getInteresse12() {
+        return preferencias.getString(CHAVE_INTERESSE_12, null);
     }
 
     public String getIdentificador() {

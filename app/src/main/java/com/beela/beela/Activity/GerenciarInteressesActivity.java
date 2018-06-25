@@ -1,16 +1,19 @@
 package com.beela.beela.Activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Entidades.PreferenciasPerfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
@@ -25,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GerenciarInteressesActivity extends AppCompatActivity {
 
@@ -33,27 +37,80 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
     private Sessao preferencias;
+    private DatabaseReference referencia;
     private FirebaseDatabase firebaseDatabase;
+    private Perfil perfil;
     private DatabaseReference databaseReference;
     String identificador;
     private ArrayList<PreferenciasPerfil> preferenciasLista = new ArrayList<PreferenciasPerfil>();
     ListViewPreferencias adapterPreferencias ;
+    private Button adicInteresse;
     private HashMap<String, String> prefetenciasDicionario = new HashMap<String, String>();
     private ListView listView;
     private TextView quantidadeInteresses;
+    private Button excluir;
     private static PreferenciasPerfil preferenciasPerfil = new PreferenciasPerfil();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_interesses);
-
-        listView =  findViewById(R.id.listviewPreferencias);
+        listView = findViewById(R.id.listviewPreferencias);
+        excluir = findViewById(R.id.button);
+        adicInteresse = findViewById(R.id.buttonAdicionarInteresses);
         quantidadeInteresses = findViewById(R.id.quantidadeInteresses);
         chamarFirebase();
         ExibirPreferencias();
 
+        excluir.setOnClickListener(new View.OnClickListener(
+        ) {
+            @Override
+            public void onClick(View view) {
+                perfil = preferencias.getPerfil();
+                String identificador = Codificador.codificador(preferencias.getEmail());
+                perfil.setId(identificador);
+                perfil.setInteresse1("null");
+                perfil.setInteresse2("null");
+                perfil.setInteresse3("null");
+                perfil.setInteresse4("null");
+                perfil.setInteresse5("null");
+                perfil.setInteresse6("null");
+                perfil.setInteresse7("null");
+                perfil.setInteresse8("null");
+                perfil.setInteresse9("null");
+                perfil.setInteresse10("null");
+                perfil.setInteresse11("null");
+                perfil.setInteresse12("null");
+                preferencias.setPerfil(perfil);
+                Map<String, Object> postValues = new HashMap<String, Object>();
+                referencia = FirebaseDatabase.getInstance().getReference();
+                for (int i = 0; i < 12; i++) {
+                    String chave = "interesse" + (i + 1);
+                    postValues.put(chave, "null");
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
 
+            }
+            preferenciasLista.clear();
+            perfil.getInteresses().clear();
+            ExibirPreferencias();
+
+        }
+
+        });
+
+
+
+
+        adicInteresse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent abrirCategoriaPerfil = new Intent(GerenciarInteressesActivity.this, CriarPerfilActivity.class);
+                startActivity(abrirCategoriaPerfil);
+            }
+        });
     }
+
+
+
 
     private void chamarFirebase() {
         preferencias = Sessao.getInstancia(this.getApplicationContext());
@@ -74,9 +131,10 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                         PreferenciasPerfil p = new PreferenciasPerfil();
                         p.setValor(data.getValue().toString());
                         p.setChave(data.getKey().toString());
+                     //   if (!preferencias.getInteresse1().equals("null"));
                         preferenciasLista.add(p);
 
-                    } else {
+                  //  } else {
 
                     }
                 }
@@ -126,12 +184,12 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                     Adapter adapter = (Adapter) listView.getAdapter();
                     for (int i = 0; i < adapter.getCount(); i++) {
 
-                       PreferenciasPerfil a = (PreferenciasPerfil) adapter.getItem(i);
+                        PreferenciasPerfil a = (PreferenciasPerfil) adapter.getItem(i);
                         PreferenciasPerfil p = a;
                         if (p.getSelecionado()) {
-                            Toast.makeText(GerenciarInteressesActivity.this, "Minha Pica" ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(GerenciarInteressesActivity.this, "excluido preferencia" ,Toast.LENGTH_SHORT).show();
 
-                            exluirInteresse(p);
+
                         }
                     }
                 }
@@ -139,8 +197,6 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-
 
 
     private void exluirInteresse(final PreferenciasPerfil interesse) {
@@ -159,6 +215,8 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
                     preferenciasLista.remove(interesse);
+                    ExibirPreferencias();
+                    excluirPreferencias();
                     arrayadapterCu.notifyDataSetChanged();
                     quantidadeInteresses.setText(preferenciasLista.size() +"/10");
 

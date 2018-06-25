@@ -9,11 +9,19 @@ import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.beela.beela.Entidades.Perfil;
+import com.beela.beela.Entidades.PreferenciasPerfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CategoriaEsporteActivity extends AppCompatActivity {
     private CheckBox checkBoxCaminhada;
@@ -25,6 +33,7 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
     private CheckBox checkBoxNatação;
     private CheckBox checkBoxEsporteOutro;
     private Button buttonAdicionarInteresseCategoria;
+    private DatabaseReference databaseReference;
 
 
     private ArrayList<CheckBox> checkboxes;
@@ -32,6 +41,7 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
 
     private Sessao preferencias;
     private Perfil perfil;
+    private DatabaseReference referencia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +88,7 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
-                Toast.makeText(CategoriaEsporteActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(CategoriaEsporteActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
                 interesses.add(checkbox.getText().toString());
             }
         }
@@ -86,33 +96,99 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
 
     public void adicionaInteressePreferencias() {
         for (String interesse : interessesEsporte) {
-            perfil.addInteresse(interesse);
+            perfil.addInteresseEsporte(interesse);
         }
     }
 
     public void criarPerfil() {
-        if (preferencias.getStatusSessao().equals("1")) {
+       if (preferencias.getStatusSessao().equals("1")) {
             perfil = preferencias.getPerfil();
         } else {
-            perfil = new Perfil();
-        }
+           perfil = new Perfil();
+       }
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
 
-        perfil.setInteresse1(interessesEsporte.get(0));
-        preferencias.setInteresse1(identificador, interessesEsporte.get(0));
+        if (interessesEsporte.size() > 3) {
+            Toast.makeText(CategoriaEsporteActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
 
-        adicionaInteressePreferencias();
-        preferencias.setPerfil(perfil);
+        } else {
+            adicionarInteresses(identificador);
 
+        }
+    }
+
+                //ADICIONANDO INTERESSES NAS PREFERERENCIA
+
+    public void adicionarInteresses(String identificador) {
+
+            perfil.setInteresse7(interessesEsporte.get(0));
+            preferencias.setInteresse7(identificador, interessesEsporte.get(0));
+            preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(0));
+            preferencias.setPerfil(perfil);
+
+
+            if (interessesEsporte.size() > 1) {
+
+                perfil.setInteresse8(interessesEsporte.get(1));
+                preferencias.setInteresse8(identificador, interessesEsporte.get(1));
+                preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(1));
+                preferencias.setPerfil(perfil);
+
+
+            } else {
+
+            }
+
+            if (interessesEsporte.size() > 2) {
+
+                perfil.setInteresse9(interessesEsporte.get(2));
+                preferencias.setInteresse9(identificador, interessesEsporte.get(2));
+                preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(2));
+                preferencias.setPerfil(perfil);
+
+
+            } else {
+
+            }
 
         //updatar child de perfil no firebase
+        atualizarInteresseFirebase();
 
         Toast.makeText(CategoriaEsporteActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
+                           //ATUAIZANDO O FIREBASE
+
+    private void atualizarInteresseFirebase() {
+        referencia = FirebaseDatabase.getInstance().getReference();
+
+        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> postValues = new HashMap<String, Object>();
+
+                int tam = (preferencias.getPerfil().getInteressesEsportes().size());
+
+                for (int i = 0; i < tam ; i++) {
+                    String chave = "interesse" + (i + 7);
+                    postValues.put(chave, preferencias.getPerfil().getInteressesEsportes().get(0));
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    preferencias.getPerfil().getInteressesEsportes().remove(0);
+                }
+
+               // referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     public void redirecionarPrincipal() {
         Intent abrirPrincipal = new Intent(CategoriaEsporteActivity.this, PrincipalActivity.class);

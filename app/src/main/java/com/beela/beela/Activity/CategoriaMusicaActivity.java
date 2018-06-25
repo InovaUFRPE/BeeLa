@@ -12,8 +12,15 @@ import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CategoriaMusicaActivity extends AppCompatActivity {
     private CheckBox checkBoxForro;
@@ -25,6 +32,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
     private CheckBox checkBoxEletronica;
     private CheckBox checkBoxMusicaOutro;
     private Button buttonAdicionarInteresseCategoria;
+    private DatabaseReference referencia;
 
 
     private ArrayList<CheckBox> checkboxes;
@@ -80,7 +88,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
-                Toast.makeText(CategoriaMusicaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(CategoriaMusicaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
                 interesses.add(checkbox.getText().toString());
             }
         }
@@ -88,7 +96,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
 
     public void adicionaInteressePreferencias() {
         for (String interesse : interessesMusica) {
-            perfil.addInteresse(interesse);
+            perfil.addInteresseMusicaP(interesse);
         }
     }
 
@@ -103,16 +111,74 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         perfil.setId(identificador);
         perfil.salvar();
 
-        perfil.setInteresse1(interessesMusica.get(0));
-        preferencias.setInteresse1(identificador, interessesMusica.get(0));
+        if (interessesMusica.size() > 3) {
+            Toast.makeText(CategoriaMusicaActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
 
-        adicionaInteressePreferencias();
+        } else {
+            adicionarInteresses(identificador);
+
+        }
+    }
+
+    public void adicionarInteresses(String identificador) {
+
+        perfil.setInteresse4(interessesMusica.get(0));
+        preferencias.setInteresse4(identificador, interessesMusica.get(0));
+        preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(0));
         preferencias.setPerfil(perfil);
 
-        //updatar child de perfil no firebase
+        if (interessesMusica.size() > 1){
 
+            perfil.setInteresse5(interessesMusica.get(1));
+            preferencias.setInteresse5(identificador, interessesMusica.get(1));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(1));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesMusica.size() == 3){
+
+            perfil.setInteresse6(interessesMusica.get(2));
+            preferencias.setInteresse6(identificador, interessesMusica.get(2));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        //updatar child de perfil no firebase
+        atualizarInteresseFirebase();
         Toast.makeText(CategoriaMusicaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    private void atualizarInteresseFirebase() {
+        referencia = FirebaseDatabase.getInstance().getReference();
+        //autenticacao = preferencias.getUsuario().getAutenticacao();
+
+        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> postValues = new HashMap<String, Object>();
+
+                int tam = preferencias.getPerfil().getInteressesMusicaP().size();
+
+                for (int i = 0; i < tam; i++) {
+                    String chave = "interesse" + (i + 4);
+                    postValues.put(chave, preferencias.getPerfil().getInteressesMusicaP().get(0));
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    preferencias.getPerfil().getInteressesMusicaP().remove(0);
+
+                }
+
+                //referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void redirecionarPrincipal() {

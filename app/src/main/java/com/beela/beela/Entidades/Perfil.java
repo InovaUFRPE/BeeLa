@@ -15,6 +15,10 @@ public class Perfil implements java.io.Serializable {
     private String id;
 
     private ArrayList<String> interesses = new ArrayList<String>();
+    private ArrayList<String> interessesEsportes = new ArrayList<String>();
+    private ArrayList<String> interessesLugarP = new ArrayList<String>();
+    private ArrayList<String> interessesMusicaP = new ArrayList<String>();
+    private ArrayList<String> interessesComidaP = new ArrayList<String>();
 
     private String CHAVE_INTERESSE_1 = "null";
     private String CHAVE_INTERESSE_2 = "null";
@@ -26,6 +30,9 @@ public class Perfil implements java.io.Serializable {
     private String CHAVE_INTERESSE_8 = "null";
     private String CHAVE_INTERESSE_9 = "null";
     private String CHAVE_INTERESSE_10 = "null";
+    private String CHAVE_INTERESSE_11 = "null";
+    private String CHAVE_INTERESSE_12 = "null";
+
 
     public Perfil() {
 
@@ -35,8 +42,43 @@ public class Perfil implements java.io.Serializable {
         interesses.add(interesse);
     }
 
+    public void addInteresseEsporte(String interesse) {
+        interessesEsportes.add(interesse);
+    }
+
+    public void addInteresseLugarP(String interesse) {
+        interessesLugarP.add(interesse);
+    }
+
+    public void addInteresseMusicaP(String interesse) {
+        interessesMusicaP.add(interesse);
+    }
+
+    public void addInteresseComidaP(String interesse) {
+        interessesComidaP.add(interesse);
+    }
+
+
+
+
+    public ArrayList<String> getInteressesLugarP() {
+        return interessesLugarP;
+    }
+
+    public ArrayList<String> getInteressesComidaP() {
+        return interessesComidaP;
+    }
+
+    public ArrayList<String> getInteressesMusicaP() {
+        return interessesMusicaP;
+    }
+
     public ArrayList<String> getInteresses() {
         return interesses;
+    }
+
+    public ArrayList<String> getInteressesEsportes() {
+        return interessesEsportes;
     }
 
     public void salvar() {
@@ -59,6 +101,8 @@ public class Perfil implements java.io.Serializable {
         hashMapPerfil.put(CHAVE_INTERESSE_8, getInteresse8());
         hashMapPerfil.put(CHAVE_INTERESSE_9, getInteresse9());
         hashMapPerfil.put(CHAVE_INTERESSE_10, getInteresse10());
+        hashMapPerfil.put(CHAVE_INTERESSE_11, getInteresse11());
+        hashMapPerfil.put(CHAVE_INTERESSE_12, getInteresse12());
 
         return hashMapPerfil;
     }
@@ -110,6 +154,12 @@ public class Perfil implements java.io.Serializable {
     public void setInteresse10(String interesse) {
         this.CHAVE_INTERESSE_10 = interesse;
     }
+    public void setInteresse11(String interesse) {
+        this.CHAVE_INTERESSE_11 = interesse;
+    }
+    public void setInteresse12(String interesse) {
+        this.CHAVE_INTERESSE_12 = interesse;
+    }
 
     public String getInteresse1() {
         return this.CHAVE_INTERESSE_1;
@@ -149,6 +199,14 @@ public class Perfil implements java.io.Serializable {
 
     public String getInteresse10() {
         return this.CHAVE_INTERESSE_10;
+    }
+
+    public String getInteresse11() {
+        return this.CHAVE_INTERESSE_11;
+    }
+
+    public String getInteresse12() {
+        return this.CHAVE_INTERESSE_12;
     }
 
 

@@ -110,37 +110,55 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
-
-        if (interessesMusica.size() > 3) {
-            Toast.makeText(CategoriaMusicaActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
-
-        } else {
-            adicionarInteresses(identificador);
-
-        }
-    }
+        adicionarInteresses(identificador);
+     }
 
     public void adicionarInteresses(String identificador) {
 
-        perfil.setInteresse4(interessesMusica.get(0));
-        preferencias.setInteresse4(identificador, interessesMusica.get(0));
+        perfil.setInteresse8(interessesMusica.get(0));
+        preferencias.setInteresse8(identificador, interessesMusica.get(0));
         preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(0));
         preferencias.setPerfil(perfil);
 
         if (interessesMusica.size() > 1){
 
-            perfil.setInteresse5(interessesMusica.get(1));
-            preferencias.setInteresse5(identificador, interessesMusica.get(1));
+            perfil.setInteresse9(interessesMusica.get(1));
+            preferencias.setInteresse9(identificador, interessesMusica.get(1));
             preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(1));
             preferencias.setPerfil(perfil);
 
         } else { }
 
-        if (interessesMusica.size() == 3){
+        if (interessesMusica.size() > 2){
 
-            perfil.setInteresse6(interessesMusica.get(2));
-            preferencias.setInteresse6(identificador, interessesMusica.get(2));
+            perfil.setInteresse10(interessesMusica.get(2));
+            preferencias.setInteresse10(identificador, interessesMusica.get(2));
             preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+        if (interessesMusica.size() > 3){
+
+            perfil.setInteresse11(interessesMusica.get(3));
+            preferencias.setInteresse11(identificador, interessesMusica.get(3));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+        if (interessesMusica.size() > 4){
+
+            perfil.setInteresse12(interessesMusica.get(4));
+            preferencias.setInteresse12(identificador, interessesMusica.get(4));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesMusica.size() > 5){
+
+            perfil.setInteresse13(interessesMusica.get(5));
+            preferencias.setInteresse13(identificador, interessesMusica.get(5));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(5));
             preferencias.setPerfil(perfil);
 
         } else { }
@@ -164,7 +182,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
                 int tam = preferencias.getPerfil().getInteressesMusicaP().size();
 
                 for (int i = 0; i < tam; i++) {
-                    String chave = "interesse" + (i + 4);
+                    String chave = "interesse" + (i + 8);
                     postValues.put(chave, preferencias.getPerfil().getInteressesMusicaP().get(0));
                     referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
                     preferencias.getPerfil().getInteressesMusicaP().remove(0);

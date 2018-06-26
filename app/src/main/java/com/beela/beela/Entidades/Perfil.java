@@ -32,6 +32,22 @@ public class Perfil implements java.io.Serializable {
     private String CHAVE_INTERESSE_10 = "null";
     private String CHAVE_INTERESSE_11 = "null";
     private String CHAVE_INTERESSE_12 = "null";
+    private String CHAVE_INTERESSE_13 = "null";
+    private String CHAVE_INTERESSE_14 = "null";
+    private String CHAVE_INTERESSE_15 = "null";
+    private String CHAVE_INTERESSE_16 = "null";
+    private String CHAVE_INTERESSE_17 = "null";
+    private String CHAVE_INTERESSE_18 = "null";
+    private String CHAVE_INTERESSE_19 = "null";
+    private String CHAVE_INTERESSE_20 = "null";
+    private String CHAVE_INTERESSE_21 = "null";
+    private String CHAVE_INTERESSE_22 = "null";
+    private String CHAVE_INTERESSE_23 = "null";
+    private String CHAVE_INTERESSE_24 = "null";
+    private String CHAVE_INTERESSE_25 = "null";
+    private String CHAVE_INTERESSE_26 = "null";
+    private String CHAVE_INTERESSE_27 = "null";
+    private String CHAVE_INTERESSE_28 = "null";
 
 
     public Perfil() {
@@ -103,6 +119,22 @@ public class Perfil implements java.io.Serializable {
         hashMapPerfil.put(CHAVE_INTERESSE_10, getInteresse10());
         hashMapPerfil.put(CHAVE_INTERESSE_11, getInteresse11());
         hashMapPerfil.put(CHAVE_INTERESSE_12, getInteresse12());
+        hashMapPerfil.put(CHAVE_INTERESSE_13, getInteresse13());
+        hashMapPerfil.put(CHAVE_INTERESSE_14, getInteresse14());
+        hashMapPerfil.put(CHAVE_INTERESSE_15, getInteresse15());
+        hashMapPerfil.put(CHAVE_INTERESSE_16, getInteresse16());
+        hashMapPerfil.put(CHAVE_INTERESSE_17, getInteresse17());
+        hashMapPerfil.put(CHAVE_INTERESSE_18, getInteresse18());
+        hashMapPerfil.put(CHAVE_INTERESSE_19, getInteresse19());
+        hashMapPerfil.put(CHAVE_INTERESSE_20, getInteresse20());
+        hashMapPerfil.put(CHAVE_INTERESSE_21, getInteresse21());
+        hashMapPerfil.put(CHAVE_INTERESSE_22, getInteresse22());
+        hashMapPerfil.put(CHAVE_INTERESSE_23, getInteresse23());
+        hashMapPerfil.put(CHAVE_INTERESSE_24, getInteresse24());
+        hashMapPerfil.put(CHAVE_INTERESSE_25, getInteresse25());
+        hashMapPerfil.put(CHAVE_INTERESSE_26, getInteresse26());
+        hashMapPerfil.put(CHAVE_INTERESSE_27, getInteresse27());
+        hashMapPerfil.put(CHAVE_INTERESSE_28, getInteresse28());
 
         return hashMapPerfil;
     }
@@ -160,6 +192,54 @@ public class Perfil implements java.io.Serializable {
     public void setInteresse12(String interesse) {
         this.CHAVE_INTERESSE_12 = interesse;
     }
+    public void setInteresse13(String interesse) {
+        this.CHAVE_INTERESSE_13 = interesse;
+    }
+    public void setInteresse14(String interesse) {
+        this.CHAVE_INTERESSE_14 = interesse;
+    }
+    public void setInteresse15(String interesse) {
+        this.CHAVE_INTERESSE_15 = interesse;
+    }
+    public void setInteresse16(String interesse) {
+        this.CHAVE_INTERESSE_16 = interesse;
+    }
+    public void setInteresse17(String interesse) {
+        this.CHAVE_INTERESSE_17 = interesse;
+    }
+    public void setInteresse18(String interesse) {
+        this.CHAVE_INTERESSE_18 = interesse;
+    }
+    public void setInteresse19(String interesse) {
+        this.CHAVE_INTERESSE_19 = interesse;
+    }
+    public void setInteresse20(String interesse) {
+        this.CHAVE_INTERESSE_20 = interesse;
+    }
+    public void setInteresse21(String interesse) {
+        this.CHAVE_INTERESSE_21 = interesse;
+    }
+    public void setInteresse22(String interesse) {
+        this.CHAVE_INTERESSE_22 = interesse;
+    }
+    public void setInteresse23(String interesse) {
+        this.CHAVE_INTERESSE_23 = interesse;
+    }
+    public void setInteresse24(String interesse) {
+        this.CHAVE_INTERESSE_24 = interesse;
+    }
+    public void setInteresse25(String interesse) {
+        this.CHAVE_INTERESSE_25 = interesse;
+    }
+    public void setInteresse26(String interesse) {
+        this.CHAVE_INTERESSE_26 = interesse;
+    }
+    public void setInteresse27(String interesse) {
+        this.CHAVE_INTERESSE_27 = interesse;
+    }
+    public void setInteresse28(String interesse) {
+        this.CHAVE_INTERESSE_28 = interesse;
+    }
 
     public String getInteresse1() {
         return this.CHAVE_INTERESSE_1;
@@ -207,6 +287,68 @@ public class Perfil implements java.io.Serializable {
 
     public String getInteresse12() {
         return this.CHAVE_INTERESSE_12;
+    }
+    public String getInteresse13() {
+        return this.CHAVE_INTERESSE_13;
+    }
+
+    public String getInteresse14() {
+        return this.CHAVE_INTERESSE_14;
+    }
+
+    public String getInteresse15() {
+        return this.CHAVE_INTERESSE_15;
+    }
+
+    public String getInteresse16() {
+        return this.CHAVE_INTERESSE_16;
+    }
+
+    public String getInteresse17() {
+        return this.CHAVE_INTERESSE_17;
+    }
+
+    public String getInteresse18() {
+        return this.CHAVE_INTERESSE_18;
+    }
+
+    public String getInteresse19() {
+        return this.CHAVE_INTERESSE_19;
+    }
+
+    public String getInteresse20() {
+        return this.CHAVE_INTERESSE_20;
+    }
+
+    public String getInteresse21() {
+        return this.CHAVE_INTERESSE_21;
+    }
+
+    public String getInteresse22() {
+        return this.CHAVE_INTERESSE_22;
+    }
+
+    public String getInteresse23() {
+        return this.CHAVE_INTERESSE_23;
+    }
+
+    public String getInteresse24() {
+        return this.CHAVE_INTERESSE_24;
+    }
+    public String getInteresse25() {
+        return this.CHAVE_INTERESSE_25;
+    }
+
+    public String getInteresse26() {
+        return this.CHAVE_INTERESSE_26;
+    }
+
+    public String getInteresse27() {
+        return this.CHAVE_INTERESSE_27;
+    }
+
+    public String getInteresse28() {
+        return this.CHAVE_INTERESSE_28;
     }
 
 

@@ -80,10 +80,23 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                 perfil.setInteresse10("null");
                 perfil.setInteresse11("null");
                 perfil.setInteresse12("null");
+                perfil.setInteresse13("null");
+                perfil.setInteresse14("null");
+                perfil.setInteresse15("null");
+                perfil.setInteresse16("null");
+                perfil.setInteresse17("null");
+                perfil.setInteresse18("null");
+                perfil.setInteresse19("null");
+                perfil.setInteresse20("null");
+                perfil.setInteresse21("null");
+                perfil.setInteresse22("null");
+                perfil.setInteresse23("null");
+                perfil.setInteresse24("null");
+                perfil.setInteresse25("null");
                 preferencias.setPerfil(perfil);
                 Map<String, Object> postValues = new HashMap<String, Object>();
                 referencia = FirebaseDatabase.getInstance().getReference();
-                for (int i = 0; i < 12; i++) {
+                for (int i = 0; i < 25; i++) {
                     String chave = "interesse" + (i + 1);
                     postValues.put(chave, "null");
                     referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
@@ -169,7 +182,7 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
 
-        quantidadeInteresses.setText( preferenciasLista.size() + "/10");
+        quantidadeInteresses.setText( preferenciasLista.size() + "/25");
         arrayadapterCu = new adapterPersonalizado(preferenciasLista, GerenciarInteressesActivity.this);
         listView.setAdapter(arrayadapterCu);
 

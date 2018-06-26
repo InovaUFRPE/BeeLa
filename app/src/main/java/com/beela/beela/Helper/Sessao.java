@@ -37,8 +37,33 @@ public final class Sessao {
     private final String CHAVE_INTERESSE_10 = "interesse10";
     private final String CHAVE_INTERESSE_11 = "interesse11";
     private final String CHAVE_INTERESSE_12 = "interesse12";
+    private final String CHAVE_INTERESSE_13 = "interesse13";
+    private final String CHAVE_INTERESSE_14 = "interesse14";
+    private final String CHAVE_INTERESSE_15 = "interesse15";
+    private final String CHAVE_INTERESSE_16 = "interesse16";
+    private final String CHAVE_INTERESSE_17 = "interesse17";
+    private final String CHAVE_INTERESSE_18 = "interesse18";
+    private final String CHAVE_INTERESSE_19 = "interesse19";
+    private final String CHAVE_INTERESSE_20 = "interesse20";
+    private final String CHAVE_INTERESSE_21 = "interesse21";
+    private final String CHAVE_INTERESSE_22 = "interesse22";
+    private final String CHAVE_INTERESSE_23 = "interesse23";
+    private final String CHAVE_INTERESSE_24 = "interesse24";
+    private final String CHAVE_INTERESSE_25 = "interesse25";
+    private final String CHAVE_INTERESSE_26 = "interesse26";
+    private final String CHAVE_INTERESSE_27 = "interesse27";
+    private final String CHAVE_INTERESSE_28 = "interesse28";
 
     private final String STATUS_SESSAO = "0";
+
+    public String getInteresse1() {
+        return preferencias.getString(CHAVE_INTERESSE_1, null);
+    }
+
+    public String getInteresse2() {
+        return preferencias.getString(CHAVE_INTERESSE_2, null);
+    }
+
 
     public static synchronized Sessao getInstancia(Context contexto) {
         if (instancia == null) {
@@ -158,51 +183,101 @@ public final class Sessao {
         editor.commit();
     }
 
-    public String getInteresse1() {
-        return preferencias.getString(CHAVE_INTERESSE_1, null);
+    public void setInteresse13(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_13, interesse);
+        editor.commit();
     }
 
-    public String getInteresse2() {
-        return preferencias.getString(CHAVE_INTERESSE_2, null);
+    public void setInteresse14(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_14, interesse);
+        editor.commit();
     }
 
-    public String getInteresse3() {
-        return preferencias.getString(CHAVE_INTERESSE_3, null);
+    public void setInteresse15(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_15, interesse);
+        editor.commit();
     }
 
-    public String getInteresse4() {
-        return preferencias.getString(CHAVE_INTERESSE_4, null);
+    public void setInteresse16(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_16, interesse);
+        editor.commit();
     }
 
-    public String getInteresse5() {
-        return preferencias.getString(CHAVE_INTERESSE_5, null);
+    public void setInteresse17(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_17, interesse);
+        editor.commit();
     }
 
-    public String getInteresse6() {
-        return preferencias.getString(CHAVE_INTERESSE_6, null);
+    public void setInteresse18(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_18, interesse);
+        editor.commit();
     }
 
-    public String getInteresse7() {
-        return preferencias.getString(CHAVE_INTERESSE_7, null);
+    public void setInteresse19(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_19, interesse);
+        editor.commit();
     }
 
-    public String getInteresse8() {
-        return preferencias.getString(CHAVE_INTERESSE_8, null);
+    public void setInteresse20(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_20, interesse);
+        editor.commit();
     }
 
-    public String getInteresse9() {
-        return preferencias.getString(CHAVE_INTERESSE_9, null);
+    public void setInteresse21(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_21, interesse);
+        editor.commit();
     }
 
-    public String getInteresse10() {
-        return preferencias.getString(CHAVE_INTERESSE_10, null);
+    public void setInteresse22(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_22, interesse);
+        editor.commit();
     }
-    public String getInteresse11() {
-        return preferencias.getString(CHAVE_INTERESSE_11, null);
+
+    public void setInteresse23(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_23, interesse);
+        editor.commit();
     }
-    public String getInteresse12() {
-        return preferencias.getString(CHAVE_INTERESSE_12, null);
+
+    public void setInteresse24(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_24, interesse);
+        editor.commit();
     }
+    public void setInteresse25(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_25, interesse);
+        editor.commit();
+    }
+
+    public void setInteresse26(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_26, interesse);
+        editor.commit();
+    }
+
+    public void setInteresse27(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_27, interesse);
+        editor.commit();
+    }
+
+    public void setInteresse28(String emailcodificado, String interesse) {
+        editor.putString(CHAVE_IDENTIFICADOR, emailcodificado);
+        editor.putString(CHAVE_INTERESSE_28, interesse);
+        editor.commit();
+    }
+
 
     public String getIdentificador() {
         return preferencias.getString(CHAVE_IDENTIFICADOR, null);

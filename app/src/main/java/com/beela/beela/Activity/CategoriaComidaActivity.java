@@ -113,19 +113,18 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
+        adicionarInteresses(identificador);
 
-        if (interessesComida.size() > 3) {
-            Toast.makeText(CategoriaComidaActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
+       // if (interessesComida.size() > 3) {
+           // Toast.makeText(CategoriaComidaActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
 
-        } else {
-            adicionarInteresses(identificador);
+      //  } else {
+            //adicionarInteresses(identificador);
 
-        }
+       // }
     }
 
     public void adicionarInteresses(String identificador) {
-
-
         //perfil = new Perfil();
 
         perfil.setInteresse1(interessesComida.get(0));
@@ -140,12 +139,9 @@ public class CategoriaComidaActivity extends AppCompatActivity {
             preferencias.getPerfil().addInteresseComidaP(interessesComida.get(1));
             preferencias.getPerfil().addInteresse(interessesComida.get(1));
             preferencias.setPerfil(perfil);
-
-
         } else {
          }
-
-        if (interessesComida.size() > 2){
+         if (interessesComida.size() > 2){
 
             perfil.setInteresse3(interessesComida.get(2));
             preferencias.setInteresse3(identificador, interessesComida.get(2));
@@ -155,7 +151,46 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
         } else {
             }
+        if (interessesComida.size() > 3){
 
+            perfil.setInteresse4(interessesComida.get(3));
+            preferencias.setInteresse4(identificador, interessesComida.get(3));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(3));
+            preferencias.getPerfil().addInteresse(interessesComida.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() > 4){
+
+            perfil.setInteresse5(interessesComida.get(4));
+            preferencias.setInteresse5(identificador, interessesComida.get(4));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(4));
+            preferencias.getPerfil().addInteresse(interessesComida.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() >= 5){
+
+            perfil.setInteresse6(interessesComida.get(5));
+            preferencias.setInteresse6(identificador, interessesComida.get(5));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(5));
+            preferencias.getPerfil().addInteresse(interessesComida.get(5));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() >= 6){
+
+            perfil.setInteresse7(interessesComida.get(6));
+            preferencias.setInteresse7(identificador, interessesComida.get(6));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(6));
+            preferencias.getPerfil().addInteresse(interessesComida.get(6));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
         atualizarInteresseFirebase();
         Toast.makeText(CategoriaComidaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 

@@ -104,29 +104,21 @@ public class CategoriaLugarActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
-
-        if (interessesLugar.size() > 3) {
-            Toast.makeText(CategoriaLugarActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
-
-        } else {
-            adicionarInteresses(identificador);
-
-        }
+        adicionarInteresses(identificador);
     }
-
                 //INSERINDO NAS PREFERENCIAS
 
     public void adicionarInteresses(String identificador) {
 
-        perfil.setInteresse10(interessesLugar.get(0));
-        preferencias.setInteresse10(identificador, interessesLugar.get(0));
+        perfil.setInteresse20(interessesLugar.get(0));
+        preferencias.setInteresse20(identificador, interessesLugar.get(0));
         preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(0));
         preferencias.setPerfil(perfil);
 
         if (interessesLugar.size() > 1){
 
-            perfil.setInteresse11(interessesLugar.get(1));
-            preferencias.setInteresse11(identificador, interessesLugar.get(1));
+            perfil.setInteresse21(interessesLugar.get(1));
+            preferencias.setInteresse21(identificador, interessesLugar.get(1));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(1));
             preferencias.setPerfil(perfil);
 
@@ -134,9 +126,36 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         if (interessesLugar.size() > 2){
 
-            perfil.setInteresse12(interessesLugar.get(2));
-            preferencias.setInteresse12(identificador, interessesLugar.get(2));
+            perfil.setInteresse22(interessesLugar.get(2));
+            preferencias.setInteresse22(identificador, interessesLugar.get(2));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 3){
+
+            perfil.setInteresse23(interessesLugar.get(3));
+            preferencias.setInteresse23(identificador, interessesLugar.get(3));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 4){
+
+            perfil.setInteresse24(interessesLugar.get(4));
+            preferencias.setInteresse24(identificador, interessesLugar.get(4));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 5){
+
+            perfil.setInteresse25(interessesLugar.get(5));
+            preferencias.setInteresse25(identificador, interessesLugar.get(5));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(5));
             preferencias.setPerfil(perfil);
 
         } else { }
@@ -160,7 +179,7 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
                 int tam = (preferencias.getPerfil().getInteressesLugarP().size());
                 for (int i = 0; i < tam; i++) {
-                    String chave = "interesse" + (i + 10);
+                    String chave = "interesse" + (i + 20);
                     postValues.put(chave, preferencias.getPerfil().getInteressesLugarP().get(0));
                     referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
                     preferencias.getPerfil().getInteressesLugarP().remove(0);

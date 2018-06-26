@@ -110,49 +110,53 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
-
-        if (interessesEsporte.size() > 3) {
-            Toast.makeText(CategoriaEsporteActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
-
-        } else {
-            adicionarInteresses(identificador);
-
-        }
+        adicionarInteresses(identificador);
     }
-
-                //ADICIONANDO INTERESSES NAS PREFERERENCIA
+    //ADICIONANDO INTERESSES NAS PREFERERENCIA
 
     public void adicionarInteresses(String identificador) {
 
-            perfil.setInteresse7(interessesEsporte.get(0));
-            preferencias.setInteresse7(identificador, interessesEsporte.get(0));
+            perfil.setInteresse14(interessesEsporte.get(0));
+            preferencias.setInteresse14(identificador, interessesEsporte.get(0));
             preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(0));
             preferencias.setPerfil(perfil);
 
-
             if (interessesEsporte.size() > 1) {
-
-                perfil.setInteresse8(interessesEsporte.get(1));
-                preferencias.setInteresse8(identificador, interessesEsporte.get(1));
+                perfil.setInteresse15(interessesEsporte.get(1));
+                preferencias.setInteresse15(identificador, interessesEsporte.get(1));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(1));
                 preferencias.setPerfil(perfil);
-
-
-            } else {
-
-            }
+             } else { }
 
             if (interessesEsporte.size() > 2) {
-
-                perfil.setInteresse9(interessesEsporte.get(2));
-                preferencias.setInteresse9(identificador, interessesEsporte.get(2));
+                perfil.setInteresse16(interessesEsporte.get(2));
+                preferencias.setInteresse16(identificador, interessesEsporte.get(2));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(2));
                 preferencias.setPerfil(perfil);
+            } else { }
+
+            if (interessesEsporte.size() > 3) {
+                perfil.setInteresse17(interessesEsporte.get(3));
+                preferencias.setInteresse17(identificador, interessesEsporte.get(3));
+                preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(3));
+                preferencias.setPerfil(perfil);
+            } else { }
+
+            if (interessesEsporte.size() > 4) {
+                perfil.setInteresse18(interessesEsporte.get(4));
+                preferencias.setInteresse18(identificador, interessesEsporte.get(4));
+                preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(4));
+                preferencias.setPerfil(perfil);
+            } else { }
+
+            if (interessesEsporte.size() > 5) {
+                perfil.setInteresse19(interessesEsporte.get(5));
+                preferencias.setInteresse19(identificador, interessesEsporte.get(5));
+                preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(5));
+                preferencias.setPerfil(perfil);
+            } else { }
 
 
-            } else {
-
-            }
 
         //updatar child de perfil no firebase
         atualizarInteresseFirebase();
@@ -173,7 +177,7 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
                 int tam = (preferencias.getPerfil().getInteressesEsportes().size());
 
                 for (int i = 0; i < tam ; i++) {
-                    String chave = "interesse" + (i + 7);
+                    String chave = "interesse" + (i + 14);
                     postValues.put(chave, preferencias.getPerfil().getInteressesEsportes().get(0));
                     referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
                     preferencias.getPerfil().getInteressesEsportes().remove(0);

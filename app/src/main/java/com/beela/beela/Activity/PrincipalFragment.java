@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.beela.beela.Entidades.Lugar;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
 import com.squareup.picasso.Picasso;
@@ -52,7 +53,7 @@ public class PrincipalFragment extends Fragment {
         imageButtonLugares.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),LugaresActivity.class);
+                Intent intent = new Intent(getActivity(),LugarActivity.class);
                 startActivity(intent);
             }
         });
@@ -75,7 +76,7 @@ public class PrincipalFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(),GruposActivity.class);
+                Intent intent = new Intent(getActivity(),SlopeCletoTeste.class);
                 startActivity(intent);
 
 

@@ -5,13 +5,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
@@ -22,7 +19,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -131,10 +127,6 @@ public class ConvitesActivity extends AppCompatActivity {
 
 
 
-
-
-
-
     }
 
     private void adicionarAbigo(final Usuario s) {
@@ -153,12 +145,21 @@ public class ConvitesActivity extends AppCompatActivity {
                 if (opcao.equals(("Sim"))) {
 
                     //TODO Tratar o dadaSnapshot deveria ser o email do cara
-                    databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(Codificador.codificador(preferencias.getUsuario().getEmail())).child(emaiamiguinhocodificado);
+                    String codificador = Codificador.codificador(preferencias.getUsuario().getEmail());
+                    databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(codificador).child(emaiamiguinhocodificado);
                     databaseReference.setValue(emaiamiguinhocodificado);
-                    databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(emaiamiguinhocodificado).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
-                    databaseReference.setValue(Codificador.codificador(preferencias.getUsuario().getEmail()));
-                    Toast.makeText(getApplicationContext(),"Abigo Adicionado", Toast.LENGTH_SHORT).show();
+                    databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(emaiamiguinhocodificado).child(codificador);
+                    databaseReference.setValue(codificador);
 
+                    databaseReference = FirebaseDatabase.getInstance().getReference("convite").
+
+                            child(codificador).child(emaiamiguinhocodificado);
+                    databaseReference.removeValue();
+
+
+                    listaAmigosListview.remove(s);
+                    adapterPersoUsuario.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(),"Abigo Adicionado", Toast.LENGTH_SHORT).show();
 
 
 

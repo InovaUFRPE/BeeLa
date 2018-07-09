@@ -4,6 +4,11 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.example.barcodelibrary.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -55,7 +60,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDheLyJyZoZjZdIv4faOM_hvPfutuaHxLs" />
 
-        <activity android:name=".Activity.LugaresActivity" />
+        <activity android:name=".Activity.LugaresGoogleActivity" />
         <activity android:name=".Activity.TesteJson" />
         <activity android:name=".Activity.GerenciarAmigos2Activity" />
         <activity android:name=".Activity.PesquisaActivity" />
@@ -64,7 +69,12 @@
         <activity android:name=".Activity.CriarGrupoActivity" />
         <activity android:name=".Activity.ListaDeAmigosActivity" />
         <activity android:name=".Activity.CriarGrupoP2Activity" />
-        <activity android:name=".Activity.GerenciarGruposActivity"></activity>
+        <activity android:name=".Activity.GerenciarGruposActivity" />
+        <activity android:name=".Activity.GrupoDetalhesActivity" />
+        <activity android:name=".Activity.JsonTesteLugaresAct" />
+        <activity android:name=".Activity.LugarActivity" />
+        <activity android:name=".Activity.SlopeCletoTeste" />
+        <activity android:name=".Activity.LugarDetalhesActivity"></activity>
     </application>
 
 </manifest>

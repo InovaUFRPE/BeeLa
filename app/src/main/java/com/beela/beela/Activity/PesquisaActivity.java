@@ -7,14 +7,11 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.List.AdapterPersoUsuario;
-import com.beela.beela.List.adapterPersonalizadoAmigos;
 import com.beela.beela.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;

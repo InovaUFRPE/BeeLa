@@ -14,7 +14,7 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
-public class LugaresActivity extends AppCompatActivity
+public class LugaresGoogleActivity extends AppCompatActivity
 
         implements OnConnectionFailedListener {
 

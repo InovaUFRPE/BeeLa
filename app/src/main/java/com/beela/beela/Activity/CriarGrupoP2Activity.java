@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.beela.beela.Entidades.Grupo;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
@@ -40,29 +41,38 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 CriaGrupinho();
 
 
             }
         });
 
-
-
     }
 
     private void CriaGrupinho() {
+        Grupo grupinho = new Grupo();
+
+        for(Usuario u:abigos){
+
+
+
+
+
+        }
 
 
         if (!editTextNomeGrupo.getText().toString().equals("")){
 
             nomedogrupo = editTextNomeGrupo.getText().toString();
-
+            grupinho.setNome(nomedogrupo);
         }
+
+
 
         String codificadorUsuarioLogado = Codificador.codificador(preferencias.getUsuario().getEmail());
         databaseReference = FirebaseDatabase.getInstance().getReference("grupo").child(nomedogrupo);
+
+
         databaseReference.child("admin").setValue(codificadorUsuarioLogado);
         databaseReference.child("integrantes").child(codificadorUsuarioLogado).setValue(codificadorUsuarioLogado);
 

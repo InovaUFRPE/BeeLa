@@ -1,11 +1,14 @@
 package com.beela.beela.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Adapter;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.beela.beela.Entidades.Grupo;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
@@ -53,6 +56,23 @@ public class GerenciarGruposActivity extends AppCompatActivity {
 
                 adapter = new ArrayAdapter<String>(GerenciarGruposActivity.this, android.R.layout.simple_list_item_1, listadeGrupos);
                 listViewCUU.setAdapter(adapter);
+                listViewCUU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        Grupo grupinho = (Grupo) parent.getAdapter().getItem(position);
+
+
+                        Intent intent = new Intent(getApplicationContext(),GrupoDetalhesActivity.class);
+                        intent.putExtra("grupinho",grupinho);
+                        startActivity(intent);
+
+
+
+
+
+                    }
+                });
 
 
 

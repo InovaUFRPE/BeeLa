@@ -90,10 +90,10 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
                                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                                         Usuario UsuarinhoDetalhes = (Usuario) parent.getAdapter().getItem(position);
 
-                                        String s = (String) parent.getAdapter().getItem(position);
+                                        Usuario s = (Usuario) parent.getAdapter().getItem(position);
 
                                         Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
-                                        intent.putExtra("usuarinho",UsuarinhoDetalhes);
+                                        intent.putExtra("usuarinho",s);
                                         startActivity(intent);
                                         return true;
 

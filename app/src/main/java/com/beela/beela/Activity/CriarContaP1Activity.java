@@ -2,7 +2,6 @@ package com.beela.beela.Activity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 
 import com.beela.beela.Entidades.Usuario;
 
-import com.beela.beela.Helper.AlimentandoLugares;
 import com.beela.beela.R;
 
 import java.util.ArrayList;

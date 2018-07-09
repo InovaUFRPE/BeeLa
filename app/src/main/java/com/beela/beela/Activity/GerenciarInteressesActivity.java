@@ -5,7 +5,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,7 +27,7 @@ import java.util.HashMap;
 
 public class GerenciarInteressesActivity extends AppCompatActivity {
 
-    private adapterPersonalizado arrayadapterCu;
+    private adapterPersonalizado adapterPersonalizado;
 
 
 
@@ -112,33 +111,12 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
         quantidadeInteresses.setText( preferenciasLista.size() + "/10");
-        arrayadapterCu = new adapterPersonalizado(preferenciasLista, GerenciarInteressesActivity.this);
-        listView.setAdapter(arrayadapterCu);
+        adapterPersonalizado = new adapterPersonalizado(preferenciasLista, GerenciarInteressesActivity.this);
+        listView.setAdapter(adapterPersonalizado);
 
 
 
     }
-
-    private void excluirPreferencias() {
-            try {
-                if (listView != null) {
-
-                    Adapter adapter = (Adapter) listView.getAdapter();
-                    for (int i = 0; i < adapter.getCount(); i++) {
-
-                       PreferenciasPerfil a = (PreferenciasPerfil) adapter.getItem(i);
-                        PreferenciasPerfil p = a;
-                        if (p.getSelecionado()) {
-                            Toast.makeText(GerenciarInteressesActivity.this, "Minha Pica" ,Toast.LENGTH_SHORT).show();
-
-                            exluirInteresse(p);
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
 
 
@@ -159,7 +137,7 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
                     preferenciasLista.remove(interesse);
-                    arrayadapterCu.notifyDataSetChanged();
+                    adapterPersonalizado.notifyDataSetChanged();
                     quantidadeInteresses.setText(preferenciasLista.size() +"/10");
 
 

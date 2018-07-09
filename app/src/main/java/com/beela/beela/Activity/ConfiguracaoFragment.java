@@ -77,11 +77,11 @@ public class ConfiguracaoFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_configuracao, container, false);
-
+        preferencias = Sessao.getInstancia(getContext());
         mStorageRef = FirebaseStorage.getInstance().getReference("Fotos");
         mDatebaseRef = FirebaseDatabase.getInstance().getReference("Fotos");
 
-        preferencias = Sessao.getInstancia(getContext());
+
         String url = preferencias.getUrlFoto();
         fotoUsuario = view.findViewById(R.id.imageViewPrincipalFrag);
 
@@ -370,18 +370,16 @@ public class ConfiguracaoFragment extends Fragment {
 
 
 
-
         //upload = view.findViewById(R.id.buttonUploadConfFrag);
 
 //        upload.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //
-                uploadFile();
+
 //
 //            }
 //        });
-
             return view;
     }
 
@@ -397,7 +395,6 @@ public class ConfiguracaoFragment extends Fragment {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-
 //                    Handler handler = new Handler();
 //                    handler.postDelayed(new Runnable() {
 //                        @Override
@@ -405,7 +402,6 @@ public class ConfiguracaoFragment extends Fragment {
 //                            mProgreesBar.setProgress(0);
 //                        };
 //                    }, 5000);
-
 
                     String identificador = Codificador.codificador(preferencias.getUsuario().getEmail());
                     String urlfoto = taskSnapshot.getDownloadUrl().toString();
@@ -428,11 +424,7 @@ public class ConfiguracaoFragment extends Fragment {
 
                           String  a = (String) dataSnapshot.child("email").getValue();
 
-
-
                           //Toast.makeText(getContext(), "Url: " + a, Toast.LENGTH_SHORT).show();
-
-
 
                         }
 
@@ -443,12 +435,6 @@ public class ConfiguracaoFragment extends Fragment {
                     });
 
 
-
-
-
-
-
-
                     Upload upload = new Upload(identificador, taskSnapshot.getDownloadUrl().toString());
 
                     String uploadId = mDatebaseRef.push().getKey();
@@ -456,7 +442,6 @@ public class ConfiguracaoFragment extends Fragment {
                     //mDatebaseRef.child(uploadId).setValue("upload");
 
                 }
-
 
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -475,8 +460,9 @@ public class ConfiguracaoFragment extends Fragment {
             });
 
         } else {
-            Toast.makeText(getContext(), "Nenhum arquivo selecionado", Toast.LENGTH_LONG).show();
 
+
+            Toast.makeText(getContext(), "Nenhum arquivo selecionado", Toast.LENGTH_LONG).show();
 
         }
 

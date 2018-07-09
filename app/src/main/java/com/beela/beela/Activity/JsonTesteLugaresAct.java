@@ -1,95 +1,102 @@
 package com.beela.beela.Activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.http.HttpsConnection;
-import android.net.http.RequestQueue;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Adapter;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.beela.beela.Entidades.Lugar;
 import com.beela.beela.Entidades.LugarGoogle;
-import com.beela.beela.Helper.DownloadJson;
-import com.beela.beela.Helper.HttpConnections;
+import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.List.adapterLugares;
 import com.beela.beela.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.ByteArrayBuffer;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
+public class JsonTesteLugaresAct extends AppCompatActivity {
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-
-public class TesteJson extends AppCompatActivity {
-
-    private adapterLugares adapterLugares;
-    private ListView listViewLugares;
     private com.android.volley.RequestQueue mQueue;
-    private ArrayList<LugarGoogle> lugares = new ArrayList<>();
+
+    private Button buttonJson;
+    private EditText palavraChave;
+    private com.beela.beela.List.adapterLugares adapterLugares;
+    private ListView listViewLugares;
+    private ArrayList<LugarGoogle> lugarGoogles = new ArrayList<>();
     private LocationManager locationManager;
     private GoogleMap mMap;
     private static final int REQUEST_FINE_LOCATION = 1;
     private Double latt;
     private Double langg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teste_json);
+        setContentView(R.layout.activity_teste2_caralhode_asa);
+        mQueue = Volley.newRequestQueue(this);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        listViewLugares = findViewById(R.id.listViewLugaresJson);
-        updateLocation();
-        mQueue = Volley.newRequestQueue(this);
-        jsonParse();
-        imprimirListView();
 
+        listViewLugares = findViewById(R.id.CaralhoDeAsa);
+        palavraChave = findViewById(R.id.editTextPalavra);
+        buttonJson = findViewById(R.id.buttonJson);
+
+        buttonJson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!palavraChave.getText().toString().equals("")){
+
+                    updateLocation();
+                    jsonParse();
+                    imprimirListView();
+                    Toast.makeText(getApplicationContext(),"Wait",Toast.LENGTH_LONG).show();
+
+                }
+                else {
+
+                    Toast.makeText(getApplicationContext(),
+                            "Digite Algo Amibiguinho",
+                            Toast.LENGTH_LONG).show();
+                }
+
+            }
+        });
 
 
     }
 
     private void jsonParse() {
 
-        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-8.189369,%20-34.955066&radius=15000&" +
+        lugarGoogles.clear();
+        String url2 = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-8.189369,%20-34.955066&radius=15000&" +
                 "type=restaurant&key=AIzaSyCs4g8KU95xizS77El9HbxhTZcBfiaJk7A";
+
+
+        String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
+                "location="+latt.toString()+",%20"+langg.toString()+
+                "&radius=15000&" +
+                "type=restaurante&" +
+                "keyword="+ palavraChave.getText().toString() +"&" +
+                "key=AIzaSyAI1bjrxWDnoBGDtMJumHon73xZjLcNwmg";
 
         final JsonObjectRequest request = new JsonObjectRequest(com.android.volley.Request.
                 Method.GET, url, null, new
@@ -100,29 +107,38 @@ public class TesteJson extends AppCompatActivity {
                         try {
                             JSONArray jsonArray = response.getJSONArray("results");
 
-                            for(int i = 0 ;i<jsonArray.length();i++){
+                            for (int i = 0; i < jsonArray.length(); i++) {
                                 LugarGoogle lugarGoogle = new LugarGoogle();
                                 JSONObject lugaJson = jsonArray.getJSONObject(i);
-                                Toast.makeText(getApplicationContext(),lugaJson.getInt("name"),Toast.LENGTH_LONG).show();
                                 lugarGoogle.setNome(lugaJson.getString("name"));
+                                lugarGoogle.setIdGoogle(lugaJson.getString("place_id"));
                                 lugarGoogle.setEndereco(lugaJson.getString("vicinity"));
+                                try{
                                 lugarGoogle.setAbertoagora(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now")));
+
+                                }catch (JSONException e){
+
+                                    e.printStackTrace();
+                                }
                                 lugarGoogle.setNota(lugaJson.getDouble("rating"));
 
                                 double lat = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                                 double lng = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
 
                                 //lugarGoogle.setLocaliza(new LatLng(lat, lng));
-                                lugares.add(lugarGoogle);
 
+                                lugarGoogles.add(lugarGoogle);
+                                adapterLugares.notifyDataSetChanged();
 
                             }
 
-                            //adapterLugares = new adapterLugares(lugares,TesteJson.this);
-                            //listViewLugares.setAdapter(adapterLugares);
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+
 
 
                     }
@@ -135,10 +151,41 @@ public class TesteJson extends AppCompatActivity {
 
         });
 
-    mQueue.add(request);
+        mQueue.add(request);
+
+
+
 
     }
 
+
+    public void imprimirListView(){
+
+
+        adapterLugares = new adapterLugares(lugarGoogles, JsonTesteLugaresAct.this);
+        listViewLugares.setAdapter(adapterLugares);
+
+        listViewLugares.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LugarGoogle lugarzinhoGoogle;
+                        ;
+                lugarzinhoGoogle = (LugarGoogle) parent.getAdapter().getItem(position);
+
+                Intent intent = new Intent(JsonTesteLugaresAct.this,LugarDetalhesActivity.class);
+                intent.putExtra("lugarzinho",lugarzinhoGoogle);
+
+                startActivity(intent);
+
+
+            }
+        });
+
+    }
+
+
+
+    //Localizacao
 
     public void updateLocation() {
         checkPermission();
@@ -216,18 +263,6 @@ public class TesteJson extends AppCompatActivity {
                     REQUEST_FINE_LOCATION);
         }
     }
-
-    public void imprimirListView(){
-
-        adapterLugares = new adapterLugares(lugares,TesteJson.this);
-        listViewLugares.setAdapter(adapterLugares);
-
-
-
-
-
-    }
-
 
 
 }

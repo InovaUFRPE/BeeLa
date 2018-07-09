@@ -47,13 +47,6 @@ public class CriarGrupoActivity extends AppCompatActivity {
         carregarAmigos();
 
 
-
-
-
-
-
-
-
     }
 
 

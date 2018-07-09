@@ -61,7 +61,8 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
 
                 //criar notificacao de convide no email do cara
                 //TODO Criar objeto do tipo convite;
-                databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
+                databaseReference = FirebaseDatabase.getInstance().getReference("convite")
+                        .child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
                 databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
                 Toast.makeText(AmigoDetalhesActivity.this,"Convite Enviado",Toast.LENGTH_LONG).show();
 

@@ -109,16 +109,9 @@ public class ConvitesActivity extends AppCompatActivity {
 
                         }
 
-
-
-
-
-
                     });
 
                 }
-
-
             }
 
             @Override
@@ -127,19 +120,9 @@ public class ConvitesActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
     }
 
     private void adicionarAbigo(final Usuario s) {
-
-
         String emaildoamiginho = s.getEmail();
         final String emaiamiguinhocodificado = Codificador.codificador(emaildoamiginho);
 
@@ -157,13 +140,17 @@ public class ConvitesActivity extends AppCompatActivity {
                     databaseReference.setValue(emaiamiguinhocodificado);
                     databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(emaiamiguinhocodificado).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
                     databaseReference.setValue(Codificador.codificador(preferencias.getUsuario().getEmail()));
-                    Toast.makeText(getApplicationContext(),"Abigo Adicionado", Toast.LENGTH_SHORT).show();
-
-
-
+                    databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(Codificador.codificador(preferencias.getEmail())).child(emaiamiguinhocodificado);
+                    databaseReference.removeValue();
+                    finish();
+                    Toast.makeText(getApplicationContext(),"Amigo Adicionado", Toast.LENGTH_SHORT).show();
 
                 } else if (opcao.equals(("Não"))) {
-                    dialogInterface.cancel();
+                    databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(Codificador.codificador(preferencias.getEmail())).child(emaiamiguinhocodificado);
+                    databaseReference.removeValue();
+                    finish();
+                    Toast.makeText(getApplicationContext(),"Solicitação excluída", Toast.LENGTH_SHORT).show();
+                   // dialogInterface.cancel();
                 }
             }
         });

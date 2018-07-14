@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     preferencias.iniciarSessao();
                     dadosConta();
-                    //usuario.setAutenticacao(autenticacao);
+                    usuario.setAutenticacao(autenticacao);
 
                     abrirPerfil();
                 } else {
@@ -127,7 +127,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void dadosConta() {
-        final Query nome, email, data, genero, interesse1, interesse2, interesse3, interesse4, interesse5, interesse6, interesse7, interesse8, interesse9, interesse10;
+        final Query nome, email, data, genero, interesse1, interesse2, interesse3, interesse4, interesse5, interesse6, interesse7, interesse8, interesse9, interesse10, interesse11, interesse12;
 
         usuario = new Usuario();
 
@@ -193,11 +193,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        interesse1 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse1");
+       /** interesse1 = referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse1");
         interesse1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_1")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_1")) {
                     preferencias.setInteresse1(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse1(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse1());
@@ -215,7 +215,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse2.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_2")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_2")) {
                     preferencias.setInteresse2(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse2(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse2());
@@ -234,7 +234,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse3.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_3")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_3")) {
                     preferencias.setInteresse3(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse3(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse3());
@@ -252,7 +252,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse4.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_4")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_4")) {
                     preferencias.setInteresse4(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse4(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse4());
@@ -270,7 +270,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse5.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_5")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_5")) {
                     preferencias.setInteresse5(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse5(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse5());
@@ -288,7 +288,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse6.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_6")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_6")) {
                     preferencias.setInteresse6(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse6(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse6());
@@ -306,7 +306,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse7.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_7")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_7")) {
                     preferencias.setInteresse7(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse7(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse7());
@@ -324,7 +324,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse8.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_8")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_8")) {
                     preferencias.setInteresse8(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse8(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse8());
@@ -342,7 +342,7 @@ public class LoginActivity extends AppCompatActivity {
         interesse9.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_9")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_9")) {
                     preferencias.setInteresse9(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse9(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse9());
@@ -360,10 +360,46 @@ public class LoginActivity extends AppCompatActivity {
         interesse10.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (!dataSnapshot.getValue().toString().equals("CHAVE_INTERESSE_10")) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_10")) {
                     preferencias.setInteresse10(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
                     perfil.setInteresse10(dataSnapshot.getValue().toString());
                     perfil.addInteresse(perfil.getInteresse10());
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+        interesse11= referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse11");
+        interesse11.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_11")) {
+                        preferencias.setInteresse10(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                        perfil.setInteresse11(dataSnapshot.getValue().toString());
+                        perfil.addInteresse(perfil.getInteresse11());
+                    }
+
+                }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        interesse12= referencia.child("perfil").child(Codificador.codificador(autenticacao.getCurrentUser().getEmail())).child("interesse12");
+        interesse12.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (!dataSnapshot.toString().equals("CHAVE_INTERESSE_12")) {
+                    preferencias.setInteresse12(Codificador.codificador(autenticacao.getCurrentUser().getEmail()), dataSnapshot.getValue().toString());
+                    perfil.setInteresse12(dataSnapshot.getValue().toString());
+                    perfil.addInteresse(perfil.getInteresse12());
                 }
 
             }
@@ -372,7 +408,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });**/
 
         preferencias.setPerfil(perfil);
         preferencias.setUsuario(usuario);
@@ -403,3 +439,4 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
+

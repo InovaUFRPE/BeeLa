@@ -12,8 +12,15 @@ import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CategoriaMusicaActivity extends AppCompatActivity {
     private CheckBox checkBoxForro;
@@ -25,6 +32,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
     private CheckBox checkBoxEletronica;
     private CheckBox checkBoxMusicaOutro;
     private Button buttonAdicionarInteresseCategoria;
+    private DatabaseReference referencia;
 
 
     private ArrayList<CheckBox> checkboxes;
@@ -80,7 +88,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
-                Toast.makeText(CategoriaMusicaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(CategoriaMusicaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
                 interesses.add(checkbox.getText().toString());
             }
         }
@@ -88,7 +96,7 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
 
     public void adicionaInteressePreferencias() {
         for (String interesse : interessesMusica) {
-            perfil.addInteresse(interesse);
+            perfil.addInteresseMusicaP(interesse);
         }
     }
 
@@ -102,17 +110,93 @@ public class CategoriaMusicaActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
+        adicionarInteresses(identificador);
+     }
 
-        perfil.setInteresse1(interessesMusica.get(0));
-        preferencias.setInteresse1(identificador, interessesMusica.get(0));
+    public void adicionarInteresses(String identificador) {
 
-        adicionaInteressePreferencias();
+        perfil.setInteresse8(interessesMusica.get(0));
+        preferencias.setInteresse8(identificador, interessesMusica.get(0));
+        preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(0));
         preferencias.setPerfil(perfil);
 
-        //updatar child de perfil no firebase
+        if (interessesMusica.size() > 1){
 
+            perfil.setInteresse9(interessesMusica.get(1));
+            preferencias.setInteresse9(identificador, interessesMusica.get(1));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(1));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesMusica.size() > 2){
+
+            perfil.setInteresse10(interessesMusica.get(2));
+            preferencias.setInteresse10(identificador, interessesMusica.get(2));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+        if (interessesMusica.size() > 3){
+
+            perfil.setInteresse11(interessesMusica.get(3));
+            preferencias.setInteresse11(identificador, interessesMusica.get(3));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+        if (interessesMusica.size() > 4){
+
+            perfil.setInteresse12(interessesMusica.get(4));
+            preferencias.setInteresse12(identificador, interessesMusica.get(4));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesMusica.size() > 5){
+
+            perfil.setInteresse13(interessesMusica.get(5));
+            preferencias.setInteresse13(identificador, interessesMusica.get(5));
+            preferencias.getPerfil().addInteresseMusicaP(interessesMusica.get(5));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        //updatar child de perfil no firebase
+        atualizarInteresseFirebase();
         Toast.makeText(CategoriaMusicaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    private void atualizarInteresseFirebase() {
+        referencia = FirebaseDatabase.getInstance().getReference();
+        //autenticacao = preferencias.getUsuario().getAutenticacao();
+
+        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> postValues = new HashMap<String, Object>();
+
+                int tam = preferencias.getPerfil().getInteressesMusicaP().size();
+
+                for (int i = 0; i < tam; i++) {
+                    String chave = "interesse" + (i + 8);
+                    postValues.put(chave, preferencias.getPerfil().getInteressesMusicaP().get(0));
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    preferencias.getPerfil().getInteressesMusicaP().remove(0);
+
+                }
+
+                //referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void redirecionarPrincipal() {

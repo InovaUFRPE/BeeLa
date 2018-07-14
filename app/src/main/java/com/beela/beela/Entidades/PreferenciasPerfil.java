@@ -6,7 +6,7 @@ public class PreferenciasPerfil {
 
     private ArrayList<PreferenciasPerfil> lista = new ArrayList<>();
 
-    public ArrayList<PreferenciasPerfil> getLista() {
+    public  ArrayList<PreferenciasPerfil> getLista() {
         return lista;
     }
 

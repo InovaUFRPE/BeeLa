@@ -36,7 +36,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
     private Button buttonAdicionarInteresseCategoria;
 
     private ArrayList<CheckBox> checkboxes;
-    private ArrayList<PreferenciasPerfil> interessesComida;
+    private ArrayList<String> interessesComida;
 
     private Sessao preferencias;
     private Perfil perfil;
@@ -61,7 +61,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         checkBoxComidaOutro = (CheckBox) findViewById(R.id.checkBoxComidaOutro);
 
         checkboxes = new ArrayList<CheckBox>();
-        interessesComida = new ArrayList<PreferenciasPerfil>();
+        interessesComida = new ArrayList<String>();
 
         checkboxes.add(checkBoxVegetariana);
         checkboxes.add(checkBoxDoce);
@@ -85,46 +85,121 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
     }
 
-    public void verificaCheckboxes(ArrayList<CheckBox> checkboxes, ArrayList<PreferenciasPerfil> arrayInteresses) {
+    //Pegando os selescionados
+
+    public void verificaCheckboxes(ArrayList<CheckBox> checkboxes, ArrayList<String> interesses) {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
-                Toast.makeText(CategoriaComidaActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
-
-                PreferenciasPerfil p = new PreferenciasPerfil();
-                p.setValor(checkbox.getText().toString());
-
-                arrayInteresses.add(p);
+                interesses.add(checkbox.getText().toString());
 
             }
         }
     }
 
-    public void adicionarInteressesPreferencias() {
-        for (PreferenciasPerfil interesse : interessesComida) {
-            perfil.addInteresse(interesse.getValor());
+  /** public void adicionarInteressesPreferencias() {
+      for (String interesse : interessesComida) {
+          perfil.addInteresseComidaP(interesse);
         }
-    }
+    }**/
 
     public void criarPerfil() {
-        perfil = new Perfil();
+       if (preferencias.getStatusSessao().equals("1")) {
+           perfil = preferencias.getPerfil();
+       } else {
+          perfil = new Perfil();
+       }
 
-        String id = Codificador.codificador(preferencias.getUsuario().getEmail());
-        perfil.setId(id);
+        String identificador = Codificador.codificador(preferencias.getEmail());
+        perfil.setId(identificador);
         perfil.salvar();
+        adicionarInteresses(identificador);
 
-        adicionarInteressesPreferencias();
-        atualizarInteresseFirebase();
+       // if (interessesComida.size() > 3) {
+           // Toast.makeText(CategoriaComidaActivity.this, "Você não pode adicionar mais de 3 interesses!", Toast.LENGTH_SHORT).show();
 
+      //  } else {
+            //adicionarInteresses(identificador);
+
+       // }
+    }
+
+    public void adicionarInteresses(String identificador) {
+        //perfil = new Perfil();
+
+        perfil.setInteresse1(interessesComida.get(0));
+        preferencias.setInteresse1(identificador, interessesComida.get(0));
+        preferencias.getPerfil().addInteresseComidaP(interessesComida.get(0));
+        preferencias.getPerfil().addInteresse(interessesComida.get(0));
         preferencias.setPerfil(perfil);
 
-        //updatar child de perfil no firebase
+        if (interessesComida.size() > 1){
+            perfil.setInteresse2(interessesComida.get(1));
+            preferencias.setInteresse2(identificador, interessesComida.get(1));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(1));
+            preferencias.getPerfil().addInteresse(interessesComida.get(1));
+            preferencias.setPerfil(perfil);
+        } else {
+         }
+         if (interessesComida.size() > 2){
 
+            perfil.setInteresse3(interessesComida.get(2));
+            preferencias.setInteresse3(identificador, interessesComida.get(2));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(2));
+            preferencias.getPerfil().addInteresse(interessesComida.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else {
+            }
+        if (interessesComida.size() > 3){
+
+            perfil.setInteresse4(interessesComida.get(3));
+            preferencias.setInteresse4(identificador, interessesComida.get(3));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(3));
+            preferencias.getPerfil().addInteresse(interessesComida.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() > 4){
+
+            perfil.setInteresse5(interessesComida.get(4));
+            preferencias.setInteresse5(identificador, interessesComida.get(4));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(4));
+            preferencias.getPerfil().addInteresse(interessesComida.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() >= 5){
+
+            perfil.setInteresse6(interessesComida.get(5));
+            preferencias.setInteresse6(identificador, interessesComida.get(5));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(5));
+            preferencias.getPerfil().addInteresse(interessesComida.get(5));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        if (interessesComida.size() >= 6){
+
+            perfil.setInteresse7(interessesComida.get(6));
+            preferencias.setInteresse7(identificador, interessesComida.get(6));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(6));
+            preferencias.getPerfil().addInteresse(interessesComida.get(6));
+            preferencias.setPerfil(perfil);
+
+        } else {
+        }
+        atualizarInteresseFirebase();
         Toast.makeText(CategoriaComidaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
 
+
+    //updatar child de perfil no firebase
     private void atualizarInteresseFirebase() {
+
         referencia = FirebaseDatabase.getInstance().getReference();
         //autenticacao = preferencias.getUsuario().getAutenticacao();
 
@@ -133,17 +208,17 @@ public class CategoriaComidaActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> postValues = new HashMap<String, Object>();
 
-                /**for (DataSnapshot snapshot: dataSnapshot.getChildren()) {
-                    postValues.put(snapshot.getKey(), snapshot.getValue());
-                }
-                 */
+                int tam = preferencias.getPerfil().getInteressesComidaP().size();
 
-                for (int i = 0; i < preferencias.getPerfil().getInteresses().size(); i++) {
+                for (int i = 0; i < tam; i++) {
                     String chave = "interesse" + (i + 1);
-                    postValues.put(chave, preferencias.getPerfil().getInteresses().get(i));
+                    postValues.put(chave, preferencias.getPerfil().getInteressesComidaP().get(0));
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    preferencias.getPerfil().getInteressesComidaP().remove(0);
+
                 }
 
-                referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+               // referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
             }
 
             @Override
@@ -157,4 +232,5 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         Intent abrirPrincipal = new Intent(CategoriaComidaActivity.this, PrincipalActivity.class);
         startActivity(abrirPrincipal);
     }
+
 }

@@ -12,8 +12,15 @@ import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CategoriaLugarActivity extends AppCompatActivity {
     private CheckBox checkBoxParqueDiversoes;
@@ -25,6 +32,7 @@ public class CategoriaLugarActivity extends AppCompatActivity {
     private CheckBox checkBoxShopping;
     private CheckBox checkBoxLugarOutro;
     private Button buttonAdicionarInteresseCategoria;
+    private DatabaseReference referencia;
 
     private ArrayList<CheckBox> checkboxes;
     private ArrayList<String> interessesLugar;
@@ -79,19 +87,14 @@ public class CategoriaLugarActivity extends AppCompatActivity {
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
-                Toast.makeText(CategoriaLugarActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
+               /// Toast.makeText(CategoriaLugarActivity.this, checkbox.getText().toString(), Toast.LENGTH_SHORT).show();
                 interesses.add(checkbox.getText().toString());
             }
         }
     }
 
-    public void adicionaInteressePreferencias() {
-        for (String interesse : interessesLugar) {
-            perfil.addInteresse(interesse);
-        }
-    }
-
     public void criarPerfil() {
+
         if (preferencias.getStatusSessao().equals("1")) {
             perfil = preferencias.getPerfil();
         } else {
@@ -101,18 +104,97 @@ public class CategoriaLugarActivity extends AppCompatActivity {
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
         perfil.salvar();
+        adicionarInteresses(identificador);
+    }
+                //INSERINDO NAS PREFERENCIAS
 
-        perfil.setInteresse1(interessesLugar.get(0));
-        preferencias.setInteresse1(identificador, interessesLugar.get(0));
+    public void adicionarInteresses(String identificador) {
 
-        adicionaInteressePreferencias();
+        perfil.setInteresse20(interessesLugar.get(0));
+        preferencias.setInteresse20(identificador, interessesLugar.get(0));
+        preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(0));
         preferencias.setPerfil(perfil);
 
-        //updatar child de perfil no firebase
+        if (interessesLugar.size() > 1){
+
+            perfil.setInteresse21(interessesLugar.get(1));
+            preferencias.setInteresse21(identificador, interessesLugar.get(1));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(1));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 2){
+
+            perfil.setInteresse22(interessesLugar.get(2));
+            preferencias.setInteresse22(identificador, interessesLugar.get(2));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(2));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 3){
+
+            perfil.setInteresse23(interessesLugar.get(3));
+            preferencias.setInteresse23(identificador, interessesLugar.get(3));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(3));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 4){
+
+            perfil.setInteresse24(interessesLugar.get(4));
+            preferencias.setInteresse24(identificador, interessesLugar.get(4));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(4));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
+        if (interessesLugar.size() > 5){
+
+            perfil.setInteresse25(interessesLugar.get(5));
+            preferencias.setInteresse25(identificador, interessesLugar.get(5));
+            preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(5));
+            preferencias.setPerfil(perfil);
+
+        } else { }
+
 
         Toast.makeText(CategoriaLugarActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
+        atualizarInteresseFirebase();
 
     }
+
+                    //ATUALIZANDO NO FIREBASE
+
+    private void atualizarInteresseFirebase() {
+        referencia = FirebaseDatabase.getInstance().getReference();
+        //autenticacao = preferencias.getUsuario().getAutenticacao();
+
+        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Map<String, Object> postValues = new HashMap<String, Object>();
+
+                int tam = (preferencias.getPerfil().getInteressesLugarP().size());
+                for (int i = 0; i < tam; i++) {
+                    String chave = "interesse" + (i + 20);
+                    postValues.put(chave, preferencias.getPerfil().getInteressesLugarP().get(0));
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    preferencias.getPerfil().getInteressesLugarP().remove(0);
+                }
+
+               // referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 
     public void redirecionarPrincipal() {
         Intent abrirPrincipal = new Intent(CategoriaLugarActivity.this, PrincipalActivity.class);

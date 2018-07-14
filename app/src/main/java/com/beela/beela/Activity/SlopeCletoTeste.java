@@ -1,6 +1,12 @@
 package com.beela.beela.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +25,8 @@ import com.beela.beela.Helper.Sessao;
 import com.beela.beela.List.adapterLugares;
 import com.beela.beela.Lugar.SlopeCleto;
 import com.beela.beela.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +51,14 @@ public class SlopeCletoTeste extends AppCompatActivity {
     private ArrayList<LugarGoogle> lugarGoogles = new ArrayList<>();
     private DatabaseReference databaseReference;
     private ArrayList<String> idDoGoogle = new ArrayList<>();
+
+
+    private LocationManager locationManager;
+    private GoogleMap mMap;
+    private static final int REQUEST_FINE_LOCATION = 1;
+    private Double latt;
+    private Double langg;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,10 +67,13 @@ public class SlopeCletoTeste extends AppCompatActivity {
         setContentView(R.layout.activity_slope_cleto);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
         listViewLugaresindicados  = findViewById(R.id.listViewRecomenda);
+        locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
+        updateLocation();
         slopeCleto = new SlopeCleto(preferencias.getUsuario());
-        slopeCleto.deixaPegarFogoUsuarios();
 
+        slopeCleto.deixaPegarFogoUsuarios();
+        slopeCleto.deixarPegarFogoPelasPreferencias(getApplicationContext(),latt,langg);
 
 
 
@@ -215,6 +234,96 @@ public class SlopeCletoTeste extends AppCompatActivity {
     }
 
 
+
+    public void updateLocation() {
+        checkPermission();
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED /*&& ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED*/) {
+                return;
+            }
+            goToCurrentLocation(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String provider) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+
+                }
+            });
+
+        } else if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            mMap.setMyLocationEnabled(true);
+            goToCurrentLocation(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                }
+
+                @Override
+                public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                }
+
+                @Override
+                public void onProviderEnabled(String provider) {
+
+                }
+
+                @Override
+                public void onProviderDisabled(String provider) {
+
+                }
+            });
+        }
+    }
+
+    public void goToCurrentLocation(Location location){
+        if (location!=null){
+            latt = location.getLatitude();
+            langg = location.getLongitude();
+            LatLng latLng = new LatLng(latt, langg);
+        }
+    }
+
+
+
+
+    private void checkPermission() {
+        boolean permissionFineLocation = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED;
+        boolean permissionCoarseLocation = ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED;
+
+        if (permissionFineLocation && permissionCoarseLocation) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    REQUEST_FINE_LOCATION);
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
 
 

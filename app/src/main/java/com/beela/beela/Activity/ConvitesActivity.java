@@ -27,7 +27,7 @@ public class ConvitesActivity extends AppCompatActivity {
 
     private Sessao preferencias;
     private AdapterPersoUsuario adapterPersoUsuario;
-    private ListView listViewCUU;
+    private ListView listViewConvites;
     private adapterPersonalizadoAmigos arrayadapterCu;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -39,7 +39,7 @@ public class ConvitesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convites);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
-        listViewCUU = findViewById(R.id.listviewConvites);
+        listViewConvites = findViewById(R.id.listviewConvites);
         carregarConvites();
 
 
@@ -81,9 +81,9 @@ public class ConvitesActivity extends AppCompatActivity {
 
                             adapterPersoUsuario = new AdapterPersoUsuario(listaAmigosListview,ConvitesActivity.this);
                             //arrayadapterCu = new adapterPersonalizadoAmigos(listaAmigosListview,ConvitesActivity.this);
-                            listViewCUU.setAdapter(adapterPersoUsuario);
+                            listViewConvites.setAdapter(adapterPersoUsuario);
 
-                            listViewCUU.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                            listViewConvites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                                 @Override
                                 public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 

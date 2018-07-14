@@ -11,7 +11,7 @@ import com.beela.beela.R;
 public class LugarActivity extends AppCompatActivity {
 
 
-    private Button buttonPesquisaGoogle,PesquisaJson;
+    private Button buttonPesquisaGoogle,PesquisaJson,recomenda;
 
 
     @Override
@@ -19,8 +19,24 @@ public class LugarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lugar);
 
+
+        recomenda = findViewById(R.id.buttonRecomendacao);
         buttonPesquisaGoogle = findViewById(R.id.buttongoogle);
         PesquisaJson = findViewById(R.id.buttonpesquisajson);
+
+
+        recomenda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LugarActivity.this,SlopeCletoTeste.class);
+                startActivity(intent);
+
+
+
+            }
+        });
+
 
         buttonPesquisaGoogle.setOnClickListener(new View.OnClickListener() {
             @Override

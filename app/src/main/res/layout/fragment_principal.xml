@@ -69,36 +69,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPrincipalFrag" />
 
-    <TextView
-        android:id="@+id/textViewPerfilAtualeh"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="96dp"
-        android:text="Seu perfil atual é:"
-        android:textColor="@color/colorRoxo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
-    <TextView
-        android:id="@+id/textViewPerfilAtual"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Perfil Atual"
-        android:textColor="@color/colorRoxo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAtualeh" />
 
 
     <android.support.v7.widget.CardView
@@ -153,7 +123,7 @@
 
             <LinearLayout
                 android:layout_width="40dp"
-                android:layout_height="195dp"
+                android:layout_height="201dp"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -164,7 +134,7 @@
 
                     android:fadingEdge="none"
                     android:gravity="center"
-                    android:text="Visitados"
+                    android:text="Locais"
                     android:textColor="@color/colorAmarelo"
                     android:textIsSelectable="false"
                     android:textStyle="bold" />

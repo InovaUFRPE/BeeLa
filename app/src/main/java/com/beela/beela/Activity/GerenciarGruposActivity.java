@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class GerenciarGruposActivity extends AppCompatActivity {
 
     private Sessao preferencias;
-    private ListView listViewCUU;
+    private ListView listViewGruposNomes;
     private ArrayAdapter<String> adapter;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -33,7 +33,7 @@ public class GerenciarGruposActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gerenciar_grupos);
-        listViewCUU = findViewById(R.id.listViewGruposNomes);
+        listViewGruposNomes = findViewById(R.id.listViewGruposNomes);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
 
         String cod = Codificador.codificador(preferencias.getUsuario().getEmail());
@@ -55,8 +55,8 @@ public class GerenciarGruposActivity extends AppCompatActivity {
                 }
 
                 adapter = new ArrayAdapter<String>(GerenciarGruposActivity.this, android.R.layout.simple_list_item_1, listadeGrupos);
-                listViewCUU.setAdapter(adapter);
-                listViewCUU.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listViewGruposNomes.setAdapter(adapter);
+                listViewGruposNomes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 

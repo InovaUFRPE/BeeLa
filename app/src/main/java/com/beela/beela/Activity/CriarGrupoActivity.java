@@ -27,7 +27,7 @@ public class CriarGrupoActivity extends AppCompatActivity {
 
     private Sessao preferencias;
     private adapterAmigosCriarGrupo adapterPersoUsuario;
-    private ListView listViewCUU;
+    private ListView listViewlistadeGrupos;
     private adapterAmigosCriarGrupo arrayadapterCu;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -43,7 +43,7 @@ public class CriarGrupoActivity extends AppCompatActivity {
 
         avancar = findViewById(R.id.buttonCriarGrupoAvancar);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
-        listViewCUU = findViewById(R.id.listViewCriarGrupoLista);
+        listViewlistadeGrupos = findViewById(R.id.listViewCriarGrupoLista);
         carregarAmigos();
 
 
@@ -85,8 +85,8 @@ public class CriarGrupoActivity extends AppCompatActivity {
 
 
                             adapterPersoUsuario = new adapterAmigosCriarGrupo(CriarGrupoActivity.this, listaAmigosListview);
-                            //arrayadapterCu = new adapterPersonalizadoAmigos(listaAmigosListview,ConvitesActivity.this);
-                            listViewCUU.setAdapter(adapterPersoUsuario);
+
+                            listViewlistadeGrupos.setAdapter(adapterPersoUsuario);
 
 
                             avancar.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +94,7 @@ public class CriarGrupoActivity extends AppCompatActivity {
 
                                 public void onClick(View v) {
 
-                                    listaAmigosSelecionados = verificaSelecionados(listViewCUU);
+                                    listaAmigosSelecionados = verificaSelecionados(listViewlistadeGrupos);
 
 
                                     if(listaAmigosSelecionados.size()>0) {

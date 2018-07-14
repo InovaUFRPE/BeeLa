@@ -1,10 +1,12 @@
 package com.beela.beela.Entidades;
 
+import android.support.annotation.NonNull;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
 
-public class LugarGoogle implements Serializable {
+public class LugarGoogle implements Serializable, Comparable<LugarGoogle> {
     private int id;
 
 
@@ -96,7 +98,17 @@ public class LugarGoogle implements Serializable {
     }
 
 
-
+    @Override
+    public int compareTo(@NonNull LugarGoogle o) {
+        if (this.nota > o.getNota()) {
+            return -1;
+        }
+        if (this.nota < o.getNota()) {
+            return 1;
+        }
+        return 0;
+    }
 
 
 }
+

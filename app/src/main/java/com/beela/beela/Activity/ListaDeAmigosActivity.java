@@ -26,7 +26,7 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
 
     private Sessao preferencias;
     private AdapterPersoUsuario adapterPersoUsuario;
-    private ListView listViewCUU;
+    private ListView listViewGrupos;
     private adapterPersonalizadoAmigos arrayadapterCu;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -40,7 +40,7 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_de_amigos);
 
         preferencias = Sessao.getInstancia(this.getApplicationContext());
-        listViewCUU = findViewById(R.id.listViewCriarGrupoLista);
+        listViewGrupos = findViewById(R.id.listViewCriarGrupoLista);
         carregarAmigos();
 
     }
@@ -80,12 +80,12 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
 
                                 adapterPersoUsuario = new AdapterPersoUsuario(listaAmigosListview,ListaDeAmigosActivity.this);
                                 //arrayadapterCu = new adapterPersonalizadoAmigos(listaAmigosListview,ConvitesActivity.this);
-                                listViewCUU.setAdapter(adapterPersoUsuario);
+                                listViewGrupos.setAdapter(adapterPersoUsuario);
 
 
 
 
-                                listViewCUU.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                                listViewGrupos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                                     @Override
                                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                                         Usuario UsuarinhoDetalhes = (Usuario) parent.getAdapter().getItem(position);

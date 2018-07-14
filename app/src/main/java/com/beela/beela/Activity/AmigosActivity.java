@@ -15,7 +15,6 @@ import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.List.adapterPersonalizadoAmigos;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,7 +27,7 @@ import java.util.Map;
 
 public class AmigosActivity extends AppCompatActivity {
 
-    private adapterPersonalizadoAmigos arrayadapterCu;
+    private adapterPersonalizadoAmigos arrayadapterAmigosLista;
 
 
     private Sessao preferencias;
@@ -114,8 +113,8 @@ public class AmigosActivity extends AppCompatActivity {
                 }
 
 
-                arrayadapterCu = new adapterPersonalizadoAmigos(listaAmigosListview,AmigosActivity.this);
-                listViewAmigos.setAdapter(arrayadapterCu);
+                arrayadapterAmigosLista = new adapterPersonalizadoAmigos(listaAmigosListview,AmigosActivity.this);
+                listViewAmigos.setAdapter(arrayadapterAmigosLista);
 
                 listViewAmigos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override

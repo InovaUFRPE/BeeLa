@@ -106,6 +106,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     preferencias.salvarUrlFoto(identificador, usuario.getUrlFoto());
 
                     preferencias.setUsuario(usuario);
+                    preferencias.iniciarSessao();
                     abrirCriarPerfil();
 
                 } else {
@@ -133,7 +134,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
     }
 
     public void abrirCriarPerfil() {
-        Intent abrirPerfil = new Intent(CriarContaP2Activity.this, CriarPerfilActivity.class);
+        Intent abrirPerfil = new Intent(CriarContaP2Activity.this,LoginActivity.class);
         startActivity(abrirPerfil);
         finish();
     }

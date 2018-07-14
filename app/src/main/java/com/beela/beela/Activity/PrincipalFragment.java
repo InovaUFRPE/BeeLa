@@ -76,7 +76,7 @@ public class PrincipalFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getActivity(),SlopeCletoTeste.class);
+                Intent intent = new Intent(getActivity(),GruposActivity.class);
                 startActivity(intent);
 
 

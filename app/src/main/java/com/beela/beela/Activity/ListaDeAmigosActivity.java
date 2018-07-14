@@ -1,11 +1,14 @@
 package com.beela.beela.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
@@ -42,6 +45,72 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
         preferencias = Sessao.getInstancia(this.getApplicationContext());
         listViewGrupos = findViewById(R.id.listViewCriarGrupoLista);
         carregarAmigos();
+       // ListaExcluir();
+
+    }
+
+     /**   private void ListaExcluir(){
+
+            listViewCUU.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    //Usuario s = (Usuario) parent.getAdapter().getItem(position);
+                   // adicionarAbigo(s);
+
+                    final CharSequence[] escolha = {"Sim", "Não"};
+                    AlertDialog.Builder alerta = new AlertDialog.Builder(ListaDeAmigosActivity.this);
+                    alerta.setItems(escolha, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            String opcao = (String) escolha[i];
+                            if (opcao.equals(("Sim"))) {
+
+                                Toast.makeText(ListaDeAmigosActivity.this,"apagar",Toast.LENGTH_LONG).show();
+
+                            } else if (opcao.equals(("Não"))) {
+                                dialogInterface.cancel();
+                            }
+                        }
+                    });
+                    alerta.setTitle("Excluir Amigo ?");
+                    AlertDialog aviso = alerta.create();
+                    aviso.show();
+                    return true;
+
+                }
+            });
+
+        }**/
+
+    private void adicionarAbigo(final Usuario s) {
+
+
+        String emaildoamiginho = s.getEmail();
+        final String emaiamiguinhocodificado = Codificador.codificador(emaildoamiginho);
+
+
+        final CharSequence[] escolha = {"Sim", "Não"};
+        AlertDialog.Builder alerta = new AlertDialog.Builder(ListaDeAmigosActivity.this);
+        alerta.setItems(escolha, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String opcao = (String) escolha[i];
+                if (opcao.equals(("Sim"))) {
+
+                    databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(Codificador.codificador(preferencias.getEmail())).child(emaiamiguinhocodificado);
+                    databaseReference.removeValue();
+                    finish();
+                    Toast.makeText(getApplicationContext(),"Amiguinho Excluido",Toast.LENGTH_LONG).show();
+
+                } else if (opcao.equals(("Não"))) {
+                    dialogInterface.cancel();
+                }
+            }
+        });
+        alerta.setTitle("Excluir Amigo ?");
+        AlertDialog aviso = alerta.create();
+        aviso.show();
 
     }
 
@@ -91,10 +160,18 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
                                         Usuario UsuarinhoDetalhes = (Usuario) parent.getAdapter().getItem(position);
 
                                         Usuario s = (Usuario) parent.getAdapter().getItem(position);
+<<<<<<< HEAD
 
                                         Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
                                         intent.putExtra("usuarinho",s);
                                         startActivity(intent);
+=======
+                                        adicionarAbigo(s);
+
+                                        //Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
+                                       // intent.putExtra("usuarinho",UsuarinhoDetalhes);
+                                       // startActivity(intent);
+>>>>>>> 94243aae67f91e063d00f84acecd58ba7640f9db
                                         return true;
 
                                     }

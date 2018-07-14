@@ -24,6 +24,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class CriarContaP2Activity extends AppCompatActivity {
     private EditText editTextEmail;
@@ -41,6 +49,9 @@ public class CriarContaP2Activity extends AppCompatActivity {
     private String data;
     private String genero;
     private TextView nomeAppConta;
+    public ArrayList<Usuario> amigos = new ArrayList<>();
+    private DatabaseReference databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,7 +107,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     String identificador = Codificador.codificador(usuario.getEmail());
                     usuario.setId(identificador);
                     usuario.salvar();
-
+                   // formarAmigos();
                     Toast.makeText(CriarContaP2Activity.this, "Conta criada com sucesso!", Toast.LENGTH_SHORT).show();
 
                     preferencias.salvarNome(identificador, usuario.getNome());
@@ -133,7 +144,36 @@ public class CriarContaP2Activity extends AppCompatActivity {
         });
     }
 
-    public void abrirCriarPerfil() {
+   /** public void formarAmigos() {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("conta");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+
+                    Usuario usuario = dataSnapshot1.getValue(Usuario.class);
+                    amigos.add(usuario);
+
+                }
+                Toast.makeText(CriarContaP2Activity.this, "Lista: " + amigos, Toast.LENGTH_SHORT).show();
+            }
+
+
+                @Override
+                public void onCancelled (DatabaseError databaseError){
+
+
+            }
+        });
+
+    }**/
+
+
+
+            public void abrirCriarPerfil() {
         Intent abrirPerfil = new Intent(CriarContaP2Activity.this,LoginActivity.class);
         startActivity(abrirPerfil);
         finish();

@@ -46,6 +46,4 @@ public class PreferenciasPerfil {
 
     private Boolean selecionado = false;
 
-
-
 }

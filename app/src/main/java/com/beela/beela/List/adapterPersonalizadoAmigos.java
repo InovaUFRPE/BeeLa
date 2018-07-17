@@ -50,6 +50,7 @@ public class adapterPersonalizadoAmigos extends BaseAdapter {
         TextView descricao = (TextView)
                 view.findViewById(R.id.adaptermigosSexo);
 
+
         nome.setText(u.getNome());
         descricao.setText(u.getSexo());
 

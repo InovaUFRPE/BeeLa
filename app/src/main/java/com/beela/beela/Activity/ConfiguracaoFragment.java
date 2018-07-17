@@ -138,6 +138,7 @@ public class ConfiguracaoFragment extends Fragment {
                             nome.setText(preferencias.getUsuario().getNome());
                             Toast.makeText(getActivity(), "Nome alterado", Toast.LENGTH_LONG).show();
                             dialog.dismiss();
+
                         }
 
 

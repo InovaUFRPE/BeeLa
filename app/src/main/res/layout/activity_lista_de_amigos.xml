@@ -23,10 +23,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="Lista de Amigos"
-        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorRoxo"
+        android:textSize="19dp"
+        android:text="Lista de Amigos!"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="7dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -73,7 +73,6 @@
         <activity android:name=".Activity.LugarDetalhesActivity" />
         <activity android:name=".Activity.historicoActivity" />
         <activity android:name=".Activity.EasterEgg" />
-        <activity android:name=".Activity.EasterEggDay"></activity>
     </application>
 
 </manifest>

@@ -55,6 +55,14 @@ public class AdapterPersoUsuario extends BaseAdapter {
 
             ImageView foto = view.findViewById(R.id.imageViewFotoUsuario);
 
+
+            //TextView aberto = (TextView) view.findViewById(R.id.textviewaberto);
+
+            //TextView nota = (TextView)view.findViewById(R.id.textViewNota);
+
+
+           // TextView latlang = (TextView)view.findViewById(R.id.textViewlatlang);
+
             String url = u.getUrlFoto();
 
             if (url.equals(null)){
@@ -67,7 +75,10 @@ public class AdapterPersoUsuario extends BaseAdapter {
 
 
             nome.setText(u.getNome());
-            descricao.setText(u.getSexo());
+            descricao.setText(" ");
+            //nota.setText(" ");
+//            aberto.setText(" ");
+            //latlang.setText("");
 
 
 

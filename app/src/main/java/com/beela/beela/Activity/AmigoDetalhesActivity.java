@@ -76,6 +76,7 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
                 Toast.makeText(AmigoDetalhesActivity.this,"Convite Enviado",Toast.LENGTH_LONG).show();
 
 
+
                 final String identificador = Codificador.codificador(preferencias.getEmail());
                 databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(identificador);
                 databaseReference.addValueEventListener(new ValueEventListener() {

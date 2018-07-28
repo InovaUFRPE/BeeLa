@@ -31,12 +31,12 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Solicitações de Amizade"
-        android:textSize="18sp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/colorRoxo"
+        android:textSize="19dp"
+        android:text="Solicitações de amizade"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

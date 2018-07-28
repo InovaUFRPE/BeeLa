@@ -161,6 +161,7 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
 
                                         Usuario s = (Usuario) parent.getAdapter().getItem(position);
 
+
                                         Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
                                         intent.putExtra("usuarinho",s);
                                         startActivity(intent);

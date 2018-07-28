@@ -72,6 +72,7 @@ public class adapterLugares extends BaseAdapter {
 //        }
 
         nota.setText(lugares.getNota().toString());
+        //latlang.setText("");
 
         //latlang.setText(lugares.getLocaliza().toString());
 

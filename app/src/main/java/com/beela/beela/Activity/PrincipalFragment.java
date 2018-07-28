@@ -10,10 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Lugar;
+import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 /**
@@ -30,6 +40,7 @@ public class PrincipalFragment extends Fragment {
     private ImageButton imageButtonGrupos;
     private int cont = 0;
 
+
     public PrincipalFragment() {
         // Required empty public constructor
     }
@@ -39,16 +50,25 @@ public class PrincipalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_principal, container, false);
-
-
-
+        imageButtonLugares = view.findViewById(R.id.imageButtonLugares);
+        imageButtonAmigos = view.findViewById(R.id.imageButtonAmigos);
+        imageButtonGrupos = view.findViewById(R.id.imageButtonGrupos);
         preferencias = Sessao.getInstancia(getContext());
-
-
         nome = view.findViewById(R.id.fragTextViewNome);
         nome.setText(preferencias.getNome());
         fotoUsuario = view.findViewById(R.id.imageViewPrincipalFrag);
+        imageButtonLugares = view.findViewById(R.id.imageButtonLugares);
         setarFotoUsuario();
+        setarImageButton();
+
+        return view;
+
+    }
+
+
+
+
+        public void setarImageButton(){
 
 
         nome.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +77,8 @@ public class PrincipalFragment extends Fragment {
 
                 if(cont == 11 && preferencias.getUsuario().getEmail().equals("marconemax42@gmail.com")){
 
-                    Intent intent = new Intent(getActivity(),EasterEggDay.class);
-                    startActivity(intent);
+                    //Intent intent = new Intent(getActivity(),EasterEggDay.class);
+                    //startActivity(intent);
 
                 }
                 else {
@@ -70,7 +90,8 @@ public class PrincipalFragment extends Fragment {
         });
 
 
-        imageButtonLugares = view.findViewById(R.id.imageButtonLugares);
+
+
 
         imageButtonLugares.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +101,7 @@ public class PrincipalFragment extends Fragment {
             }
         });
 
-        imageButtonAmigos = view.findViewById(R.id.imageButtonAmigos);
+
         imageButtonAmigos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,7 +114,6 @@ public class PrincipalFragment extends Fragment {
 
 
 
-        imageButtonGrupos = view.findViewById(R.id.imageButtonGrupos);
         imageButtonGrupos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,14 +126,6 @@ public class PrincipalFragment extends Fragment {
         });
 
         // Inflate the layout for this fragment
-
-
-
-
-
-        return view;
-
-
     }
 
     private void setarFotoUsuario()  {
@@ -124,11 +136,6 @@ public class PrincipalFragment extends Fragment {
         Picasso.get().load(url).into(fotoUsuario);
 
     }
-
-
-
-
-
 
 
 }

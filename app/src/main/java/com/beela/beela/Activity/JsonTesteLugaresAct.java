@@ -20,11 +20,18 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.beela.beela.Entidades.LugarGoogle;
-import com.beela.beela.Entidades.Usuario;
+import com.beela.beela.Entidades.PreferenciasPerfil;
+import com.beela.beela.Helper.Codificador;
+import com.beela.beela.Helper.Sessao;
 import com.beela.beela.List.adapterLugares;
 import com.beela.beela.R;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -35,12 +42,14 @@ import java.util.ArrayList;
 public class JsonTesteLugaresAct extends AppCompatActivity {
 
     private com.android.volley.RequestQueue mQueue;
-
+    private Sessao preferencias;
     private Button buttonJson;
+    private DatabaseReference databaseReference;
     private EditText palavraChave;
     private com.beela.beela.List.adapterLugares adapterLugares;
     private ListView listViewLugares;
     private ArrayList<LugarGoogle> lugarGoogles = new ArrayList<>();
+    private ArrayList<String> palavras = new ArrayList<>();
     private LocationManager locationManager;
     private GoogleMap mMap;
     private static final int REQUEST_FINE_LOCATION = 1;
@@ -50,52 +59,108 @@ public class JsonTesteLugaresAct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teste2_caralhode_asa);
+        setContentView(R.layout.activity_teste2_json);
         mQueue = Volley.newRequestQueue(this);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
+
+        listViewLugares = findViewById(R.id.listViewPreferenciasJson);
+//        palavraChave = findViewById(R.id.editTextPalavra);
+        //buttonJson = findViewById(R.id.buttonJson);
 
 
-        listViewLugares = findViewById(R.id.CaralhoDeAsa);
-        palavraChave = findViewById(R.id.editTextPalavra);
-        buttonJson = findViewById(R.id.buttonJson);
+        updateLocation();
+        pegarInteresses();
+        imprimirListView();
+        Toast.makeText(getApplicationContext(),"Wait",Toast.LENGTH_LONG).show();
 
-        buttonJson.setOnClickListener(new View.OnClickListener() {
+//
+//        buttonJson.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                if (!palavraChave.getText().toString().equals("")){
+//
+//                    updateLocation();
+//                    pegarInteresses();
+//                    imprimirListView();
+//                    Toast.makeText(getApplicationContext(),"Wait",Toast.LENGTH_LONG).show();
+//
+//                }
+//                else {
+//
+//                    Toast.makeText(getApplicationContext(),
+//                            "Digite Algo Amibiguinho",
+//                            Toast.LENGTH_LONG).show();
+//                }
+//
+//            }
+//        });
+
+
+    }
+
+
+    private void pegarInteresses(){
+
+        String emailcod = Codificador.codificador(preferencias.getUsuario().getEmail());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("perfil").
+                child(emailcod);
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
 
-                if (!palavraChave.getText().toString().equals("")){
+                    if (!data.getValue().toString().equals("null") && !data.getKey().equals("id")) {
 
-                    updateLocation();
-                    jsonParse();
-                    imprimirListView();
-                    Toast.makeText(getApplicationContext(),"Wait",Toast.LENGTH_LONG).show();
+//                        PreferenciasPerfil p = new PreferenciasPerfil();
+//                        p.setValor(data.getValue().toString());
+//                        p.setChave(data.getKey().toString());
+                        palavras.add(data.getValue().toString());
 
+                    }
                 }
-                else {
 
-                    Toast.makeText(getApplicationContext(),
-                            "Digite Algo Amibiguinho",
-                            Toast.LENGTH_LONG).show();
-                }
+
+                jsonParse(palavras);
+
+
+
+
+
+                    }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
 
 
+
     }
 
-    private void jsonParse() {
+
+    private void jsonParse(ArrayList<String> palavras) {
 
         lugarGoogles.clear();
-        String url2 = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-8.189369,%20-34.955066&radius=15000&" +
-                "type=restaurant&key=AIzaSyCs4g8KU95xizS77El9HbxhTZcBfiaJk7A";
 
+        for(String palavra:palavras){
 
+            chamadasJson(palavra);
+
+        }
+
+    }
+
+    private void chamadasJson(String palavra) {
         String url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?" +
                 "location="+latt.toString()+",%20"+langg.toString()+
                 "&radius=15000&" +
                 "type=restaurante&" +
-                "keyword="+ palavraChave.getText().toString() +"&" +
+                "keyword="+ palavra.toString() +"&" +
                 "key=AIzaSyAI1bjrxWDnoBGDtMJumHon73xZjLcNwmg";
 
         final JsonObjectRequest request = new JsonObjectRequest(com.android.volley.Request.
@@ -125,7 +190,14 @@ public class JsonTesteLugaresAct extends AppCompatActivity {
                                 double lat = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                                 double lng = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
 
-                                //lugarGoogle.setLocaliza(new LatLng(lat, lng));
+
+
+                                lugarGoogle.setLat(lat);
+
+                                lugarGoogle.setLng(lng);
+
+
+
 
                                 lugarGoogles.add(lugarGoogle);
                                 adapterLugares.notifyDataSetChanged();
@@ -152,10 +224,6 @@ public class JsonTesteLugaresAct extends AppCompatActivity {
         });
 
         mQueue.add(request);
-
-
-
-
     }
 
 

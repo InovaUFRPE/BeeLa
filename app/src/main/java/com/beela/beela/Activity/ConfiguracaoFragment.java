@@ -118,12 +118,29 @@ public class ConfiguracaoFragment extends Fragment {
                 TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConf);
                 final EditText editTextAlterar = alertview.findViewById(R.id.editTextAlertConf);
                 Button buttonConfirmar = alertview.findViewById(R.id.buttonAlertConf);
+                Button buttonCancelar = alertview.findViewById(R.id.buttonCancelar);
 
                 alertTitulo.setText("Digite seu Nome: ");
-                editTextAlterar.setHint("Nome");
+                editTextAlterar.setText(preferencias.getUsuario().getNome());
+                buttonConfirmar.setText("Confirmar");
+                buttonCancelar.setText("Cancelar");
                 alertDialog.setView(alertview);
                 final AlertDialog dialog = alertDialog.create();
                 dialog.show();
+
+                buttonCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+
+
+
+
 
                 buttonConfirmar.setOnClickListener(new View.OnClickListener() {
                     @Override

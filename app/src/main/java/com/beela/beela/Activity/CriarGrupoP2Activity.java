@@ -1,10 +1,12 @@
 package com.beela.beela.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.beela.beela.Entidades.Grupo;
 import com.beela.beela.Entidades.Usuario;
@@ -57,7 +59,6 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
 
 
 
-
         }
 
 
@@ -65,7 +66,7 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
 
             nomedogrupo = editTextNomeGrupo.getText().toString();
             grupinho.setNome(nomedogrupo);
-        }
+
 
 
 
@@ -85,15 +86,35 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("conta").child(codificadorUsuarioLogado).child("grupo").child(nomedogrupo);
         databaseReference.setValue(nomedogrupo);
 
-        for(Usuario usuarios:abigos){
+        for(Usuario usuarios:abigos) {
 
             String codificador = Codificador.codificador(usuarios.getEmail());
 
             databaseReference = FirebaseDatabase.getInstance().getReference("conta").child(codificador).child("grupo").child(nomedogrupo);
             databaseReference.setValue(nomedogrupo);
 
+        }
 
-    }
+
+
+            Intent intent = new Intent(CriarGrupoP2Activity.this,GruposActivity.class);
+            startActivity(intent);
+
+        finish();
+
+
+
+
+        }
+        else {
+
+            Toast.makeText(getApplicationContext(),"Digite um Nome para o Grupo",Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+
 }
 
 }

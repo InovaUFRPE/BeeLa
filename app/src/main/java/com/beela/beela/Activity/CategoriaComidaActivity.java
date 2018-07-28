@@ -171,7 +171,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
         } else {
         }
-        if (interessesComida.size() >= 5){
+        if (interessesComida.size() > 5){
 
             perfil.setInteresse6(interessesComida.get(5));
             preferencias.setInteresse6(identificador, interessesComida.get(5));
@@ -181,7 +181,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
         } else {
         }
-        if (interessesComida.size() >= 6){
+        if (interessesComida.size() > 6){
 
             perfil.setInteresse7(interessesComida.get(6));
             preferencias.setInteresse7(identificador, interessesComida.get(6));
@@ -190,7 +190,41 @@ public class CategoriaComidaActivity extends AppCompatActivity {
             preferencias.setPerfil(perfil);
 
         } else {
+
+
+
         }
+
+        if (interessesComida.size() > 7){
+
+            perfil.setInteresse8(interessesComida.get(7));
+            preferencias.setInteresse8(identificador, interessesComida.get(7));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(7));
+            preferencias.getPerfil().addInteresse(interessesComida.get(7));
+            preferencias.setPerfil(perfil);
+
+        } else {
+
+
+
+        }
+        if (interessesComida.size() > 8){
+
+            perfil.setInteresse9(interessesComida.get(8));
+            preferencias.setInteresse9(identificador, interessesComida.get(8));
+            preferencias.getPerfil().addInteresseComidaP(interessesComida.get(8));
+            preferencias.getPerfil().addInteresse(interessesComida.get(8));
+            preferencias.setPerfil(perfil);
+
+        } else {
+
+
+
+        }
+
+
+
+
         atualizarInteresseFirebase();
         Toast.makeText(CategoriaComidaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
@@ -213,7 +247,8 @@ public class CategoriaComidaActivity extends AppCompatActivity {
                 for (int i = 0; i < tam; i++) {
                     String chave = "interesse" + (i + 1);
                     postValues.put(chave, preferencias.getPerfil().getInteressesComidaP().get(0));
-                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail()))
+                            .updateChildren(postValues);
                     preferencias.getPerfil().getInteressesComidaP().remove(0);
 
                 }

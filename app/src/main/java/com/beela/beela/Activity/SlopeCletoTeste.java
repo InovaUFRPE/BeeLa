@@ -51,7 +51,7 @@ public class SlopeCletoTeste extends AppCompatActivity {
     private ArrayList<LugarGoogle> lugarGoogles = new ArrayList<>();
     private DatabaseReference databaseReference;
     private ArrayList<String> idDoGoogle = new ArrayList<>();
-
+    private Usuario usuarioMagico;
 
     private LocationManager locationManager;
     private GoogleMap mMap;
@@ -63,15 +63,19 @@ public class SlopeCletoTeste extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mQueue = Volley.newRequestQueue(this);
+        Intent intent = getIntent();
+        preferencias = Sessao.getInstancia(this.getApplicationContext());
+        usuarioMagico = (Usuario) intent.getSerializableExtra("usuarioMagico");
+
 
         setContentView(R.layout.activity_slope_cleto);
-        preferencias = Sessao.getInstancia(this.getApplicationContext());
+
         listViewLugaresindicados  = findViewById(R.id.listViewRecomenda);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         updateLocation();
-        slopeCleto = new SlopeCleto(preferencias.getUsuario());
 
+        slopeCleto = new SlopeCleto(usuarioMagico);
         slopeCleto.deixaPegarFogoUsuarios();
         slopeCleto.deixarPegarFogoPelasPreferencias(getApplicationContext(),latt,langg);
 
@@ -102,7 +106,7 @@ public class SlopeCletoTeste extends AppCompatActivity {
 
 
 
-        String emailcodificado = Codificador.codificador(preferencias.getUsuario().getEmail());
+        String emailcodificado = Codificador.codificador(usuarioMagico.getEmail());
         databaseReference = FirebaseDatabase.getInstance().
                 getReference("recomendacao").
                 child(emailcodificado).
@@ -158,9 +162,12 @@ public class SlopeCletoTeste extends AppCompatActivity {
                                             double lat = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lat");
                                             double lng = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lng");
 
-                                            //lugarGoogle.setLocaliza(new LatLng(lat, lng));
+                                            lugarGoogle.setLat(lat);
 
-                                            lugarGoogles.add(lugarGoogle);
+                                            lugarGoogle.setLng(lng);
+
+
+                                        lugarGoogles.add(lugarGoogle);
                                             adapterLugares.notifyDataSetChanged();
 
 

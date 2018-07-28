@@ -6,45 +6,141 @@
     android:layout_height="match_parent"
     tools:context=".Activity.LugarActivity">
 
-    <Button
-        android:id="@+id/buttongoogle"
+    <ImageButton
+        android:id="@+id/imageButtonRecomendacao"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorTransparente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25"
+        app:srcCompat="@drawable/baseline_whatshot_black_48dp" />
+
+    <ImageButton
+        android:id="@+id/imageButtonHistorico"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="180dp"
+        android:background="@color/colorTransparente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/history" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPesquisaGoogle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="180dp"
+        android:background="@color/colorTransparente"
+        android:tint="@color/colorTransparente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/googlemaps" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPreferencias"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/colorTransparente"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView26"
+        app:srcCompat="@drawable/heartinlikecircularbutton" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="250dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Maps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonPesquisaGoogle" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Histórico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonHistorico" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="250dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:text="Recomendações"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonRecomendacao" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginStart="250dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Interesses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonPreferencias" />
+
+    <TextView
+        android:id="@+id/textView29"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="84dp"
-        android:text="Pesquisa no Google"
+        android:layout_marginTop="60dp"
+        android:text="Locais"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonpesquisajson"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="64dp"
-        android:text="PesquisaJson"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttongoogle" />
-
-    <Button
-        android:id="@+id/buttonRecomendacao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
-        android:text="Recomendações"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonpesquisajson" />
 </android.support.constraint.ConstraintLayout>

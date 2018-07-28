@@ -1,18 +1,23 @@
 package com.beela.beela.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.LugarGoogle;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
+import com.beela.beela.Lugar.Servico.lugarServico;
 import com.beela.beela.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,11 +28,15 @@ public class LugarDetalhesActivity extends AppCompatActivity {
     private Button buttonIr;
     private DatabaseReference databaseReference;
     private LugarGoogle lugarGoogless;
+    private RatingBar  ratingBar;
+    private lugarServico lugarServico = new lugarServico();
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lugar_detelhes);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
+
 
 
         Intent intent = getIntent();
@@ -41,16 +50,29 @@ public class LugarDetalhesActivity extends AppCompatActivity {
 
 
         aberto = findViewById(R.id.textViewAberto);
-        aberto.setText(lugarGoogless.getAbertoagora().toString());
+        if(lugarGoogless.getAbertoagora().equals(false)) {
+
+            aberto.setText("Fechado");
+            aberto.setTextColor(Color.rgb(200,0,0));
+
+        }else {
+            aberto.setText("Aberto");
+            aberto.setTextColor(Color.rgb(0,200,0));
+
+        }
+
 
         nota = findViewById(R.id.textViewNota);
         nota.setText(lugarGoogless.getNota().toString());
 
 
         localiza = findViewById(R.id.textViewLocaliza);
-        //localiza.setText(lugarGoogle.getLocaliza().toString());
+        localiza.setText(lugarGoogless.getLat().toString() +" " + lugarGoogless.getLng().toString() );
 
+        ratingBar = findViewById(R.id.ratingBarLugar);
+        ratingBar.setRating(lugarGoogless.getNota().floatValue());
 
+        ratingBar.setFocusable(false);
 
         buttonIr = findViewById(R.id.buttonirparaolocal);
         idgoogle = findViewById(R.id.textViewId);
@@ -69,6 +91,13 @@ public class LugarDetalhesActivity extends AppCompatActivity {
                 //TODO inserir quantidade de vezes que o usuario foi ao local
                 //TODO se o usuario gostou
 
+                //chamarMapa
+                try {
+                    startActivity(new Intent (lugarServico.getMapa(lugarGoogless.getLat(),lugarGoogless.getLng())));
+                } catch (Exception ex){
+
+                    Toast.makeText(LugarDetalhesActivity.this , "Erro",Toast.LENGTH_SHORT).show();
+                }
 
 
             }
@@ -76,10 +105,6 @@ public class LugarDetalhesActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
     }
 }
+

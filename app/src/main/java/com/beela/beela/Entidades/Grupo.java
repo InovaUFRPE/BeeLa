@@ -8,7 +8,7 @@ public class Grupo implements Serializable {
 
     private String id;
     private String nome;
-    private ArrayList<Usuario> integrantes;
+    private ArrayList<String> integrantes;
     private String urlFoto ;
     private Usuario admin = new Usuario();
 
@@ -41,11 +41,11 @@ public class Grupo implements Serializable {
         this.nome = nome;
     }
 
-    public ArrayList<Usuario> getIntegrantes() {
+    public ArrayList<String> getIntegrantes() {
         return integrantes;
     }
 
-    public void setIntegrantes(ArrayList<Usuario> integrantes) {
+    public void setIntegrantes(ArrayList<String> integrantes) {
         this.integrantes = integrantes;
     }
 

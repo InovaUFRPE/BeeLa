@@ -48,27 +48,28 @@ public class adapterLugares extends BaseAdapter {
 
         TextView nome = (TextView)
                 view.findViewById(R.id.adaptermigosNome);
+
         TextView descricao = (TextView)
                 view.findViewById(R.id.adaptermigosSexo);
-        TextView aberto = (TextView) view.findViewById(R.id.textviewaberto);
+        //TextView aberto = (TextView) view.findViewById(R.id.textviewaberto);
 
         TextView nota = (TextView)view.findViewById(R.id.textViewNota);
 
 
-        TextView latlang = (TextView)view.findViewById(R.id.textViewlatlang);
+        //TextView latlang = (TextView)view.findViewById(R.id.textViewlatlang);
 
         nome.setText(lugares.getNome());
         descricao.setText(lugares.getEndereco());
 
-        if (lugares.getAbertoagora().equals(true)) {
-
-            aberto.setText("Aberto agora: " + lugares.getAbertoagora().toString());
-        }
-
-        else {
-
-            aberto.setText("Aberto agora: " + "sem informacao");
-        }
+//        if (lugares.getAbertoagora().equals(true)) {
+//
+//            aberto.setText("Aberto agora: " + lugares.getAbertoagora().toString());
+//        }
+//
+//        else {
+//
+//            aberto.setText("Aberto agora: " + "sem informacao");
+//        }
 
         nota.setText(lugares.getNota().toString());
 

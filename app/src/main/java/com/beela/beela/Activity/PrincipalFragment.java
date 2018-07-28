@@ -28,6 +28,8 @@ public class PrincipalFragment extends Fragment {
     private ImageButton imageButtonAmigos;
     private ImageButton imageButtonLugares;
     private ImageButton imageButtonGrupos;
+    private int cont = 0;
+
     public PrincipalFragment() {
         // Required empty public constructor
     }
@@ -47,6 +49,26 @@ public class PrincipalFragment extends Fragment {
         nome.setText(preferencias.getNome());
         fotoUsuario = view.findViewById(R.id.imageViewPrincipalFrag);
         setarFotoUsuario();
+
+
+        nome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(cont == 11 && preferencias.getUsuario().getEmail().equals("marconemax42@gmail.com")){
+
+                    Intent intent = new Intent(getActivity(),EasterEggDay.class);
+                    startActivity(intent);
+
+                }
+                else {
+
+                    cont = cont +1;
+                }
+
+            }
+        });
+
 
         imageButtonLugares = view.findViewById(R.id.imageButtonLugares);
 

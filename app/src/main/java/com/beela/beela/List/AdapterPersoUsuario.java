@@ -42,7 +42,7 @@ public class AdapterPersoUsuario extends BaseAdapter {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             View view = act.getLayoutInflater()
-                    .inflate(R.layout.adapterpersousuarios, parent, false);
+                    .inflate(R.layout.adapterpersousuarios2, parent, false);
 
 
             Usuario u = listaUsuario.get(position);
@@ -57,6 +57,11 @@ public class AdapterPersoUsuario extends BaseAdapter {
 
             String url = u.getUrlFoto();
 
+            if (url.equals(null)){
+                url = "https://firebasestorage.googleapis.com" +
+                        "/v0/b/beela-6e723.appspot.com/o/Fotos%2FBEELA%20FINAL." +
+                        "png?alt=media&token=a2322da9-2651-4d21-a846-cba20cc45be0";
+            }
 
             Picasso.get().load(url).into(foto);
 

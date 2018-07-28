@@ -104,6 +104,7 @@ public class CriarGrupoActivity extends AppCompatActivity {
                                         intent.putExtra("listadeAbiginhosSelecionados", listaAmigosSelecionados);
 
                                         startActivity(intent);
+                                        finish();
                                     }else {
                                         Toast.makeText(CriarGrupoActivity.this, "Escolha pelo menos um contato", Toast.LENGTH_LONG).show();
 

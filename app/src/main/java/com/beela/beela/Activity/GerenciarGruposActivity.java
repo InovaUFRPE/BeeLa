@@ -28,7 +28,7 @@ public class GerenciarGruposActivity extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private ArrayList<String> listadeGrupos = new ArrayList<>();
-
+    private ArrayList<String> integrantes = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,16 +36,24 @@ public class GerenciarGruposActivity extends AppCompatActivity {
         listViewGruposNomes = findViewById(R.id.listViewGruposNomes);
         preferencias = Sessao.getInstancia(this.getApplicationContext());
 
+        carregarGrupos();
+
+
+        //Todo Apagar Act
+
+
+    }
+
+    private void carregarGrupos() {
         String cod = Codificador.codificador(preferencias.getUsuario().getEmail());
 
         databaseReference = FirebaseDatabase.getInstance().getReference("conta").
                 child(cod).child("grupo");
 
 
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(final DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot data : dataSnapshot.getChildren()) {
 
@@ -59,13 +67,42 @@ public class GerenciarGruposActivity extends AppCompatActivity {
                 listViewGruposNomes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        final Grupo grupinho = new Grupo();
 
-                        Grupo grupinho = (Grupo) parent.getAdapter().getItem(position);
+                        final String idGrupo = (String) parent.getAdapter().getItem(position);
 
 
-                        Intent intent = new Intent(getApplicationContext(),GrupoDetalhesActivity.class);
-                        intent.putExtra("grupinho",grupinho);
-                        startActivity(intent);
+                        databaseReference = FirebaseDatabase.getInstance().getReference("grupo").
+                                child(idGrupo).child("integrantes");
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
+
+                                    integrantes.add(dataSnapshot1.getValue().toString());
+
+                                }
+
+                                grupinho.setIntegrantes(integrantes);
+                                grupinho.setNome(idGrupo);
+                                grupinho.setId(idGrupo);
+
+                                Intent intent = new Intent(getApplicationContext(),GrupoDetalhesActivity.class);
+                                intent.putExtra("grupinho",grupinho);
+                                startActivity(intent);
+
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+
+
+
 
 
 
@@ -83,11 +120,6 @@ public class GerenciarGruposActivity extends AppCompatActivity {
 
             }
         });
-
-
-
-
-
     }
 
 }

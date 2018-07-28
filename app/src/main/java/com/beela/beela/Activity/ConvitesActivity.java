@@ -80,7 +80,7 @@ public class ConvitesActivity extends AppCompatActivity {
 
 
                             adapterPersoUsuario = new AdapterPersoUsuario(listaAmigosListview,ConvitesActivity.this);
-                            //arrayadapterCu = new adapterPersonalizadoAmigos(listaAmigosListview,ConvitesActivity.this);
+
                             listViewConvites.setAdapter(adapterPersoUsuario);
 
                             listViewConvites.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -116,7 +116,7 @@ public class ConvitesActivity extends AppCompatActivity {
             }
         });
 
-<<
+
     }
 
     private void adicionarAbigo(final Usuario s) {
@@ -136,7 +136,6 @@ public class ConvitesActivity extends AppCompatActivity {
                     String codificador = Codificador.codificador(preferencias.getUsuario().getEmail());
                     databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(codificador).child(emaiamiguinhocodificado);
                     databaseReference.setValue(emaiamiguinhocodificado);
-<<<<<<< HEAD
                     databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(emaiamiguinhocodificado).child(codificador);
                     databaseReference.setValue(codificador);
 
@@ -150,15 +149,13 @@ public class ConvitesActivity extends AppCompatActivity {
                     adapterPersoUsuario.notifyDataSetChanged();
                     Toast.makeText(getApplicationContext(),"Abigo Adicionado", Toast.LENGTH_SHORT).show();
 
-
-=======
                     databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(emaiamiguinhocodificado).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
                     databaseReference.setValue(Codificador.codificador(preferencias.getUsuario().getEmail()));
                     databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(Codificador.codificador(preferencias.getEmail())).child(emaiamiguinhocodificado);
                     databaseReference.removeValue();
-                    finish();
+
                     Toast.makeText(getApplicationContext(),"Amigo Adicionado", Toast.LENGTH_SHORT).show();
->>>>>>> 94243aae67f91e063d00f84acecd58ba7640f9db
+
 
                 } else if (opcao.equals(("Não"))) {
                     databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(Codificador.codificador(preferencias.getEmail())).child(emaiamiguinhocodificado);

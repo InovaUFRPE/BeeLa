@@ -110,15 +110,15 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
     public void adicionarInteresses(String identificador) {
 
-        perfil.setInteresse20(interessesLugar.get(0));
-        preferencias.setInteresse20(identificador, interessesLugar.get(0));
+        perfil.setInteresse23(interessesLugar.get(0));
+        preferencias.setInteresse23(identificador, interessesLugar.get(0));
         preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(0));
         preferencias.setPerfil(perfil);
 
         if (interessesLugar.size() > 1){
 
-            perfil.setInteresse21(interessesLugar.get(1));
-            preferencias.setInteresse21(identificador, interessesLugar.get(1));
+            perfil.setInteresse24(interessesLugar.get(1));
+            preferencias.setInteresse24(identificador, interessesLugar.get(1));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(1));
             preferencias.setPerfil(perfil);
 
@@ -126,8 +126,8 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         if (interessesLugar.size() > 2){
 
-            perfil.setInteresse22(interessesLugar.get(2));
-            preferencias.setInteresse22(identificador, interessesLugar.get(2));
+            perfil.setInteresse25(interessesLugar.get(2));
+            preferencias.setInteresse25(identificador, interessesLugar.get(2));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(2));
             preferencias.setPerfil(perfil);
 
@@ -135,8 +135,8 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         if (interessesLugar.size() > 3){
 
-            perfil.setInteresse23(interessesLugar.get(3));
-            preferencias.setInteresse23(identificador, interessesLugar.get(3));
+            perfil.setInteresse26(interessesLugar.get(3));
+            preferencias.setInteresse26(identificador, interessesLugar.get(3));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(3));
             preferencias.setPerfil(perfil);
 
@@ -144,8 +144,8 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         if (interessesLugar.size() > 4){
 
-            perfil.setInteresse24(interessesLugar.get(4));
-            preferencias.setInteresse24(identificador, interessesLugar.get(4));
+            perfil.setInteresse27(interessesLugar.get(4));
+            preferencias.setInteresse27(identificador, interessesLugar.get(4));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(4));
             preferencias.setPerfil(perfil);
 
@@ -153,8 +153,8 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         if (interessesLugar.size() > 5){
 
-            perfil.setInteresse25(interessesLugar.get(5));
-            preferencias.setInteresse25(identificador, interessesLugar.get(5));
+            perfil.setInteresse28(interessesLugar.get(5));
+            preferencias.setInteresse28(identificador, interessesLugar.get(5));
             preferencias.getPerfil().addInteresseLugarP(interessesLugar.get(5));
             preferencias.setPerfil(perfil);
 

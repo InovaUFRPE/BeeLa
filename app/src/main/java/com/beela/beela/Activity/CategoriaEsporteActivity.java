@@ -116,45 +116,53 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
 
     public void adicionarInteresses(String identificador) {
 
-            perfil.setInteresse14(interessesEsporte.get(0));
-            preferencias.setInteresse14(identificador, interessesEsporte.get(0));
+            perfil.setInteresse16(interessesEsporte.get(0));
+            preferencias.setInteresse16(identificador, interessesEsporte.get(0));
             preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(0));
             preferencias.setPerfil(perfil);
 
             if (interessesEsporte.size() > 1) {
-                perfil.setInteresse15(interessesEsporte.get(1));
-                preferencias.setInteresse15(identificador, interessesEsporte.get(1));
+                perfil.setInteresse17(interessesEsporte.get(1));
+                preferencias.setInteresse17(identificador, interessesEsporte.get(1));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(1));
                 preferencias.setPerfil(perfil);
              } else { }
 
             if (interessesEsporte.size() > 2) {
-                perfil.setInteresse16(interessesEsporte.get(2));
-                preferencias.setInteresse16(identificador, interessesEsporte.get(2));
+                perfil.setInteresse18(interessesEsporte.get(2));
+                preferencias.setInteresse18(identificador, interessesEsporte.get(2));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(2));
                 preferencias.setPerfil(perfil);
             } else { }
 
             if (interessesEsporte.size() > 3) {
-                perfil.setInteresse17(interessesEsporte.get(3));
-                preferencias.setInteresse17(identificador, interessesEsporte.get(3));
+                perfil.setInteresse19(interessesEsporte.get(3));
+                preferencias.setInteresse19(identificador, interessesEsporte.get(3));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(3));
                 preferencias.setPerfil(perfil);
             } else { }
 
             if (interessesEsporte.size() > 4) {
-                perfil.setInteresse18(interessesEsporte.get(4));
-                preferencias.setInteresse18(identificador, interessesEsporte.get(4));
+                perfil.setInteresse20(interessesEsporte.get(4));
+                preferencias.setInteresse20(identificador, interessesEsporte.get(4));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(4));
                 preferencias.setPerfil(perfil);
             } else { }
 
             if (interessesEsporte.size() > 5) {
-                perfil.setInteresse19(interessesEsporte.get(5));
-                preferencias.setInteresse19(identificador, interessesEsporte.get(5));
+                perfil.setInteresse21(interessesEsporte.get(5));
+                preferencias.setInteresse21(identificador, interessesEsporte.get(5));
                 preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(5));
                 preferencias.setPerfil(perfil);
             } else { }
+
+
+        if (interessesEsporte.size() > 6) {
+            perfil.setInteresse22(interessesEsporte.get(6));
+            preferencias.setInteresse22(identificador, interessesEsporte.get(6));
+            preferencias.getPerfil().addInteresseEsporte(interessesEsporte.get(6));
+            preferencias.setPerfil(perfil);
+        } else { }
 
 
 

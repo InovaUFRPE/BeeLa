@@ -63,6 +63,7 @@ public class PrincipalActivity extends AppCompatActivity {
 
         mStorageRef = FirebaseStorage.getInstance().getReference("Fotos");
         mDatebaseRef = FirebaseDatabase.getInstance().getReference("Fotos");
+
         preferencias = Sessao.getInstancia(this.getApplicationContext());
 
 

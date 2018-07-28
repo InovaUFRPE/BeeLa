@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextEmailLogin;
     private EditText editTextSenhaLogin;
     private AlimentandoLugares alimentandoLugares = new AlimentandoLugares();
-
+    private int cont = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +73,26 @@ public class LoginActivity extends AppCompatActivity {
         Button buttonLogin = (Button) findViewById(R.id.buttonLogin);
         TextView edittextCriarConta = findViewById(R.id.textViewCriarConta);
 
+
+
+        textViewNomeApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (cont == 15 ){
+
+                    Intent intent = new Intent(LoginActivity.this,EasterEgg.class);
+                    startActivity(intent);
+                }
+                else{
+
+                    cont = cont + 1;
+
+                }
+
+
+            }
+        });
 
 
 
@@ -119,6 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                     usuario.setAutenticacao(autenticacao);
 
                     abrirPerfil();
+
                 } else {
                     Toast.makeText(LoginActivity.this, "Usuário e/ou senha incorretos.", Toast.LENGTH_SHORT).show();
                 }

@@ -31,8 +31,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -40,8 +38,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activity.PrincipalActivity" />
@@ -74,7 +70,10 @@
         <activity android:name=".Activity.JsonTesteLugaresAct" />
         <activity android:name=".Activity.LugarActivity" />
         <activity android:name=".Activity.SlopeCletoTeste" />
-        <activity android:name=".Activity.LugarDetalhesActivity"></activity>
+        <activity android:name=".Activity.LugarDetalhesActivity" />
+        <activity android:name=".Activity.historicoActivity" />
+        <activity android:name=".Activity.EasterEgg" />
+        <activity android:name=".Activity.EasterEggDay"></activity>
     </application>
 
 </manifest>

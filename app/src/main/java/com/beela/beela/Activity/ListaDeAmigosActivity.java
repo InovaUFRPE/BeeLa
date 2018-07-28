@@ -160,18 +160,17 @@ public class ListaDeAmigosActivity extends AppCompatActivity {
                                         Usuario UsuarinhoDetalhes = (Usuario) parent.getAdapter().getItem(position);
 
                                         Usuario s = (Usuario) parent.getAdapter().getItem(position);
-<<<<<<< HEAD
 
                                         Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
                                         intent.putExtra("usuarinho",s);
                                         startActivity(intent);
-=======
+
                                         adicionarAbigo(s);
 
                                         //Intent intent = new Intent(getApplicationContext(),AmigoDetalhesActivity.class);
                                        // intent.putExtra("usuarinho",UsuarinhoDetalhes);
                                        // startActivity(intent);
->>>>>>> 94243aae67f91e063d00f84acecd58ba7640f9db
+
                                         return true;
 
                                     }

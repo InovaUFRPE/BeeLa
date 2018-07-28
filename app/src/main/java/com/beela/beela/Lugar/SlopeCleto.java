@@ -32,12 +32,11 @@ import java.util.TimeZone;
 public class SlopeCleto {
     private com.android.volley.RequestQueue mQueue;
 
-    private Sessao preferencias;
+
     private Usuario usuarioQuepegafogo = new Usuario();
     private ArrayList<Lugar> arrayListLugaresHistorico = new ArrayList<>();
-    private ArrayList<Lugar> arrayListLugaresUsuariosSimilares = new ArrayList<>();
-    private ArrayList<Lugar> arrayListFinalCleto = new ArrayList<>();
-    private FirebaseDatabase firebaseDatabase;
+
+
     private DatabaseReference databaseReference;
     private ArrayList<String> listaPreferenciasUsuario = new ArrayList<>();
     private ArrayList<String> listaDeUsuarios = new ArrayList<>();

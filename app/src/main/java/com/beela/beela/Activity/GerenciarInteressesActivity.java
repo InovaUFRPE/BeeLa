@@ -132,7 +132,7 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
     }
 
     private void ExibirPreferencias() {
-
+        preferenciasLista.clear();
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -228,10 +228,12 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
                     preferenciasLista.remove(interesse);
-                    ExibirPreferencias();
+
                     excluirPreferencias();
+
                     arrayadapterListaPreferencias.notifyDataSetChanged();
                     quantidadeInteresses.setText(preferenciasLista.size() +"/10");
+                    ExibirPreferencias();
 
 
                 } else if (opcao.equals(("Não"))) {

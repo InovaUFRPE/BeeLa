@@ -78,6 +78,7 @@ public class CriarContaP2Activity extends AppCompatActivity {
         buttonCriarConta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if (!editTextEmail.getText().toString().equals("") && !editTextSenha.getText().toString().equals("")) {
 
                     usuario = new Usuario();
@@ -88,7 +89,11 @@ public class CriarContaP2Activity extends AppCompatActivity {
                     usuario.setEmail(editTextEmail.getText().toString());
                     usuario.setSenha(editTextSenha.getText().toString());
 
-                    criarConta();
+                    if ( editTextSenha.getText().toString().length() > 8)
+                        Toast.makeText(CriarContaP2Activity.this, "Digite senha até 8 digitos! ", Toast.LENGTH_SHORT).show();
+                    else{
+
+                        criarConta();}
 
                 } else {
                     Toast.makeText(CriarContaP2Activity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
@@ -125,11 +130,13 @@ public class CriarContaP2Activity extends AppCompatActivity {
 
                     try {
                         throw task.getException();
-                    } catch(FirebaseAuthWeakPasswordException e) {
+
+                    } catch (FirebaseAuthWeakPasswordException e) {
                         erroExcecao = "digite uma senha mais forte!";
 
                     } catch(FirebaseAuthInvalidCredentialsException e) {
                         erroExcecao = "o e-mail digitado é inválido!";
+
                     } catch(FirebaseAuthUserCollisionException e) {
                         erroExcecao = "o e-mail digitado pertence à outra conta!";
                     } catch(Exception e) {

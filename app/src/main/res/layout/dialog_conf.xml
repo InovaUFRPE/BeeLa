@@ -31,7 +31,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/botao_redondo"
+<<<<<<< Updated upstream
         android:text="Confirmar"
+=======
+        android:text="Salvar"
+>>>>>>> Stashed changes
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.858"

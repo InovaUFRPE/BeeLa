@@ -48,13 +48,13 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_interesses);
         listView = findViewById(R.id.listviewPreferencias);
-        excluir = findViewById(R.id.button);
+       // excluir = findViewById(R.id.button);
         adicInteresse = findViewById(R.id.buttonAdicionarInteresses);
         quantidadeInteresses = findViewById(R.id.quantidadeInteresses);
         chamarFirebase();
         ExibirPreferencias();
 
-        excluir.setOnClickListener(new View.OnClickListener(
+       /** excluir.setOnClickListener(new View.OnClickListener(
         ) {
             @Override
             public void onClick(View view) {
@@ -82,7 +82,7 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
             }
 
-        });
+        });**/
 
 
 
@@ -211,7 +211,11 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                     //excluirPreferencias();
 
                     arrayadapterListaPreferencias.notifyDataSetChanged();
+<<<<<<< Updated upstream
                     quantidadeInteresses.setText(preferenciasLista.size() +"/28");
+=======
+                    quantidadeInteresses.setText(preferenciasLista.size() +"/25");
+>>>>>>> Stashed changes
                     ExibirPreferencias();
 
 

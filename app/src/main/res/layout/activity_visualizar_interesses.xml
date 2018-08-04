@@ -111,10 +111,10 @@
         android:background="@drawable/botao_redondo"
         android:text="Adicionar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.912"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listviewPreferencias" />
 
+<<<<<<< Updated upstream
     <Button
         android:id="@+id/button"
         android:layout_width="140dp"
@@ -131,5 +131,8 @@
         app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listviewPreferencias" />
+=======
+
+>>>>>>> Stashed changes
 
 </android.support.constraint.ConstraintLayout>

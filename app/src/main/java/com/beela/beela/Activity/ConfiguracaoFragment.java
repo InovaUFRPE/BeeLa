@@ -205,7 +205,10 @@ public class ConfiguracaoFragment extends Fragment {
 
                     public void onClick(View v) {
 
-                        if (!editTextAlterarSenha.getText().toString().isEmpty()) {
+                        if ( editTextAlterarSenha.getText().toString().length() > 8 || editTextAlterarSenha.getText().toString().length() < 6){
+                            Toast.makeText(getActivity(), "Digite entre 6 e 8 digitos! ", Toast.LENGTH_LONG).show();}
+                        else {
+
                             final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                             String emailCodificado = Codificador.codificador(preferencias.getUsuario().getEmail());

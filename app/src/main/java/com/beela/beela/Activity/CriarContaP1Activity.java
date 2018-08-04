@@ -24,6 +24,7 @@ import com.beela.beela.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 public class CriarContaP1Activity extends AppCompatActivity {
     private Usuario usuario;
@@ -33,11 +34,14 @@ public class CriarContaP1Activity extends AppCompatActivity {
 
     private TextView displayDate,nomeAppConta;
     private EditText editTextNome;
+
     private EditText editTextData;
     private EditText editTextGenero;
     private Button buttonContinuar;
-
-
+    private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
+    int ano = calendar.get(Calendar.YEAR);
+    int mes = calendar.get(Calendar.MONTH); // O mês vai de 0 a 11.
+    final int dia = calendar.get(Calendar.DAY_OF_MONTH);
     private static final String TAG = "CriarContaP2Activity";
 
 
@@ -106,10 +110,6 @@ public class CriarContaP1Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Calendar calendar = Calendar.getInstance();
-                int ano = calendar.get(Calendar.YEAR);
-                int mes = calendar.get(Calendar.MONTH);
-                int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
 
                 DatePickerDialog dialog = new DatePickerDialog(
@@ -132,11 +132,50 @@ public class CriarContaP1Activity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
-                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                editTextData.setText(date);
+                if((year > ano) || (year == ano && (month > mes)) || (year == ano && month  == mes && dayOfMonth > dia)) {
+
+                    Toast.makeText(getApplicationContext(), "Vocẽ não é Kyle Reese, informe uma data valida !", Toast.LENGTH_LONG).show();
+
+
+                }else {
+
+                    SetarDataTextView(year, month, dayOfMonth);
+
+
+                }
             }
         };
+    }
+
+    private void SetarDataTextView(int year, int month, int dayOfMonth) {
+        Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
+
+        //Melhora na apresentacao da data -- Correcao de Bugs
+
+        String diaMelhor;
+        String mesMelhor;
+
+        if (dayOfMonth <10){
+         diaMelhor = ("0" + dayOfMonth);
+    }
+    else {
+         diaMelhor = (String.valueOf(dayOfMonth));
+    }
+
+
+        if (month <9){
+
+
+                mesMelhor = ("0" + (month+1));
+        }
+
+        else {
+
+                mesMelhor = (String.valueOf(month + 1));
+        }
+
+        String date = diaMelhor + "/" + (mesMelhor) + "/" + year;
+        editTextData.setText(date);
     }
 
 

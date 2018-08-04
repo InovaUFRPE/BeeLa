@@ -136,7 +136,19 @@ public class SlopeCleto {
 
                                             lugarGoogle.setEndereco(lugaJson.getString("vicinity"));
                                             try{
-                                                lugarGoogle.setAbertoagora(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now")));
+
+                                                if(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now").equals(true))){
+
+                                                    lugarGoogle.setAbertoagora(2);
+
+                                                }
+
+
+                                                if(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now").equals(false))){
+
+                                                    lugarGoogle.setAbertoagora(1);
+
+                                                }
 
                                             }catch (JSONException e){
 

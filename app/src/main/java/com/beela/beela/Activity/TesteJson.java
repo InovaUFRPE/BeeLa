@@ -106,7 +106,13 @@ public class TesteJson extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(),lugaJson.getInt("name"),Toast.LENGTH_LONG).show();
                                 lugarGoogle.setNome(lugaJson.getString("name"));
                                 lugarGoogle.setEndereco(lugaJson.getString("vicinity"));
-                                lugarGoogle.setAbertoagora(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now")));
+
+
+
+
+
+
+
                                 lugarGoogle.setNota(lugaJson.getDouble("rating"));
 
                                 double lat = lugaJson.getJSONObject("geometry").getJSONObject("location").getDouble("lat");

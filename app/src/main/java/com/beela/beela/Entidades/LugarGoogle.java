@@ -31,7 +31,7 @@ public class LugarGoogle implements Serializable, Comparable<LugarGoogle> {
 
     private String idGoogle;
     private String nome;
-    private Boolean abertoagora = false;
+    private int abertoagora = 0;
     private Double nota;
     private String endereco;
     //private LatLng localiza;
@@ -72,13 +72,17 @@ public class LugarGoogle implements Serializable, Comparable<LugarGoogle> {
         this.nome = nome;
     }
 
-    public Boolean getAbertoagora() {
+    public int getAbertoagora() {
         return abertoagora;
     }
 
-    public void setAbertoagora(Boolean abertoagora) {
+    public void setAbertoagora(int abertoagora) {
         this.abertoagora = abertoagora;
     }
+
+
+
+
 
     public Double getNota() {
         return nota;

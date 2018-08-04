@@ -50,6 +50,7 @@ import java.util.Calendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import static android.content.ContentValues.TAG;
 
@@ -67,6 +68,12 @@ public class ConfiguracaoFragment extends Fragment {
     private TextView displayDate;
     private TextView nome,datanacimento,email,senha,genero;
     private static final String TAG = "PrincipalActivity";
+    private Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("Brazil/East"));
+    int ano = calendar.get(Calendar.YEAR);
+    int mes = calendar.get(Calendar.MONTH); // O mês vai de 0 a 11.
+    final int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+
 
     public ConfiguracaoFragment() {
         // Required empty public constructor
@@ -176,7 +183,7 @@ public class ConfiguracaoFragment extends Fragment {
                 TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConfSenha);
                 final EditText editTextAlterarSenha = alertview.findViewById(R.id.editTextAlertConfSenha);
                 Button buttonConfirmarSenha = alertview.findViewById(R.id.buttonAlertConfSenha);
-
+                Button buttonCancelar = alertview.findViewById(R.id.buttonCancelar2);
                 alertTitulo.setText("Digite sua senha: ");
 
                 alertDialog.setView(alertview);
@@ -185,6 +192,14 @@ public class ConfiguracaoFragment extends Fragment {
 
                 //Setando
 
+
+                buttonCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+
+                    }
+                });
                 buttonConfirmarSenha.setOnClickListener(new View.OnClickListener() {
                     @Override
 
@@ -202,6 +217,7 @@ public class ConfiguracaoFragment extends Fragment {
                             user.updatePassword(editTextAlterarSenha.getText().toString());
                             dialog.dismiss();
                         }
+
 
                     }
                 });
@@ -317,6 +333,7 @@ public class ConfiguracaoFragment extends Fragment {
                 TextView alertTitulo = alertview.findViewById(R.id.textViewAlertConf);
                 final EditText editTextAlterar = alertview.findViewById(R.id.editTextAlertConf);
                 final Button buttonConfirmar = alertview.findViewById(R.id.buttonAlertConf);
+                Button buttonCancelar = alertview.findViewById(R.id.buttonCancelar);
 
                 alertTitulo.setText("Digite sua data de nascimento: ");
                 editTextAlterar.setHint("data nascimento");
@@ -324,15 +341,17 @@ public class ConfiguracaoFragment extends Fragment {
                 final AlertDialog dialog = alertDialog.create();
                 dialog.show();
 
+                buttonCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+
+                    }
+                });
+
                 editTextAlterar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        Calendar calendar = Calendar.getInstance();
-                        int ano = calendar.get(Calendar.YEAR);
-                        int mes = calendar.get(Calendar.MONTH);
-                        int dia = calendar.get(Calendar.DAY_OF_MONTH);
-
 
                         DatePickerDialog dialog = new DatePickerDialog(
                                 getActivity(),
@@ -343,12 +362,10 @@ public class ConfiguracaoFragment extends Fragment {
                         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                         dialog.show();
 
-
                     }
 
 
                 });
-
 
                 dateSetListener = new DatePickerDialog.OnDateSetListener()
 
@@ -357,13 +374,52 @@ public class ConfiguracaoFragment extends Fragment {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
-                        String date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                        Calendar calendar = Calendar.getInstance();
+                        int ano = calendar.get(Calendar.YEAR);
+                        int mes = calendar.get(Calendar.MONTH);
+                        int dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-                        //datanacimento.setText(date);
-                        //Setando  date
 
-                        editTextAlterar.setText(date);
+                        if((year > ano) || (year == ano && (month > mes)) || (year == ano && month  == mes && dayOfMonth > dia)) {
+
+                            Toast.makeText(getContext(), "Vocẽ não é Kyle Reese, informe uma data valida !", Toast.LENGTH_LONG).show();
+
+
+                        }else {
+
+                            Log.d(TAG, "dataSet: date: dd/mm/yyyy: " + dayOfMonth + "/" + month + "/" + year);
+
+                            //Melhora na apresentacao da data -- Correcao de Bugs
+
+                            String diaMelhor;
+                            String mesMelhor;
+
+                            if (dayOfMonth <10){
+                                diaMelhor = ("0" + dayOfMonth);
+                            }
+                            else {
+                                diaMelhor = (String.valueOf(dayOfMonth));
+                            }
+
+
+                            if (month <9){
+
+
+                                mesMelhor = ("0" + (month+1));
+                            }
+
+                            else {
+
+                                mesMelhor = (String.valueOf(month + 1));
+                            }
+
+                            String date = diaMelhor + "/" + (mesMelhor) + "/" + year;
+
+                            editTextAlterar.setText(date);
+                        }
+
+
+
 
                         buttonConfirmar.setOnClickListener(new View.OnClickListener() {
                             @Override

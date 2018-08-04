@@ -58,50 +58,27 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
         ) {
             @Override
             public void onClick(View view) {
-                perfil = preferencias.getPerfil();
-                String identificador = Codificador.codificador(preferencias.getEmail());
-                perfil.setId(identificador);
-                perfil.setInteresse1("null");
-                perfil.setInteresse2("null");
-                perfil.setInteresse3("null");
-                perfil.setInteresse4("null");
-                perfil.setInteresse5("null");
-                perfil.setInteresse6("null");
-                perfil.setInteresse7("null");
-                perfil.setInteresse8("null");
-                perfil.setInteresse9("null");
-                perfil.setInteresse10("null");
-                perfil.setInteresse11("null");
-                perfil.setInteresse12("null");
-                perfil.setInteresse13("null");
-                perfil.setInteresse14("null");
-                perfil.setInteresse15("null");
-                perfil.setInteresse16("null");
-                perfil.setInteresse17("null");
-                perfil.setInteresse18("null");
-                perfil.setInteresse19("null");
-                perfil.setInteresse20("null");
-                perfil.setInteresse21("null");
-                perfil.setInteresse22("null");
-                perfil.setInteresse23("null");
-                perfil.setInteresse24("null");
-                perfil.setInteresse25("null");
-                perfil.setInteresse26("null");
-                perfil.setInteresse27("null");
-                perfil.setInteresse28("null");
 
-                preferencias.setPerfil(perfil);
-                Map<String, Object> postValues = new HashMap<String, Object>();
-                referencia = FirebaseDatabase.getInstance().getReference();
-                for (int i = 0; i < 28; i++) {
-                    String chave = "interesse" + (i + 1);
-                    postValues.put(chave, "null");
-                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
+                databaseReference = FirebaseDatabase.getInstance().getReference("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail()));
 
-                }
+
+                for(PreferenciasPerfil prefs:preferenciasLista){
+
+                    databaseReference.child(prefs.getChave()).setValue("null");
+
+
+
+               }
+
+                Toast.makeText(getApplicationContext(), "Interesses Exluidos", Toast.LENGTH_SHORT).show();
+
                 preferenciasLista.clear();
-                perfil.getInteresses().clear();
+                arrayadapterListaPreferencias.notifyDataSetChanged();
+                quantidadeInteresses.setText(preferenciasLista.size() +"/29");
                 ExibirPreferencias();
+
+
+
 
             }
 
@@ -119,7 +96,12 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
         });
     }
 
+    private void excluirTodos(final PreferenciasPerfil prefs) {
 
+
+
+
+    }
 
 
     private void chamarFirebase() {
@@ -179,7 +161,7 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
 
 
-        quantidadeInteresses.setText( preferenciasLista.size() + "/25");
+        quantidadeInteresses.setText( preferenciasLista.size() + "/28");
         arrayadapterListaPreferencias = new adapterPersonalizado(preferenciasLista, GerenciarInteressesActivity.this);
         listView.setAdapter(arrayadapterListaPreferencias);
 
@@ -226,10 +208,10 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
 
                     preferenciasLista.remove(interesse);
 
-                    excluirPreferencias();
+                    //excluirPreferencias();
 
                     arrayadapterListaPreferencias.notifyDataSetChanged();
-                    quantidadeInteresses.setText(preferenciasLista.size() +"/10");
+                    quantidadeInteresses.setText(preferenciasLista.size() +"/28");
                     ExibirPreferencias();
 
 

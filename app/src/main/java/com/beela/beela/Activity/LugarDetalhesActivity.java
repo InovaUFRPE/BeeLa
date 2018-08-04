@@ -50,12 +50,22 @@ public class LugarDetalhesActivity extends AppCompatActivity {
 
 
         aberto = findViewById(R.id.textViewAberto);
-        if(lugarGoogless.getAbertoagora().equals(false)) {
+
+        if(lugarGoogless.getAbertoagora() == 0) {
+
+            aberto.setText("Sem informação sobre horário");
+            aberto.setTextColor(Color.rgb(200,200,0));
+
+        }
+
+        if(lugarGoogless.getAbertoagora() == (1)) {
 
             aberto.setText("Fechado");
             aberto.setTextColor(Color.rgb(200,0,0));
 
-        }else {
+        }
+
+        if(lugarGoogless.getAbertoagora() == (2)){
             aberto.setText("Aberto");
             aberto.setTextColor(Color.rgb(0,200,0));
 

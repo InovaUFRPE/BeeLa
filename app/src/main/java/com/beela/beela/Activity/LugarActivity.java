@@ -1,20 +1,29 @@
 package com.beela.beela.Activity;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.beela.beela.Entidades.LugarGoogle;
 import com.beela.beela.Entidades.Usuario;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.Places;
+import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-public class LugarActivity extends AppCompatActivity {
+public class LugarActivity extends AppCompatActivity   {
 
     private Sessao preferencias;
 
@@ -23,7 +32,6 @@ public class LugarActivity extends AppCompatActivity {
 
     private ArrayList<ArrayList<String>> prefs = new ArrayList<>();
     private TreeMap<String, Integer> map = new TreeMap<>();
-
 
 
     @Override
@@ -69,6 +77,8 @@ public class LugarActivity extends AppCompatActivity {
                 Intent intent = new Intent(LugarActivity.this,LugaresGoogleActivity.class);
                 startActivity(intent);
 
+
+
             }
         });
 
@@ -107,6 +117,11 @@ public class LugarActivity extends AppCompatActivity {
         finish();
 
     }
+
+
+
+
+
 
 
 }

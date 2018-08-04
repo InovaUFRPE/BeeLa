@@ -106,5 +106,15 @@ public class LugarDetalhesActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
+
+
+
 }
 

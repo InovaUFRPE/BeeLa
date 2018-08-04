@@ -33,23 +33,16 @@ import java.util.Map;
 public class GerenciarInteressesActivity extends AppCompatActivity {
 
     private adapterPersonalizado arrayadapterListaPreferencias;
-
-
-
     private Sessao preferencias;
     private DatabaseReference referencia;
-    private FirebaseDatabase firebaseDatabase;
     private Perfil perfil;
     private DatabaseReference databaseReference;
-    String identificador;
     private ArrayList<PreferenciasPerfil> preferenciasLista = new ArrayList<PreferenciasPerfil>();
-    ListViewPreferencias adapterPreferencias ;
     private Button adicInteresse;
-    private HashMap<String, String> prefetenciasDicionario = new HashMap<String, String>();
     private ListView listView;
     private TextView quantidadeInteresses;
     private Button excluir;
-    private static PreferenciasPerfil preferenciasPerfil = new PreferenciasPerfil();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,10 +86,14 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                 perfil.setInteresse23("null");
                 perfil.setInteresse24("null");
                 perfil.setInteresse25("null");
+                perfil.setInteresse26("null");
+                perfil.setInteresse27("null");
+                perfil.setInteresse28("null");
+
                 preferencias.setPerfil(perfil);
                 Map<String, Object> postValues = new HashMap<String, Object>();
                 referencia = FirebaseDatabase.getInstance().getReference();
-                for (int i = 0; i < 25; i++) {
+                for (int i = 0; i < 28; i++) {
                     String chave = "interesse" + (i + 1);
                     postValues.put(chave, "null");
                     referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).updateChildren(postValues);
@@ -246,7 +243,12 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
         aviso.show();
     }
 
+    @Override
+    public void onBackPressed() {
 
+        finish();
+
+    }
 
 
 }

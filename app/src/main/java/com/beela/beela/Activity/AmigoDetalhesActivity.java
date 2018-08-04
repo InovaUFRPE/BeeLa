@@ -70,62 +70,71 @@ public class AmigoDetalhesActivity extends AppCompatActivity {
                 //criar notificacao de convide no email do cara
                 //TODO Criar objeto do tipo convite;
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("convite")
-                        .child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
-                databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
-                Toast.makeText(AmigoDetalhesActivity.this,"Convite Enviado",Toast.LENGTH_LONG).show();
-
-
-
-                final String identificador = Codificador.codificador(preferencias.getEmail());
-                databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(identificador);
-                databaseReference.addValueEventListener(new ValueEventListener() {
-
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot data : dataSnapshot.getChildren()) {
-
-                            amigos.add(data);
-
-                        }
-                        for (DataSnapshot amigos1 : amigos) {
-                            final String emailAmg = Codificador.decodificador(amigos1.getKey());
-                            if (emailAmg.equals(abigo.getEmail())){
-                                    aux = "Vocês já são amigos";
-                                    Toast.makeText(AmigoDetalhesActivity.this, aux, Toast.LENGTH_SHORT).show();
-                                    //Toast.makeText(AmigoDetalhesActivity.this, "1 if da tela "+abigo.getEmail(), Toast.LENGTH_LONG).show();
-                                    //Toast.makeText(AmigoDetalhesActivity.this, "1 if do fb " +emailAmg, Toast.LENGTH_LONG).show();
-
-                                }else {
-
-                            }
-
-                        }
-                        if (abigo.getEmail().equals(preferencias.getUsuario().getEmail())){
-                            aux = "erro";
-
-                            Toast.makeText(AmigoDetalhesActivity.this, "Você não pode enviar para si próprio", Toast.LENGTH_LONG).show();
-
-                        }
-                        if (aux.equals("null")){
-                            databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
-                            databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
-                            Toast.makeText(AmigoDetalhesActivity.this, "Convite Enviado", Toast.LENGTH_LONG).show();
-                            finish();}
-
-
-                    }
-
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
+                adicionarAmigo(abigo);
 
             }
         });
 
 
-    }}
+    }
+
+    private void adicionarAmigo(final Usuario abigo) {
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("convite")
+                .child(emailAbigocod).child
+                        (Codificador.codificador(preferencias.getUsuario().getEmail()));
+        databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
+
+        //Toast.makeText(AmigoDetalhesActivity.this,"Convite Enviado",Toast.LENGTH_LONG).show();
+
+
+        final String identificador = Codificador.codificador(preferencias.getEmail());
+        databaseReference = FirebaseDatabase.getInstance().getReference("amigo").child(identificador);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
+
+                    amigos.add(data);
+
+                }
+                for (DataSnapshot amigos1 : amigos) {
+                    final String emailAmg = Codificador.decodificador(amigos1.getKey());
+                    if (emailAmg.equals(abigo.getEmail())){
+                            aux = "Vocês já são amigos";
+                            Toast.makeText(AmigoDetalhesActivity.this, aux, Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(AmigoDetalhesActivity.this, "1 if da tela "+abigo.getEmail(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(AmigoDetalhesActivity.this, "1 if do fb " +emailAmg, Toast.LENGTH_LONG).show();
+
+                        }else {
+
+                    }
+
+                }
+                if (abigo.getEmail().equals(preferencias.getUsuario().getEmail())){
+                    aux = "erro";
+
+                    Toast.makeText(AmigoDetalhesActivity.this, "Você não pode enviar para si próprio", Toast.LENGTH_LONG).show();
+
+                }
+                if (aux.equals("null")){
+                    databaseReference = FirebaseDatabase.getInstance().getReference("convite").child(emailAbigocod).child(Codificador.codificador(preferencias.getUsuario().getEmail()));
+                    databaseReference.setValue(Codificador.codificador(preferencias.getEmail()));
+                    Toast.makeText(AmigoDetalhesActivity.this, "Convite Enviado", Toast.LENGTH_LONG).show();
+                    finish();}
+
+
+            }
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+}

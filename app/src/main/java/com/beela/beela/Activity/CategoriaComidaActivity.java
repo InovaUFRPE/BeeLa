@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.PreferenciasPerfil;
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
@@ -34,10 +35,9 @@ public class CategoriaComidaActivity extends AppCompatActivity {
     private CheckBox checkBoxComidaNordestina;
     private CheckBox checkBoxComidaOutro;
     private Button buttonAdicionarInteresseCategoria;
-
+    private DatabaseReference databaseReference;
     private ArrayList<CheckBox> checkboxes;
     private ArrayList<String> interessesComida;
-
     private Sessao preferencias;
     private Perfil perfil;
 
@@ -88,6 +88,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
     //Pegando os selescionados
 
     public void verificaCheckboxes(ArrayList<CheckBox> checkboxes, ArrayList<String> interesses) {
+
         for (CheckBox checkbox : checkboxes) {
 
             if (checkbox.isChecked()) {
@@ -112,7 +113,7 @@ public class CategoriaComidaActivity extends AppCompatActivity {
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
-        perfil.salvar();
+        //perfil.salvar();
         adicionarInteresses(identificador);
 
        // if (interessesComida.size() > 3) {
@@ -219,16 +220,28 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         } else {
 
 
-
         }
+        //meuFirebase();
 
+        Firebase.SalvarInteressesUsuario(interessesComida,preferencias.getUsuario());
 
-
-
-        atualizarInteresseFirebase();
+        //atualizarInteresseFirebase();
         Toast.makeText(CategoriaComidaActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
+
+//    private void meuFirebase() {
+//
+//
+//        for(String interesse: interessesComida) {
+//
+//            databaseReference = FirebaseDatabase.getInstance().getReference("perfil").child(Codificador.
+//                    codificador(preferencias.getUsuario().getEmail())).child(interesse);
+//            databaseReference.setValue(interesse);
+//
+//        }
+//
+//    }
 
 
     //updatar child de perfil no firebase
@@ -237,17 +250,21 @@ public class CategoriaComidaActivity extends AppCompatActivity {
         referencia = FirebaseDatabase.getInstance().getReference();
         //autenticacao = preferencias.getUsuario().getAutenticacao();
 
-        referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
+        referencia.child("perfil").child(Codificador.codificador(preferencias.
+                getUsuario().getEmail())).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
+
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Object> postValues = new HashMap<String, Object>();
+
 
                 int tam = preferencias.getPerfil().getInteressesComidaP().size();
 
                 for (int i = 0; i < tam; i++) {
                     String chave = "interesse" + (i + 1);
                     postValues.put(chave, preferencias.getPerfil().getInteressesComidaP().get(0));
-                    referencia.child("perfil").child(Codificador.codificador(preferencias.getUsuario().getEmail()))
+                    referencia.child("perfil").child(
+                            Codificador.codificador(preferencias.getUsuario().getEmail()))
                             .updateChildren(postValues);
                     preferencias.getPerfil().getInteressesComidaP().remove(0);
 

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Entidades.PreferenciasPerfil;
 import com.beela.beela.Helper.Codificador;
@@ -109,7 +110,7 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
-        perfil.salvar();
+        //perfil.salvar();
         adicionarInteresses(identificador);
     }
     //ADICIONANDO INTERESSES NAS PREFERERENCIA
@@ -167,11 +168,17 @@ public class CategoriaEsporteActivity extends AppCompatActivity {
 
 
         //updatar child de perfil no firebase
-        atualizarInteresseFirebase();
+        //atualizarInteresseFirebase();
+        //meuFirebase();
+        Firebase.SalvarInteressesUsuario(interessesEsporte,preferencias.getUsuario());
 
         Toast.makeText(CategoriaEsporteActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
 
     }
+
+
+
+
                            //ATUAIZANDO O FIREBASE
 
     private void atualizarInteresseFirebase() {

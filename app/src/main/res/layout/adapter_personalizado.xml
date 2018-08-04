@@ -25,7 +25,8 @@
             android:layout_height="28dp"
             android:text="descriçao"
             android:textColor="@color/colorAmarelo"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="invisible" />
 
     </LinearLayout>
 

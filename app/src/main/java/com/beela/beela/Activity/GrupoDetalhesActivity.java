@@ -10,10 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.beela.beela.Entidades.CletoLino;
+import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Grupo;
 import com.beela.beela.Entidades.Usuario;
-import com.beela.beela.Helper.Cletus;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.List.AdapterPersoUsuario;
@@ -25,18 +24,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class GrupoDetalhesActivity extends AppCompatActivity {
     private Sessao preferencias;
     private DatabaseReference databaseReference;
-    private Grupo grupo;
+    private Grupo grupo = new Grupo();
     private ArrayList<String> preferenciasdoUsuarioX;
-    private Button SairComOGrupo;
+    private Button SairComOGrupo, sairDoGrupo;
     private Usuario uu = new Usuario();
     private TextView nomeGrupo;
     private ListView listViewIntegrantes;
@@ -59,6 +55,33 @@ public class GrupoDetalhesActivity extends AppCompatActivity {
         interseccaoDosUsuarios();
         inteseccaoMagica();
         imprimirIntegrantes();
+
+
+        sairDoGrupo = findViewById(R.id.buttonSairDoGrupo);
+
+        sairDoGrupo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String codificador = Codificador.codificador(preferencias.getUsuario().getEmail());
+
+
+                databaseReference = FirebaseDatabase.getInstance().
+                        getReference("grupo").child(grupo.getId()).child(codificador);
+                databaseReference.removeValue();
+
+                databaseReference = FirebaseDatabase.getInstance().
+                        getReference("conta").child("grupo").child(grupo.getId()).
+                        child(codificador);
+                databaseReference.removeValue();
+
+                Toast.makeText(getApplicationContext(),"Saiu do Grupo",Toast.LENGTH_LONG).show();
+                finish();
+
+
+
+            }
+        });
+
         SairComOGrupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -250,7 +273,7 @@ public class GrupoDetalhesActivity extends AppCompatActivity {
 
 
     private void imprimirIntegrantes() {
-
+        integrantes.clear();
         for (String conta2 : grupo.getIntegrantes()) {
             databaseReference = FirebaseDatabase.getInstance().getReference("conta").child(conta2);
 
@@ -315,10 +338,18 @@ public class GrupoDetalhesActivity extends AppCompatActivity {
 
             });
 
-
         }
 
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
+
+
 
 }

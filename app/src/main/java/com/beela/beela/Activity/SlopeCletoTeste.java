@@ -85,6 +85,7 @@ public class SlopeCletoTeste extends AppCompatActivity {
 
 
         imprimirListView();
+        Toast.makeText(getApplicationContext(),"Carregando...",Toast.LENGTH_LONG).show();
 
 
 
@@ -145,11 +146,10 @@ public class SlopeCletoTeste extends AppCompatActivity {
 
                                             LugarGoogle lugarGoogle = new LugarGoogle();
 
-
-
                                             lugarGoogle.setNome(lugaJson.getString("name"));
                                             lugarGoogle.setIdGoogle(lugaJson.getString("place_id"));
                                             lugarGoogle.setEndereco(lugaJson.getString("vicinity"));
+
                                             try{
                                                 lugarGoogle.setAbertoagora(Boolean.valueOf(lugaJson.getJSONObject("opening_hours").getString("open_now")));
 
@@ -168,7 +168,7 @@ public class SlopeCletoTeste extends AppCompatActivity {
 
 
                                         lugarGoogles.add(lugarGoogle);
-                                            adapterLugares.notifyDataSetChanged();
+                                        adapterLugares.notifyDataSetChanged();
 
 
 
@@ -317,6 +317,15 @@ public class SlopeCletoTeste extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     REQUEST_FINE_LOCATION);
         }
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
     }
 
 

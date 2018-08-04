@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.beela.beela.DAO.Firebase;
 import com.beela.beela.Entidades.Perfil;
 import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
@@ -32,7 +33,7 @@ public class CategoriaLugarActivity extends AppCompatActivity {
     private CheckBox checkBoxShopping;
     private CheckBox checkBoxLugarOutro;
     private Button buttonAdicionarInteresseCategoria;
-    private DatabaseReference referencia;
+    private DatabaseReference referencia, databaseReference;
 
     private ArrayList<CheckBox> checkboxes;
     private ArrayList<String> interessesLugar;
@@ -103,7 +104,7 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
         String identificador = Codificador.codificador(preferencias.getEmail());
         perfil.setId(identificador);
-        perfil.salvar();
+        //perfil.salvar();
         adicionarInteresses(identificador);
     }
                 //INSERINDO NAS PREFERENCIAS
@@ -162,9 +163,15 @@ public class CategoriaLugarActivity extends AppCompatActivity {
 
 
         Toast.makeText(CategoriaLugarActivity.this, "Perfil criado com sucesso!", Toast.LENGTH_SHORT).show();
-        atualizarInteresseFirebase();
+        //atualizarInteresseFirebase();
+        Firebase.SalvarInteressesUsuario(interessesLugar,preferencias.getUsuario());
+
 
     }
+
+
+
+
 
                     //ATUALIZANDO NO FIREBASE
 

@@ -29,7 +29,7 @@ public class GruposActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ArrayAdapter<String> adapter;
     private ListView listViewGruposNomes;
-
+    private Grupo grupinho = new Grupo();
     private Sessao preferencias;
 
     private ArrayList<String> listadeGrupos = new ArrayList<>();
@@ -98,11 +98,30 @@ public class GruposActivity extends AppCompatActivity {
                 adapter = new ArrayAdapter<String>(GruposActivity.this, android.R.layout.simple_list_item_1, listadeGrupos);
                 listViewGruposNomes.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+
+                listViewGruposNomes.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        //Excluir grupo
+
+                        String nomegrupo = (String) parent.getAdapter().getItem(position);
+
+                        excluirGrupo(nomegrupo);
+
+                        return true;
+
+
+
+                    }
+                });
+
+
                 listViewGruposNomes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        final Grupo grupinho = new Grupo();
-
+                        integrantes.clear();
+                        grupinho = new Grupo();
                         final String idGrupo = (String) parent.getAdapter().getItem(position);
 
 
@@ -125,6 +144,7 @@ public class GruposActivity extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(),GrupoDetalhesActivity.class);
                                 intent.putExtra("grupinho",grupinho);
                                 startActivity(intent);
+
 
 
                             }
@@ -151,7 +171,23 @@ public class GruposActivity extends AppCompatActivity {
         });
     }
 
+    private void excluirGrupo(String nomegrupo) {
 
+
+
+
+
+
+    }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
 
 
 }

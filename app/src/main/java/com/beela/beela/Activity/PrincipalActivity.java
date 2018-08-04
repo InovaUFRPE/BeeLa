@@ -1,11 +1,17 @@
 package com.beela.beela.Activity;
 
+import android.annotation.TargetApi;
+import android.app.Application;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -17,6 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.beela.beela.Helper.Codificador;
 import com.beela.beela.Helper.Sessao;
 import com.beela.beela.Helper.Upload;
 import com.beela.beela.R;
@@ -286,6 +293,45 @@ public class PrincipalActivity extends AppCompatActivity {
             Intent abrirGerenciarPerfil = new Intent(PrincipalActivity.this, VisualizarPerfilActivity.class);
             startActivity(abrirGerenciarPerfil);
         }
+
+
+
+    @Override
+    public void onBackPressed() {
+
+
+
+        final CharSequence[] escolha = {"Sim", "Não"};
+        AlertDialog.Builder alerta = new AlertDialog.Builder(PrincipalActivity.this);
+        alerta.setItems(escolha, new DialogInterface.OnClickListener() {
+            @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String opcao = (String) escolha[i];
+                if (opcao.equals(("Sim"))) {
+
+                finishAffinity();
+
+                } else if (opcao.equals(("Não"))) {
+                    dialogInterface.cancel();
+                }
+            }
+        });
+        alerta.setTitle("Deseja Fechar o Aplicativo ? ");
+        AlertDialog aviso = alerta.create();
+        aviso.show();
+
+
+
+
+
+
+
+
+
+
+    }
 
 
 }

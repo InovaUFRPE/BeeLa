@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Nome"
-            android:textColor="@color/colorAmarelo"
+            android:textColor="@color/colorRoxo"
             android:textSize="16sp" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="16dp"
             android:text="TextView"
-            android:textColor="@color/colorRoxo" />
+            android:textColor="@color/colorAmarelo" />
 
     </LinearLayout>
 

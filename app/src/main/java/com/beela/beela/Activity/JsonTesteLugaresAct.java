@@ -72,7 +72,7 @@ public class JsonTesteLugaresAct extends AppCompatActivity {
         updateLocation();
         pegarInteresses();
         imprimirListView();
-        Toast.makeText(getApplicationContext(),"Wait",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Carregando...",Toast.LENGTH_LONG).show();
 
 //
 //        buttonJson.setOnClickListener(new View.OnClickListener() {

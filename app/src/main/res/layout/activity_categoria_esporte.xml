@@ -17,7 +17,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/EspecificaçaoMusica"
+        android:text="Esporte"
         android:textColor="@color/colorRoxo"
         android:textSize="52sp"
         android:textStyle="bold"

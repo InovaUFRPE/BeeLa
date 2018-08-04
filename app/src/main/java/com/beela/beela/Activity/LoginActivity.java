@@ -1,5 +1,6 @@
 package com.beela.beela.Activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.annotation.NonNull;
@@ -80,6 +81,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (cont == 15 ){
+
+
+
 
                     Intent intent = new Intent(LoginActivity.this,EasterEgg.class);
                     startActivity(intent);

@@ -75,7 +75,7 @@ public class AdapterPersoUsuario extends BaseAdapter {
 
 
             nome.setText(u.getNome());
-            descricao.setText(" ");
+            descricao.setText(u.getEmail());
             //nota.setText(" ");
 //            aberto.setText(" ");
             //latlang.setText("");

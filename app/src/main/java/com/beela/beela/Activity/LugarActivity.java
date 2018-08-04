@@ -90,7 +90,7 @@ public class LugarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(LugarActivity.this,historicoActivity.class);
+                Intent intent = new Intent(LugarActivity.this,HistoricoActivity.class);
                 startActivity(intent);
 
 
@@ -100,4 +100,13 @@ public class LugarActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
+
+
 }

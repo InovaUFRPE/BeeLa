@@ -202,12 +202,20 @@ public class GerenciarAmigos2Activity extends AppCompatActivity {
 
     }
 
-    private void excluirAmigo(final Usuario s) {
 
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
+
+
+    private void excluirAmigo(final Usuario s) {
 
         String emaildoamiginho = s.getEmail();
         final String emaiamiguinhocodificado = Codificador.codificador(emaildoamiginho);
-
 
         final CharSequence[] escolha = {"Sim", "Não"};
         AlertDialog.Builder alerta = new AlertDialog.Builder(GerenciarAmigos2Activity.this);

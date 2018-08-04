@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class GerenciarGruposActivity extends AppCompatActivity {
-
+    //Excluir
     private Sessao preferencias;
     private ListView listViewGruposNomes;
     private ArrayAdapter<String> adapter;
@@ -29,6 +29,7 @@ public class GerenciarGruposActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private ArrayList<String> listadeGrupos = new ArrayList<>();
     private ArrayList<String> integrantes = new ArrayList<>();
+    private Grupo grupinho = new Grupo();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +68,8 @@ public class GerenciarGruposActivity extends AppCompatActivity {
                 listViewGruposNomes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        final Grupo grupinho = new Grupo();
-
+                        integrantes.clear();
+                        grupinho = new Grupo();
                         final String idGrupo = (String) parent.getAdapter().getItem(position);
 
 

@@ -52,15 +52,8 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
     }
 
     private void CriaGrupinho() {
+
         Grupo grupinho = new Grupo();
-
-        for(Usuario u:abigos){
-
-
-
-
-        }
-
 
         if (!editTextNomeGrupo.getText().toString().equals("")){
 
@@ -103,8 +96,6 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
         finish();
 
 
-
-
         }
         else {
 
@@ -113,8 +104,15 @@ public class CriarGrupoP2Activity extends AppCompatActivity {
         }
 
 
-
-
 }
+
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
+    }
+
 
 }

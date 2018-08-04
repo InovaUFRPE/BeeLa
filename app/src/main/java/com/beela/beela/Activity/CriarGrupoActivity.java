@@ -183,7 +183,12 @@ public class CriarGrupoActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
 
+        finish();
+
+    }
 
 
 }

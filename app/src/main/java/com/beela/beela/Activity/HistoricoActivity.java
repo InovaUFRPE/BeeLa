@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class historicoActivity extends AppCompatActivity {
+public class HistoricoActivity extends AppCompatActivity {
     private com.android.volley.RequestQueue mQueue;
     private com.beela.beela.List.adapterLugares adapterLugares;
 
@@ -48,6 +49,7 @@ public class historicoActivity extends AppCompatActivity {
         listViewwHistorico = findViewById(R.id.listViewHistorico);
 
         imprimirListView();
+        Toast.makeText(getApplicationContext(),"Carregando...",Toast.LENGTH_LONG).show();
 
 
     }
@@ -114,6 +116,9 @@ public class historicoActivity extends AppCompatActivity {
 
                                         //lugarGoogle.setLocaliza(new LatLng(lat, lng));
 
+                                        lugarGoogle.setLng(lng);
+                                        lugarGoogle.setLat(lat);
+
                                         lugarGoogles.add(lugarGoogle);
                                         adapterLugares.notifyDataSetChanged();
 
@@ -147,9 +152,6 @@ public class historicoActivity extends AppCompatActivity {
 
 
 
-
-
-
             }
 
 
@@ -167,7 +169,7 @@ public class historicoActivity extends AppCompatActivity {
     }
 
     private void imprimir() {
-        adapterLugares = new adapterLugares(lugarGoogles, historicoActivity.this);
+        adapterLugares = new adapterLugares(lugarGoogles, HistoricoActivity.this);
         listViewwHistorico.setAdapter(adapterLugares);
 
         listViewwHistorico.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -177,7 +179,7 @@ public class historicoActivity extends AppCompatActivity {
 
                 lugarzinhoGoogle = (LugarGoogle) parent.getAdapter().getItem(position);
 
-                Intent intent = new Intent(historicoActivity.this,LugarDetalhesActivity.class);
+                Intent intent = new Intent(HistoricoActivity.this,LugarDetalhesActivity.class);
                 intent.putExtra("lugarzinho",lugarzinhoGoogle);
 
                 startActivity(intent);
@@ -185,6 +187,14 @@ public class historicoActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+        finish();
+
     }
 
 

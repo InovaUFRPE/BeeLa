@@ -71,7 +71,7 @@
         <activity android:name=".Activity.LugarActivity" />
         <activity android:name=".Activity.SlopeCletoTeste" />
         <activity android:name=".Activity.LugarDetalhesActivity" />
-        <activity android:name=".Activity.historicoActivity" />
+        <activity android:name=".Activity.HistoricoActivity" />
         <activity android:name=".Activity.EasterEgg" />
     </application>
 

@@ -211,11 +211,11 @@ public class GerenciarInteressesActivity extends AppCompatActivity {
                     //excluirPreferencias();
 
                     arrayadapterListaPreferencias.notifyDataSetChanged();
-<<<<<<< Updated upstream
+
                     quantidadeInteresses.setText(preferenciasLista.size() +"/28");
-=======
+
                     quantidadeInteresses.setText(preferenciasLista.size() +"/25");
->>>>>>> Stashed changes
+
                     ExibirPreferencias();
 
 

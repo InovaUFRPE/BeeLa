@@ -1,9 +1,12 @@
 package com.beela.beela.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -82,9 +85,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (cont == 15 ){
 
-
-
-
                     Intent intent = new Intent(LoginActivity.this,EasterEgg.class);
                     startActivity(intent);
                 }
@@ -104,14 +104,9 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (!editTextEmailLogin.getText().toString().equals("") && !editTextSenhaLogin.getText().toString().equals("")) {
-
-//                    usuario.setEmail(editTextEmailLogin.getText().toString());
-//                    usuario.setSenha(editTextSenhaLogin.getText().toString());
-
                     usuario = new Usuario();
                     perfil = new Perfil();
-
-                    validarLogin();
+                    dialogGPS();
 
                 } else {
                     Toast.makeText(LoginActivity.this, "Preencha os campos de e-mail e senha!", Toast.LENGTH_SHORT).show();
@@ -129,6 +124,48 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+    private void dialogGPS(){
+                final AlertDialog.Builder alertDialog = new AlertDialog.Builder(LoginActivity.this);
+                View alertview = getLayoutInflater().inflate(R.layout.dialog_gps, null);
+                TextView alertTitulo = alertview.findViewById(R.id.textViewAlertGPS);
+                Button buttonConfirmar = alertview.findViewById(R.id.buttonAlertAtivaGps);
+                Button buttonCancelar = alertview.findViewById(R.id.buttonCancelarGps);
+
+
+                alertDialog.setView(alertview);
+                final AlertDialog dialog = alertDialog.create();
+                dialog.show();
+
+                buttonCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        validarLogin();
+                        dialog.dismiss();
+
+                    }
+                });
+
+
+
+                buttonConfirmar.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+                    @Override
+
+                    public void onClick(View v) {
+
+                            dialog.dismiss();
+                            Toast.makeText(LoginActivity.this, "Iremos redirecioná-lo para configurações do seu celular!", Toast.LENGTH_SHORT).show();
+                            finishAffinity();
+
+                        }
+
+
+
+
+            });
+        }
+
+
 
     private void validarLogin() {
         autenticacao = Firebase.getAutenticacao();
